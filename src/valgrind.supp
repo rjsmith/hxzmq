@@ -1,0 +1,92 @@
+{
+   <zmq:socketcall_sendto>
+   Memcheck:Param
+   socketcall.sendto(msg)
+   fun:sendto
+   ...
+}
+
+{
+   <libstdc:getGlobalInitialisation>
+   Memcheck:Leak
+   fun:malloc
+   fun:__cxa_get_globals
+   fun:__cxa_allocate_exception
+   ...
+}
+
+{
+   <hxcpp:InternalCreateConstBuffer>
+   Memcheck:Leak
+   fun:malloc
+   fun:_ZN2hx25InternalCreateConstBufferEPKvi
+   ...
+}
+
+{
+   <hxcpp:StringAdd1>
+   Memcheck:Addr1
+   fun:memcpy
+   fun:_ZNK6StringplES_
+   ...
+}
+
+{
+   <hxcpp:StringgetChar>
+   Memcheck:Addr1
+   fun:_ZN6String7getCharEi
+   ...
+}
+
+{
+   <hxcpp:StringAdd2>
+   Memcheck:Addr2
+   fun:memcpy
+   fun:_ZNK6StringplES_
+   ...
+}
+
+{
+   <StringAdd8>
+   Memcheck:Addr8
+   fun:memcpy
+   fun:_ZNK6StringplES_
+   ...
+}
+
+{
+   <hxcpp:Stringsubstr>
+   Memcheck:Addr1
+   fun:memcpy
+   fun:_ZNK6String6substrEi7Dynamic
+   fun:_Z11FindHaxelib6String
+   fun:_Z10__loadprim6StringS_i
+   fun:_ZN3cpp7Lib_obj4loadE6StringS1_i
+   fun:_ZN3org6zeromq7ZMQ_obj6__bootEv
+   fun:_Z10__boot_allv
+   fun:main
+}
+
+{
+   <hxcpp:InternalNewAlloc>
+   Memcheck:Leak
+   fun:malloc
+   fun:_ZN15GlobalAllocator13GetEmptyBlockEv
+   fun:_ZN15GlobalAllocator16GetRecycledBlockEi
+   fun:_ZN14LocalAllocator5AllocEib
+   fun:_ZN2hx11InternalNewEib
+   ...
+}
+
+{
+   <hxcpp:forwarditerator>
+   Memcheck:Leak
+   fun:_Znwm
+   fun:_ZNSs4_Rep9_S_createEmmRKSaIcE
+   fun:_ZNSs12_S_constructIPKcEEPcT_S3_RKSaIcESt20forward_iterator_tag
+   fun:_ZNSsC2EPKcRKSaIcE
+   fun:_Z19__hxcpp_field_to_idPKc
+   fun:val_id
+   ...
+}
+

@@ -1,0 +1,11 @@
+# Haxe build file
+# Build CPP guide target
+-cp ..
+-cpp out-cpp/Mac64
+-debug
+-D HXCPP_M64
+-D HXCPP_MULTI_THREADED
+--remap neko:cpp
+-main org.zeromq.guide.Run
+
+# todo: Neko Mac0SX 64 bit target

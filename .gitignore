@@ -1,0 +1,5 @@
+# Git ignore file for hxzmq
+lib/
+obj/
+all_objs
+vc90.pdb

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="hxzmq" url="http://github.com/rjsmith/hxzmq" licence="LGPL">
+	<depends name="hxcpp"/>
+	<user name="rjsmith"/>
+	<tag v="cpp"/>
+	<tag v="neko"/>
+	<description>Haxe language binding for the ZeroMQ socket library</description>
+	<version name="1.0.0">Initial upload, compatable with libzmq 2.1.6+</version>
+</project>

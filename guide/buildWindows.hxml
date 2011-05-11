@@ -1,0 +1,16 @@
+# Haxe build file
+# Builds Windows HXZMQ Guide code
+# Build CPP guide target
+-cp ..
+-cpp out-cpp/Windows
+-debug
+-D HXCPP_MULTI_THREADED
+--remap neko:cpp
+-main org.zeromq.guide.Run
+--next
+# Build Neko guide target
+-cp ..
+-neko out-neko/Windows/run-debug.n
+-debug
+-main org.zeromq.guide.Run
+

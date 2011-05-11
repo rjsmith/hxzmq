@@ -1,0 +1,49 @@
+<xml>
+	<!-- Build file for hxzmq.ndll -->
+	<!-- Install hxcpp and run with 'haxelib run hxcpp Build.xml' -->
+	
+	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
+
+	<set name="LIB_DIR" value="-Llib" unless="windows"/>
+	<set name="LIB_DIR" value="-libpath:lib" if="windows"/>
+
+	<set name="DBG" value="d" if="debug"/>
+	
+	<files id="files">
+		<compilerflag value = "-Iinclude"/>
+		<!-- Replace with path to your libzmq installation include directory -->
+		<compilerflag value = "-IC:\zeromq\zeromq-2.1.6\include" if="windows"/>
+		
+		<!-- Pick up libzmq's stdint.hpp include file -->
+		<compilerflag value = "-IC:\zeromq\zeromq-2.1.6\src" if="windows"/>
+		
+	    <compilerflag value = "-D_FILE_OFFSET_BITS=64" if="macos"/>
+	    <compilerflag value = "-D_LARGE_FILES=64" if="macos"/>
+
+        <!-- Add for valgrind investigation -->
+        <!-- <compilerflag value = "-DDEBUG"/>  -->
+
+		<file name="src/ZMQ.cpp"/>			   
+		<file name="src/Context.cpp"/>
+		<file name="src/Socket.cpp"/>
+		<file name="src/Poller.cpp"/>
+		<file name="src/Interrupt.cpp"/>
+		
+</files>
+
+<target id="hxzmq.ndll" tool="linker" toolid="dll" output="hxzmq">
+	<ext value=".ndll"/>
+	<outdir name="bin/ndll/${BINDIR}"/>
+	
+	<files id="files"/>
+	
+	<lib name="libzmq.lib" if="windows" />
+	<lib name="-lzmq" unless="windows" />
+	
+</target>
+
+<target id="default">
+	<target id="hxzmq.ndll"/>	
+</target>			
+
+</xml>

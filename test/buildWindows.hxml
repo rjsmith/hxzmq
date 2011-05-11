@@ -1,0 +1,14 @@
+# Haxe build file
+
+# Build CPP unit test target for Windows
+-cp ..	
+-cpp out-cpp/Windows
+-debug
+--remap neko:cpp
+-main org.zeromq.test.TestAll
+--next
+# Build Neko unit test target for Windows
+-cp ..
+-neko out-neko/Windows/TestAll.n
+-debug
+-main org.zeromq.test.TestAll

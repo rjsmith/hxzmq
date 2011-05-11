@@ -1,0 +1,15 @@
+# Haxe build file
+
+# Build CPP unit test target for Mac64
+-cp ..	
+-cpp out-cpp/Mac64
+-debug
+-D HXCPP_M64
+--remap neko:cpp
+-main org.zeromq.test.TestAll
+--next
+# Build Neko unit test target for Mac64
+-cp ..
+-neko out-neko/Mac64/TestAll.n
+-debug
+-main org.zeromq.test.TestAll
