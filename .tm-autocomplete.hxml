@@ -1,6 +1,0 @@
-# Haxe build file
--cp src
--cp test/src
--cpp out
--D HXCPP_M64
--main TestZMQ

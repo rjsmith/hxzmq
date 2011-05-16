@@ -5,6 +5,8 @@ obj/
 all_objs
 vc90.pdb
 hxzmq.hxproj
+.tm-autocomplete.hxml
+.tmbuild
 # Ignore build folder contents
 test/out-cpp/Linux/*
 test/out-cpp/Mac64/*
