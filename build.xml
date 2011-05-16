@@ -1,28 +1,35 @@
 <xml>
 	<!-- Build file for hxzmq.ndll -->
-	<!-- Install hxcpp and run with 'haxelib run hxcpp Build.xml' -->
+	<!-- Install hxcpp and run with 'haxelib run hxcpp build.xml' -->
 	
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 
+    <!-- Set library search paths for libzmq etc -->
 	<set name="LIB_DIR" value="-Llib" unless="windows"/>
 	<set name="LIB_DIR" value="-libpath:lib" if="windows"/>
 
 	<set name="DBG" value="d" if="debug"/>
 	
+    <!-- Define all cpp files that need to be compiled into the hxzmq.ndll -->
 	<files id="files">
+        
+        <!-- Set up include folder paths -->
 		<compilerflag value = "-Iinclude"/>
-		<!-- Replace with path to your libzmq installation include directory -->
-		<compilerflag value = "-IC:\zeromq\zeromq-2.1.6\include" if="windows"/>
+        
+		<!-- ** Only for Windows, replace with path to your libzmq installation include directory -->
+		<compilerflag value = "-IC:\zeromq\zeromq-2.1.7\include" if="windows"/>
+		<!-- ** Only for Windows, replace with path to your libzmq installation source directory -->
+        <!-- This include in needed to pick up libzmq's stdint.hpp include file -->
+		<compilerflag value = "-IC:\zeromq\zeromq-2.1.7\src" if="windows"/>
 		
-		<!-- Pick up libzmq's stdint.hpp include file -->
-		<compilerflag value = "-IC:\zeromq\zeromq-2.1.6\src" if="windows"/>
-		
+        <!-- Special flags for compiling on MacOSX 64 bit. May need for linux 64bit too?  -->
 	    <compilerflag value = "-D_FILE_OFFSET_BITS=64" if="macos"/>
 	    <compilerflag value = "-D_LARGE_FILES=64" if="macos"/>
 
-        <!-- Add for valgrind investigation -->
+        <!-- Uncomment for helping with valgrind memory leak investigation -->
         <!-- <compilerflag value = "-DDEBUG"/>  -->
 
+        <!-- List of cpp files to be compiled -->
 		<file name="src/ZMQ.cpp"/>			   
 		<file name="src/Context.cpp"/>
 		<file name="src/Socket.cpp"/>
@@ -31,17 +38,24 @@
 		
 </files>
 
+<!-- define compiler build & linking target -->
 <target id="hxzmq.ndll" tool="linker" toolid="dll" output="hxzmq">
 	<ext value=".ndll"/>
-	<outdir name="bin/ndll/${BINDIR}"/>
+    
+    <!-- output directory for linker. -->
+    <!-- ${BINDIR} substituted by hxcpp build tool for your platform e.g. "Windows", "Mac64" -->
+	<outdir name="ndll/${BINDIR}"/>
 	
+    <!-- specific previously deifned list of files to compile -->
 	<files id="files"/>
 	
+    <!-- Dependent 0MQ library name for linker -->
 	<lib name="libzmq.lib" if="windows" />
 	<lib name="-lzmq" unless="windows" />
 	
 </target>
 
+<!-- specifies default hxcpp build tool target -->
 <target id="default">
 	<target id="hxzmq.ndll"/>	
 </target>			

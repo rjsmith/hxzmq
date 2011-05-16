@@ -1,0 +1,16 @@
+# Haxe build file
+
+# Build CPP unit test target for Linux 32bit
+-cp ..	
+-cpp out-cpp/Linux
+-debug
+--remap neko:cpp
+#-lib hxzmq
+-main org.zeromq.test.TestAll
+--next
+# Build Neko unit test target for Linux 32bit
+-cp ..
+-neko out-neko/Linux/TestAll.n
+-debug
+#-lib hxzmq
+-main org.zeromq.test.TestAll

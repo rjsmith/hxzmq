@@ -11,11 +11,11 @@ haxe buildWindows.hxml
 
 echo "** Copy hxzmq.ndll:"
 cd ..
-copy /Y out\ndll\Windows\hxzmq.ndll test\out-cpp\Windows
-copy /Y out\ndll\Windows\hxzmq.ndll test\out-neko\Windows
-copy /Y out\ndll\Windows\hxzmq.ndll guide\out-cpp\Windows
-copy /Y out\ndll\Windows\hxzmq.ndll guide\out-neko\Windows
-
+copy /Y ndll\Windows\hxzmq.ndll test\out-cpp\Windows
+copy /Y ndll\Windows\hxzmq.ndll test\out-neko\Windows
+copy /Y ndll\Windows\hxzmq.ndll guide\out-cpp\Windows
+copy /Y ndll\Windows\hxzmq.ndll guide\out-neko\Windows
+vi
 
 rem echo "** Run CPP unit tests:"
 rem cd test/out-cpp/Windows

@@ -83,10 +83,14 @@ Key files and folders contained in this repository:
 
     XML compilation configuration file used by the hxcpp cross-platform ndll build tool to compile & build the hxzmq.ndll library.  See INSTALL.md for further details.
 	
-*   *build.sh*
+*   *buildmac64.sh*
 
-    Mac/linux build shell script that builds hxzmq.ndll, unit test and guide programs
+    Mac OSX 64bit build shell script that builds hxzmq.ndll, unit test and guide programs
 	
+*   *buildlinux.sh*
+
+    Linux 32bit build shell script that builds hxzmq.ndll, unit test and guide programs
+    
 *   *build.bat*
 
     Windows script file that builds hxzmq.ndll, unit test and guide programs
@@ -115,7 +119,7 @@ Key files and folders contained in this repository:
 
     Contains build hxml files for compiling the 0MQ Guide code examples on different platforms
 	
-*   */bin/ndll*
+*   *ndll/*
 
     Contains pre-built ndll files for different platforms
 	

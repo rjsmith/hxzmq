@@ -1,6 +1,20 @@
 # Git ignore file for hxzmq
+# Top-level files and folders
 lib/
 obj/
 all_objs
 vc90.pdb
 hxzmq.hxproj
+# Ignore build folder contents
+test/out-cpp/Linux/*
+test/out-cpp/Mac64/*
+test/out-cpp/Windows/*
+test/out-neko/Linux/*
+test/out-neko/Mac64/*
+test/out-neko/Windows/*
+guide/out-cpp/Linux/*
+guide/out-cpp/Mac64/*
+guide/out-cpp/Windows/*
+guide/out-neko/Linux/*
+guide/out-neko/Mac64/*
+guide/out-neko/Windows/*

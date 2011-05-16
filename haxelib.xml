@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<project name="hxzmq" url="http://github.com/rjsmith/hxzmq" licence="LGPL">
+<project name="hxzmq" url="http://github.com/rjsmith/hxzmq" license="LGPL">
 	<depends name="hxcpp"/>
 	<user name="rjsmith"/>
 	<tag v="cpp"/>
