@@ -9,6 +9,7 @@ There are [lots of instructions on the zeromq website][1].
 To actually build hxzmq from source, you will need some additional installation steps:
 ### HXCPP (all platforms)
 The hxzmq repository uses the hxcpp build tool to compile hxzmq.ndll from source on all target platforms, for neko and cpp -based applications:.
+
 1.  You need to install the full hxcpp package on your development machine:
         haxelib install hxcpp
 2.  For Linux / neko, add the path to the hxcpp/bin/Linux folder to your machine's executable PATH:
@@ -18,6 +19,7 @@ The hxzmq repository uses the hxcpp build tool to compile hxzmq.ndll from source
 
 ### ZeroMQ (Windows)
 To build hxzmq on Windows, you need to:
+
 1.  Build 'release' libzmq in MSVC2008 (or later), and then copy the created libzmq.lib file into the hxzmq/lib folder (see the reference to this path in the `<set name="LIB_DIR" value="-libpath:lib" if="windows"/>` line in the hxzmq/build.xml HXCPP build tool configuration file.  This file appears necessary for the MSVC linker to compile against the libzmq.dll.
 2.  Edit the hxzmq/build.xml file to change the paths to your libzmq installation include and src folders eg:
         <compilerflag value = "-IC:\zeromq\zeromq-2.1.6\include" if="windows"/>
@@ -50,6 +52,7 @@ The HXCCP build tool uses a single configuration file, `build.xml` in the top-le
 There are some platform-specific edits you will need to make to configure to your exact system setup (see Dependencies section above).
 
 To compile hxzmq via the hxcpp build tool, execute the following commands for each platform, from the hxzmq top-level folder:
+
 *   (for MacOS 64bit):
         haxelib run hxcpp build.xml -DHXCPP_M64
 *   (for Linux 32bit):
