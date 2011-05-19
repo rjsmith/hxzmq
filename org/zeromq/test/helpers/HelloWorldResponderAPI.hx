@@ -17,33 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.zeromq.test;
+package org.zeromq.test.helpers;
 
-import haxe.unit.TestRunner;
-import org.zeromq.test.TestContext;
-import org.zeromq.test.TestVersion;
-
-class TestAll 
+class HelloWorldResponderAPI
 {
-
-	public static function main() {
-		
-		var runner:TestRunner = new TestRunner();
-
-		// Core org.zeromq package tests
-		runner.add(new TestVersion());
-		runner.add(new TestContext());
-		runner.add(new TestError());
-		runner.add(new TestSocket());
-		runner.add(new TestPubSub());
-		runner.add(new TestMultiPartMessage());
-		runner.add(new TestReqRep());
-		runner.add(new TestPoller());
-        
-		// org.zeromq.remoting package tests
-        runner.add(new TestZMQRemoting());
-        
-		// Run
-		runner.run();
-	}
+    public function new() {
+    }
+    
+    public function hello(n:String):String {
+        return n + ", " + "Hello World";
+    }
 }
+

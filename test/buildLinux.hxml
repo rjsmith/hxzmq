@@ -4,6 +4,7 @@
 -cp ..	
 -cpp out-cpp/Linux
 -debug
+-D HXCPP_MULTI_THREADED
 --remap neko:cpp
 #-lib hxzmq
 -main org.zeromq.test.TestAll

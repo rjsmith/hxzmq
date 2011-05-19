@@ -17,6 +17,7 @@ hxzmq has been written to allow the author (and anyone else who might be interes
 ### haXe Code Example
 
 Client:
+
 	package ;
 	import haxe.io.Bytes;
 	import org.zeromq.ZMQ;
@@ -44,7 +45,8 @@ Client:
 	}
 
 Server:
-	package ;
+
+    package ;
 	import haxe.io.Bytes;
 	import org.zeromq.ZMQ;
 	import org.zeromq.ZMQContext;
@@ -102,7 +104,11 @@ Key files and folders contained in this repository:
 *   */org/zeromq*
 
     The haXe code that invokes the native functions defined in hxzmq.ndll. Provides the core API used by haXe applications.
-	
+    
+*   */org/zeromq/remoting*
+    
+    haXe classes that implement a haXe remoting wrapper on top of ZMQSocket objects. 
+    
 *   */org/zeromq/test*
 
     Unit tests for the org.zeromq package.  Main program invoked from the TestAll.hx class.
