@@ -33,6 +33,7 @@ import org.zeromq.ZMQSocket;
  * Multithreaded Hello World Server
  * 
  * See: http://zguide.zeromq.org/page:all#Multithreading-with-MQ
+ * Use with HelloWorldClient.hx
  */
 class MTServer 
 {

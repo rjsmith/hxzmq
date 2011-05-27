@@ -34,6 +34,8 @@ import org.zeromq.ZMQSocket;
  * Use optional argument to specify zip code (in range 1 to 100000)
  * 
  * See: http://zguide.zeromq.org/page:all#Getting-the-Message-Out
+ * 
+ * Use with WUServer.hx
  */
 class WUClient 
 {

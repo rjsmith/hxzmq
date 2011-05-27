@@ -27,44 +27,35 @@ import org.zeromq.ZMQException;
 import org.zeromq.ZMQSocket;
 
 /**
- * Hello World server in Haxe
- * Binds REP to tcp://*:5556
- * Expects "Hello" from client, replies with "World"
- * Use with HelloWorldClient.hx
+ * Pubsub envelope publisher
  * 
+ * See: http://zguide.zeromq.org/page:all#Pub-sub-Message-Envelopes
+ * 
+ * Use with PSEnvSub
  */
-class HelloWorldServer 
+class PSEnvPub 
 {
 
-	public static function main() {
-		
-		var context:ZMQContext = ZMQContext.instance();
-		var responder:ZMQSocket = context.socket(ZMQ_REP);
+    public static function main() {
+        var context:ZMQContext = ZMQContext.instance();
+        
+        Lib.println("** PSEnvPub (see: http://zguide.zeromq.org/page:all#Pub-sub-Message-Envelopes)");
+        
+        var publisher:ZMQSocket = context.socket(ZMQ_PUB);
+        publisher.bind("tcp://*:5563");
+        
+        ZMQ.catchSignals();
+        
 
-		Lib.println("** HelloWorldServer (see: http://zguide.zeromq.org/page:all#Ask-and-Ye-Shall-Receive)");
-
-		responder.setsockopt(ZMQ_LINGER, 0);
-		responder.bind("tcp://*:5556");
-		
-		try {
-			while (true) {
-				// Wait for next request from client
-				var request:Bytes = responder.recvMsg();
-				
-				trace ("Received request:" + request.toString());
-				
-				// Do some work
-				Sys.sleep(1);
-				
-				// Send reply back to client
-				responder.sendMsg(Bytes.ofString("World"));
-			}
-		} catch (e:ZMQException) {
-			trace (e.toString());
-		}
-		responder.close();
-		context.term();
-		
-	}
-	
+        while (true) {
+            publisher.sendMsg(Bytes.ofString("A"), SNDMORE);
+            publisher.sendMsg(Bytes.ofString("We don't want to see this"));
+            publisher.sendMsg(Bytes.ofString("B"), SNDMORE);
+            publisher.sendMsg(Bytes.ofString("We would like to see this"));
+            Sys.sleep(1.0);
+        }
+        // We never get here but clean up anyhow
+        publisher.close();
+        context.term();
+    }
 }

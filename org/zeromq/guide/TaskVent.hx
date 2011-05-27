@@ -36,6 +36,8 @@ import org.zeromq.ZMQSocket;
  * Sends batch of tasks to workers via that socket.
  * 
  * Based on code from: http://zguide.zeromq.org/java:taskvent
+ * 
+ * Use with TaskWork.hx and TaskSink.hx
  */
 class TaskVent 
 {

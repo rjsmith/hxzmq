@@ -31,6 +31,8 @@ import org.zeromq.ZMQSocket;
  * Publishes random weather updates
  * 
  * See: http://zguide.zeromq.org/page:all#Getting-the-Message-Out
+ * 
+ * Use with WUClient.hx
  */
 class WUServer 
 {

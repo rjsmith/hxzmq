@@ -18,47 +18,49 @@
  */
 
 package org.zeromq.guide;
-import haxe.io.Bytes;
-import neko.Lib;
-import neko.Sys;
 
+import neko.Lib;
+import haxe.io.Bytes;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQContext;
-import org.zeromq.ZMQSocket;
 
 /**
- * Hello World client in Haxe.
- * Use with HelloWorldServer.hx and MTServer.hx
+ * Hello World Client
+ * Connects REQ socket to tcp://localhost:5559
+ * Sends "Hello" to server, expects "World" back
+ * 
+ * See: http://zguide.zeromq.org/page:all#A-Request-Reply-Broker
+ * 
+ * Use with RrServer and RrBroker
  */
-class HelloWorldClient 
+class RrClient 
 {
-	
-	public static function main() {
-		var context:ZMQContext = ZMQContext.instance();
-		var socket:ZMQSocket = context.socket(ZMQ_REQ);
+
+    public static function main() {
+        var context:ZMQContext = ZMQContext.instance();
+        
+		Lib.println("** RrClient (see: http://zguide.zeromq.org/page:all#A-Request-Reply-Broker)");
+
+		var requester:ZMQSocket = context.socket(ZMQ_REQ);
+		requester.connect ("tcp://localhost:5559");
 		
-		Lib.println("** HelloWorldClient (see: http://zguide.zeromq.org/page:all#Ask-and-Ye-Shall-Receive)");
-		
-		trace ("Connecting to hello world server...");
-		socket.connect ("tcp://localhost:5556");
-		
+        Lib.println ("Launch and connect client.");
+        
 		// Do 10 requests, waiting each time for a response
 		for (i in 0...10) {
 			var requestString = "Hello ";
-			
 			// Send the message
-			trace ("Sending request " + i + " ...");
-			socket.sendMsg(Bytes.ofString(requestString));
+			requester.sendMsg(Bytes.ofString(requestString));
 			
 			// Wait for the reply
-			var msg:Bytes = socket.recvMsg();
+			var msg:Bytes = requester.recvMsg();
 			
-			trace ("Received reply " + i + ": [" + msg.toString() + "]");
+			Lib.println("Received reply " + i + ": [" + msg.toString() + "]");
 			
 		}
 		
 		// Shut down socket and context
-		socket.close();
+		requester.close();
 		context.term();
-	}
+    }
 }

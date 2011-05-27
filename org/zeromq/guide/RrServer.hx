@@ -18,7 +18,9 @@
  */
 
 package org.zeromq.guide;
+
 import haxe.io.Bytes;
+import haxe.Stack;
 import neko.Lib;
 import neko.Sys;
 import org.zeromq.ZMQ;
@@ -28,40 +30,51 @@ import org.zeromq.ZMQSocket;
 
 /**
  * Hello World server in Haxe
- * Binds REP to tcp://*:5556
+ * Binds REP to tcp://*:5560
  * Expects "Hello" from client, replies with "World"
- * Use with HelloWorldClient.hx
+ * Use with RrClient.hx and RrBroker.hx
  * 
  */
-class HelloWorldServer 
+class RrServer 
 {
 
 	public static function main() {
 		
 		var context:ZMQContext = ZMQContext.instance();
+
+		Lib.println("** RrServer (see: http://zguide.zeromq.org/page:all#A-Request-Reply-Broker)");
+
+        // Socket to talk to clients
 		var responder:ZMQSocket = context.socket(ZMQ_REP);
-
-		Lib.println("** HelloWorldServer (see: http://zguide.zeromq.org/page:all#Ask-and-Ye-Shall-Receive)");
-
-		responder.setsockopt(ZMQ_LINGER, 0);
-		responder.bind("tcp://*:5556");
+		responder.connect("tcp://localhost:5560");
 		
-		try {
-			while (true) {
-				// Wait for next request from client
-				var request:Bytes = responder.recvMsg();
-				
-				trace ("Received request:" + request.toString());
-				
-				// Do some work
-				Sys.sleep(1);
-				
-				// Send reply back to client
-				responder.sendMsg(Bytes.ofString("World"));
+        Lib.println("Launch and connect server.");
+        
+        ZMQ.catchSignals();
+        
+        while (true) {
+            
+            try {
+                // Wait for next request from client
+                var request:Bytes = responder.recvMsg();
+                
+                trace ("Received request:" + request.toString());
+                
+                // Do some work
+                Sys.sleep(1);
+                
+                // Send reply back to client
+                responder.sendMsg(Bytes.ofString("World"));
+            } catch (e:ZMQException) {
+				if (ZMQ.isInterrupted()) {
+					break;
+				}
+				// Handle other errors
+				trace("ZMQException #:" + e.errNo + ", str:" + e.str());
+				trace (Stack.toString(Stack.exceptionStack()));
 			}
-		} catch (e:ZMQException) {
-			trace (e.toString());
-		}
+
+        }
 		responder.close();
 		context.term();
 		

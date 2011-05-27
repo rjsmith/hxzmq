@@ -21,6 +21,7 @@ package org.zeromq.guide;
 
 import neko.io.File;
 import neko.io.FileInput;
+import neko.io.Process;
 import neko.Lib;
 import neko.Sys;
 
@@ -63,7 +64,28 @@ class Run
 			Lib.println("");
 			Lib.println("11. Interrupt (** Doesn't work on Windows!)");
 			Lib.println("");
-			Lib.println("12. MTServer");
+			Lib.println("12. MTServer (use with 1. HelloWorldClient)");
+			Lib.println("");
+			Lib.println("13. TaskWork2 (use with 5. TaskVent and 14. TaskSink2)");
+            Lib.println("14. TaskSink2 (use with 5. TaskVent and 13. TaskWork2)");
+			Lib.println("");
+			Lib.println("15. WUProxy (use with 4. WUServer)");
+			Lib.println("");
+			Lib.println("16. RrClient");
+			Lib.println("17. RrBroker");
+			Lib.println("18. RrServer");
+			Lib.println("");
+			Lib.println("19. MTRelay");
+            Lib.println("");
+            Lib.println("20. SyncPub");
+            Lib.println("21. SyncSub");
+            Lib.println("");
+            Lib.println("22. PSEnvPub");
+            Lib.println("23. PSEnvSub");
+            Lib.println("");
+            Lib.println("24. DuraPub");
+            Lib.println("25. DuraSub");
+            Lib.println("26. DuraPub2");
 			
 			do {
 				Lib.print("Type number followed by Enter key, or q to quit: ");
@@ -97,6 +119,34 @@ class Run
 				Interrupt.main();
 			case 12:
 				MTServer.main();
+            case 13:
+                TaskWork2.main();
+            case 14:
+                TaskSink2.main();
+            case 15:
+                WUProxy.main();
+            case 16:
+                RrClient.main();
+            case 17:
+                RrBroker.main();
+            case 18:
+                RrServer.main();
+            case 19:
+                MTRelay.main();
+            case 20:
+                SyncPub.main();
+            case 21:
+                SyncSub.main();
+            case 22:
+                PSEnvPub.main();
+            case 23:
+                PSEnvSub.main();
+            case 24:
+                DuraPub.main();
+            case 25:
+                DuraSub.main();
+            case 26:
+                DuraPub2.main();
 			default:
 			Lib.println ("Unknown program number ... exiting");
 		}

@@ -43,7 +43,7 @@
 
 package org.zeromq.remoting;
 
-import org.zeromq.remoting.SocketProtocol;
+import org.zeromq.remoting.ZMQSocketProtocol;
 import haxe.remoting.AsyncConnection;
 import haxe.remoting.Context;
 
