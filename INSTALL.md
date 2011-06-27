@@ -7,8 +7,8 @@ To just build or just use hxzmq in a haXe project, you will need a working 0MQ l
 There are [lots of instructions on the zeromq website][1].
 
 To actually build hxzmq from source, you will need some additional installation steps:
-### HXCPP (all platforms)
-The hxzmq repository uses the hxcpp build tool to compile hxzmq.ndll from source on all target platforms, for neko and cpp -based applications:.
+### HXCPP (all OS, neko and cpp targets)
+The hxzmq repository uses the hxcpp build tool to compile hxzmq.ndll from source on all target operating systems, for neko and cpp -based applications:.
 
 1.  You need to install the full hxcpp package on your development machine:
         haxelib install hxcpp
@@ -26,6 +26,12 @@ To build hxzmq on Windows, you need to:
         <compilerflag value = "-IC:\zeromq\zeromq-2.1.6\src" if="windows"/>
     Both of these are necessary to build hxzmq on Windows, as it refers to header files contained in the libzmq distribution.    
 Note that if you build the debug target libzmq MSVC project, you may encounter errors related to a missing MSVCR100D.dll (debug c++ runtime).
+
+## PHP-ZMQ (PHP target)
+The haXe classes in the org.zeromq namespace (/org/zeromq in the project structure) include php - specific code to integrate the haXe ZMQ API with the [php-zmq PHP zeroMQ binding][3].
+
+To use this, install the php-zmq extension following the instructions documented in the php-zmq project.  Then compile your PHP - targetted haXe application code including the hxzmq library. Instead of using the hxzmq.ndll C wrapper, the haXe zeroMQ code redirects to the php-zmq class methods.
+
 ## hxzmq Library Installation using haxelib
 
 To be able to just use hxzmq to build 0MQ messaging into new haXe applications, 
@@ -38,7 +44,7 @@ without modifying the or re-building hxzmq from source, you need:
     include the hxzmq library in your hxml haXe compilation file:
         -lib hxzmq
         
-3.  To run your target executable, your system will need to reach the hxzmq.ndll library file
+3.  *(For neko and cpp targetted applications only)* To run your target executable, your system will need to reach the hxzmq.ndll library file
     and the libzmq.dll 0MQ library file.  Add both paths to your environment executable PATH variable or copy into a standard library path directory if not in one already (e.g. /usr/lib in linux), 
     or copy both files into the same folder as your newly-minted haXe executable 
     (e.g. either a neko .n or cpp executable).
@@ -73,10 +79,11 @@ or
 or
     haxe buildLinux.hxml
     
-These create debug - enabled target cpp and neko executables in the test/out-cpp/... and test/out-neko/... folders.
+These create debug - enabled target cpp, neko and php executables in the test/out-cpp/... , test/out-neko/... and test/out-php/... folders.
 Then to run the test executables:
 
-1.  Navigate to the folder holding the test executable (cpp or neko, platform), 
+For neko and cpp:
+1.  Navigate to the folder holding the test executable (cpp or neko, OS-specific), 
 2.  Ensure that the hxzmq.ndll and libzmq.dll files are on your executable path (or copied into this folder)
 3.  Run the program
 
@@ -85,6 +92,18 @@ e.g, to build and run the cpp unit test target executable on Mac64:
     haxe buildMac64.hxml
     cd out-cpp/Mac64
     ./TestAll-debug
+
+For php:
+1.  Navigate to the folder holding the test index.php file. 
+2.  Ensure that the php-zmq extension is available (run `php -m` and look for `zmq`)
+3.  Run the program
+
+e.g, to build and run the php unit test target executable on Mac64:
+    cd test
+    haxe buildMac64.hxml
+    cd out-php/Mac64
+    php -f index.php
+
 
 You should see output similar to:
     Class: org.zeromq.test.TestVersion TestVersion.hx:39: version_full:20107
@@ -112,19 +131,32 @@ or
 or
     haxe buildLinux.hxml
     
-These create debug - enabled target cpp and neko executables in the guide/out-cpp/... and guide/out-neko/... folders.
+These create debug - enabled target cpp, neko and php executables in the guide/out-cpp/... or guide/out-neko/... or guide/out-php folders.
 Then to run the test executables:
 
+For neko or cpp:
 1.  Navigate to the folder holding the guide executable (cpp or neko, platform), 
 2.  Ensure that the hxzmq.ndll and libzmq.dll files are on your executable path (or copied into this folder)
 3.  Run the program
 
-e.g, to build and run the neko unit test target executable on Windows:
+e.g, to build and run the neko guide target executable on Windows:
     cd guide
     haxe buildWindows.hxml
     cd out-neko/Windows
     neko run-debug.n
 
+For php:
+1.  Navigate to the folder holding the guide index.php
+2.  Ensure that the php-zmq extension is available (run `php -m` and look for `zmq`)
+3.  Run the program
+
+e.g, to build and run the php guide target executable on Windows:
+    cd guide
+    haxe buildWindows.hxml
+    cd out-php/Windows
+    php -f index.php
+
 
 [1]: http://www.zeromq.org/intro:get-the-software "ZeroMQ installation"
 [2]: http://haxe.org/doc/cpp/ffi "HXCPP Build Tool"
+[3]: http://github.com/mkoppanen/php-zmq

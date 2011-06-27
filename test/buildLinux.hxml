@@ -15,3 +15,11 @@
 -debug
 #-lib hxzmq
 -main org.zeromq.test.TestAll
+--next
+# Build PHP unit test target for Linux 32bit
+-cp ..
+-php out-php/Linux
+-debug
+--remap neko:php
+#-lib hxzmq
+-main org.zeromq.test.TestAll

@@ -8,6 +8,8 @@ By Richard Smith [RSBA Technology Ltd] [1]
 
 ## Introduction
 This repository provides C++ binding code that wraps the libzmq library API to create a Neko DLL file, hxzmq.ndll.  The ndll is then accessed via the hxzmq org.zeromq package to expose the 0MQ API to haXe application code targetted at C++ or nekovm platforms.
+
+Also included is wrapper code around the [existing PHP ZeroMQ binding] [12], enabling haXe programs compiled for the PHP environment can slso make use of zeroMQ socket technology.
 ### Background & Rationale
 haXe enables applications to be written in a single unified programming language that can then be executed on any combination of an ever-growing number of [target language platforms.] [6].  It is quite possible to write back-end server code targetted at php or C++, with a rich internet application Flash or javascript front-end, plus an iPhone application (via the C++ target), all using a single shared haXe codebase.  Code written using non-target specific APIs can be automatically re-used on any of these platforms, such as an application's internal domain model or framework code.  Conditional compilation, together with many target - specific APIs contained in the [haXe standard library] [7], provides the opportunity to access platform-specific features, giving the best of both worlds.  Most of the target platforms also support extending the standard capabilities by use of externs and Foreign Function Interface mechanisms; an ability which has been used to write hxzmq.  haXe is an [open source project] [7]. 
 
@@ -131,7 +133,9 @@ Key files and folders contained in this repository:
 	
 ## Versions
 
-The current release of hxzmq is 1.0.0, compatable with libzmq-2.1.4 or any later 2.1.x version.  The latest released hxzmq package shall also be available in the [haxelib repository] [4], accessable via the [haxelib tool] [5] which is included in the standard haXe distribution.
+The current release of hxzmq is 1.1.0, compatable with libzmq-2.1.4 or any later 2.1.x version.  The latest released hxzmq package shall also be available in the [haxelib repository] [4], accessable via the [haxelib tool] [5] which is included in the standard haXe distribution.
+
+This version of hxzmq has also been tested against [php-zmq v0.7.0] [13] 
 
 ## Building and Installation
 
@@ -158,6 +162,8 @@ included with the hxzmq distribution.
 [9]: http://www.imatix.com/ "iMatix Corporation"
 [10]: http://haxe.org/doc/cpp/ffi "C++ FC Foreign Function Interface"
 [11]: http://zguide.zeromq.org/ "0MQ Guide"
+[12]: http://github.com/mkoppanen/php-zmq
+[13]: http://github.com/mkoppanen/php-zmq/blob/0.7.0
 
 
 

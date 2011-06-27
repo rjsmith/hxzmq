@@ -24,11 +24,15 @@ import haxe.remoting.Context;
 import haxe.io.Bytes;
 import haxe.remoting.Proxy;
 import neko.Sys;
+#if !php
 import neko.vm.Thread;
+#end
 import org.zeromq.remoting.ZMQConnection;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQSocket;
 import org.zeromq.test.helpers.HelloWorldResponderAPI;
+
+import org.zeromq.test.BaseTest;
 
 class TestZMQRemoting extends BaseTest
 {
@@ -57,9 +61,11 @@ class TestZMQRemoting extends BaseTest
      * Also demonstrates how the ZMQ sockets could be used for remoting calls and any other message traffic.
      *
      */
-    public function testRemotingSendResponse() {
+    public function testThreadedRemotingSendResponse() {
         
-        
+#if php
+        assertTrue(true);
+#else        
         var responderThread:Thread = Thread.create(helloWorldResponder);
         var senderThread:Thread = Thread.create(helloWorldSender);
         
@@ -80,9 +86,53 @@ class TestZMQRemoting extends BaseTest
             }
             assertEquals("Bill, "+TESTSTRING, res);
         }
-            
+ #end 
     }
     
+    /**
+     * This method repeats the previous test but using a single thread and with tcp transport
+     */
+    public function testSynchronousRemotingSendResponse() {
+		var context:ZMQContext = ZMQContext.instance();
+		
+        var pair:SocketPair;
+        pair = createBoundPair(ZMQ_REQ, ZMQ_REP);
+
+		// Socket to talk to responder
+		var sender:ZMQSocket = pair.s1;
+		// Socket to talk to sender
+		var responder:ZMQSocket = pair.s2;
+
+        // Set up haXe remoting context and add remote-callable methods
+        var remotingContext:Context = new Context();
+        remotingContext.addObject("HelloWorldResponder", new HelloWorldResponderAPI());
+		var conn:ZMQConnection = ZMQConnection.create(responder, remotingContext);
+        
+        var cnx:ZMQConnection = ZMQConnection.create(sender);
+        // setup error handler
+        cnx.setErrorHandler( function(err) trace("Error : "+Std.string(err)) );
+        
+        var me = this;       
+
+        // test 1. Use direct, untyped "call"
+        // Send request to responder via a ZMQConnection call
+        cnx.HelloWorldResponder.hello.call(["Bill"], function(s:String) {
+            me.assertEquals(s, "Bill, Hello World");
+        });
+        
+        // Wait for next request from client
+        var d = conn.getProtocol().readMessage();
+        //trace ("responder received message:" + d);
+        conn.processMessage(d);
+
+        // Wait for reply back
+        var rep:Bytes = sender.recvMsg();
+        //trace ("sender received message:" + rep.toString());
+        cnx.processMessage(rep.toString());
+        
+        
+    }
+#if (neko || cpp)    
     static function helloWorldSender() {
 		var context:ZMQContext = ZMQContext.instance();
 		
@@ -178,6 +228,7 @@ class TestZMQRemoting extends BaseTest
 		return null;
         
     }
+#end
 }
 
 

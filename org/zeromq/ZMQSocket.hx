@@ -25,6 +25,9 @@ import neko.Lib;
 import neko.Sys;
 
 import org.zeromq.ZMQ;
+#if php
+import org.zeromq.externals.phpzmq.ZMQSocketException;
+#end
 
 /**
  * A 0MQ socket
@@ -105,15 +108,23 @@ class ZMQSocket
 	 */
 	public function bind(addr:String)
 	{
-		if (closed)
+		if (_socketHandle == null || closed)
 			throw new ZMQException(ENOTSUP);
 		
 		try {
+#if (neko || cpp)            
 			_hx_zmq_bind(_socketHandle, Lib.haxeToNeko(addr));
+#elseif php
+            untyped __php__('$this->_socketHandle->bind($addr)');
+#end            
 		} catch (e:Int) {
 			throw new ZMQException(ZMQ.errNoToErrorType(e));
-		} 
-		
+        }
+#if php            
+		  catch (e:ZMQSocketException) {
+            throw new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+        }
+#end		
 	}
 
 	/**
@@ -127,14 +138,23 @@ class ZMQSocket
 	 */
 	public function connect(addr:String)
 	{
-		if (closed)
+		if (_socketHandle == null || closed)
 			throw new ZMQException(ENOTSUP);
 		
 		try {
+#if (neko || cpp)            
 			_hx_zmq_connect(_socketHandle, Lib.haxeToNeko(addr));
+#elseif php
+            untyped __php__('$this->_socketHandle->connect($addr)');
+#end            
 		} catch (e:Int) {
 			throw new ZMQException(ZMQ.errNoToErrorType(e));
 		} 
+#if php            
+		  catch (e:ZMQSocketException) {
+            throw new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+        }
+#end		
 		
 	}
 	
@@ -144,15 +164,23 @@ class ZMQSocket
 	 * See the ZMQ documentation for details on specific options: 
 	 * http://api.zeromq.org/master:zmq-setsockopt
 	 * 
-	 * 
+	 * C Parameter type     optval haXe type expected
+     * =================    ==========================
+     * int                  Int
+     * int64_t, uint64_t    ZMQInt64Type (if neko or cpp)
+     *                      Int (if php - will be 64bits on 64bit platforms, else 32 bit)
+     * binary               haxe.io.Bytes
+     * 
 	 * @param	option		SocketOptionsType (defined in ZMQ.hx)
 	 * @param	optval		Either Int or String or Bytes
 	 */
 	public function setsockopt(option:SocketOptionsType, optval:Dynamic):Void {
 
-		if (closed)
+		if (_socketHandle == null || closed)
 			throw new ZMQException(ENOTSUP);
-
+                    
+        var _opt = ZMQ.socketOptionTypeNo(option);
+           
 		// Handle 32 bit int options
 		if (Lambda.exists(ZMQ.intSocketOptionTypes,
 			  function(so) { return so == option; } ))
@@ -161,27 +189,48 @@ class ZMQSocket
 				throw new String("Expected Int, got " + optval);
 		
 			try {	
-				_hx_zmq_setintsockopt(_socketHandle, ZMQ.socketOptionTypeNo(option), optval);
+#if (neko || cpp)                
+				_hx_zmq_setintsockopt(_socketHandle, _opt, optval);
 			} catch (e:Int) {
 				throw new ZMQException(ZMQ.errNoToErrorType(e));
 			}
+#elseif php
+                untyped __php__('$this->_socketHandle->setsockopt($_opt, $optval)');
+            } catch (e:ZMQSocketException) {
+                new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+            }
+#end  
 			
 		// Handle 64 bit int options	
 		} else if (Lambda.exists(ZMQ.int64SocketOptionTypes,
 			  function(so) { return so == option; } ))
 		{
+#if (neko || cpp)            
 			var _hi = Reflect.field(optval, "hi");
 			var _lo = Reflect.field(optval, "lo");
 			if (_hi == null || _lo == null) {
 				throw new String("Expected ZMQInt64Type, got " + optval);
 				return null;
 			}
-			
+#elseif php
+			if (!Std.is(optval,Int))
+				throw new String("Expected Int, got " + optval);
+#end
+
 			try {	
-				_hx_zmq_setint64sockopt(_socketHandle, ZMQ.socketOptionTypeNo(option), _hi, _lo);
+#if (neko || cpp)                
+				_hx_zmq_setint64sockopt(_socketHandle, _opt, _hi, _lo);
 			} catch (e:Int) {
 				throw new ZMQException(ZMQ.errNoToErrorType(e));
 			}
+#elseif php
+                // If PHPO runing on 64 bit platform, haXe Int is already 64 bits.
+                // If PHP is running on 32 bits, the setsockopt function converts the input to long (from int)
+                untyped __php__('$this->_socketHandle->setsockopt($_opt, $optval)');
+            } catch (e:ZMQSocketException) {
+                new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+            }            
+#end
 			
 		// Handle bytes  options	
 		} else if (Lambda.exists(ZMQ.bytesSocketOptionTypes,
@@ -192,15 +241,22 @@ class ZMQSocket
 				return null;
 			}
 			try {	
-				_hx_zmq_setbytessockopt(_socketHandle, ZMQ.socketOptionTypeNo(option), optval.getData() );
+#if (neko || cpp)                
+				_hx_zmq_setbytessockopt(_socketHandle, _opt, optval.getData() );
 			} catch (e:Int) {
 				throw new ZMQException(ZMQ.errNoToErrorType(e));
 			}
-				
+#elseif php
+                var v = optval.toString();
+                untyped __php__('$this->_socketHandle->setsockopt($_opt, $v)');
+            } catch (e:ZMQSocketException) {
+                new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+            }
+#end               
 		} else {
 			throw new ZMQException(EINVAL);
 		}
-		return;	
+        return;
 	}
 	
 	/**
@@ -211,9 +267,10 @@ class ZMQSocket
 	 */
 	public function getsockopt(option:SocketOptionsType):Dynamic 
 	{
-		var _optval:Dynamic;
+		var _optval:Dynamic = null;
+        var _opt = ZMQ.socketOptionTypeNo(option);
 		
-		if (closed) {
+		if (_socketHandle == null || closed) {
 			throw new ZMQException(ENOTSUP);
 			return null;
 		}
@@ -223,7 +280,8 @@ class ZMQSocket
 		{
 		
 			try {	
-				_optval = Lib.nekoToHaxe(_hx_zmq_getintsockopt(_socketHandle, ZMQ.socketOptionTypeNo(option)));
+#if (neko || cpp)        
+				_optval = Lib.nekoToHaxe(_hx_zmq_getintsockopt(_socketHandle, _opt));
 			} catch (e:Int) {
 				throw new ZMQException(ZMQ.errNoToErrorType(e));
 				return null;
@@ -234,12 +292,28 @@ class ZMQSocket
 			} else {
 				return _optval;
 			}
+#elseif php
+                return untyped __php__('$this->_socketHandle->getSockOpt($_opt)');
+            }
+            catch (e:ZMQSocketException) {
+                throw new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+            }
+#end
+
 		} else if (Lambda.exists(ZMQ.int64SocketOptionTypes,
 			  function(so) { return so == option; } ))
 		{
 		
+#if php
+ 			try {	
+                 return untyped __php__('$this->_socketHandle->getSockOpt($_opt)');
+            }
+            catch (e:ZMQSocketException) {
+                throw new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+            }
+#elseif (neko || cpp)                
 			try {	
-				_optval = Lib.nekoToHaxe(_hx_zmq_getint64sockopt(_socketHandle, ZMQ.socketOptionTypeNo(option)));
+				_optval = Lib.nekoToHaxe(_hx_zmq_getint64sockopt(_socketHandle, _opt));
 			} catch (e:Int) {
 				throw new ZMQException(ZMQ.errNoToErrorType(e));
 				return null;
@@ -252,24 +326,33 @@ class ZMQSocket
 			} else {
 				return {hi:_optval.hi, lo:_optval.lo};
 			}
+ #end
+                
 		}else if (Lambda.exists(ZMQ.bytesSocketOptionTypes,
 			  function(so) { return so == option; } ))
 		{
 		
 			try {	
-				_optval = _hx_zmq_getbytessockopt(_socketHandle, ZMQ.socketOptionTypeNo(option));
+#if (neko || cpp)                
+				_optval = _hx_zmq_getbytessockopt(_socketHandle, _opt);
 			} catch (e:Int) {
 				throw new ZMQException(ZMQ.errNoToErrorType(e));
 				return null;
 			}
 			return Bytes.ofData(_optval);
-			
+#elseif php
+                var res = untyped __php__('$this->_socketHandle->getSockOpt($_opt)');
+                return Bytes.ofString(res);
+            } catch (e:ZMQSocketException) {
+                throw new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+            }
+#end
 		} else {
 			throw new ZMQException(EINVAL);
 			return null;
 		}
-		return null;
-		
+        return null;
+
 	}
 	
 	/**
@@ -282,15 +365,25 @@ class ZMQSocket
 	 */
 	public function sendMsg(data:Bytes, ?flags:SendReceiveFlagType):Void {
 
-		if (closed) {
+		if (_socketHandle == null || closed) {
 			throw new ZMQException(ENOTSUP);
 		}
 
 		try {
+#if (neko || cpp)            
 			_hx_zmq_send(_socketHandle, data.getData(), ZMQ.sendReceiveFlagNo(flags));
+#elseif php
+
+            untyped __php__('$this->_socketHandle->send($data->toString(), org_zeromq_ZMQ::sendReceiveFlagNo($flags))');
+#end            
 		} catch (e:Int) {
 			throw new ZMQException(ZMQ.errNoToErrorType(e));
 		} 
+#if php            
+		  catch (e:ZMQSocketException) {
+            throw new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+        }
+#end		
 			
 	}
 
@@ -304,24 +397,37 @@ class ZMQSocket
 	 */
 	public function recvMsg(?flags:SendReceiveFlagType):Bytes {
 
-		if (closed)
+		if (_socketHandle == null || closed)
 			throw new ZMQException(ENOTSUP);
 
 		var bytes:BytesData = null;
 		
 		try {
+#if (neko || cpp)            
 			bytes = _hx_zmq_rcv(_socketHandle, ZMQ.sendReceiveFlagNo(flags));
+            return {
+                if (bytes == null) {
+                    null; 
+                } else {
+                    Bytes.ofData(bytes);
+                };
+		}
+#elseif php
+            var r:String = _hx_zmq_rcv(_socketHandle, ZMQ.sendReceiveFlagNo(flags));
+            if (r != null) {
+                return Bytes.ofString(r);
+            } else
+                return null;
+#end                
 		} catch (e:Int) {
 			throw new ZMQException(ZMQ.errNoToErrorType(e));
 		} 
+#if php            
+		  catch (e:ZMQSocketException) {
+            throw new org.zeromq.ZMQException(ZMQ.errNoToErrorType(e.getCode()), e.getMessage());
+        }
+#end		
 		
-		return {
-			if (bytes == null) {
-				null; 
-			} else {
-				Bytes.ofData(bytes);
-			};
-		}
 			
 	}
 	
@@ -330,11 +436,16 @@ class ZMQSocket
 	 * @return
 	 */
 	public function hasReceiveMore():Bool {
-		if (closed) return false;
+		if (_socketHandle == null || closed) return false;
 		var r = getsockopt(ZMQ_RCVMORE);
+#if (neko || cpp)        
 		return (r != null && r.lo == 1);
+#elseif php
+		return (r != null && r == 1);
+#end
 	}
 	
+#if (neko || cpp)    
 	private static var _hx_zmq_construct_socket = neko.Lib.load("hxzmq", "hx_zmq_construct_socket", 2);
 	private static var _hx_zmq_close = neko.Lib.load("hxzmq", "hx_zmq_close", 1);
 	private static var _hx_zmq_bind = neko.Lib.load("hxzmq", "hx_zmq_bind", 2);
@@ -347,5 +458,24 @@ class ZMQSocket
 	private static var _hx_zmq_getintsockopt = neko.Lib.load("hxzmq", "hx_zmq_getintsockopt", 2);
 	private static var _hx_zmq_getint64sockopt = neko.Lib.load("hxzmq", "hx_zmq_getint64sockopt", 2);
 	private static var _hx_zmq_getbytessockopt = neko.Lib.load("hxzmq", "hx_zmq_getbytessockopt", 2);
-	
+#elseif php
+    private static  function _hx_zmq_construct_socket(context:Dynamic, type:Int):Dynamic {
+        return untyped __php__('new ZMQSocket($context, $type)');
+    }
+    private static function _hx_zmq_close(socket:Dynamic):Void {
+        untyped __call__('unset', socket); 
+    }
+    private static  function _hx_zmq_send(socket:Dynamic, msg:Dynamic, mode:Int):Void {
+        untyped __php__('$socket->send($msg, $mode)');
+    }
+    private static  function _hx_zmq_rcv(socket:Dynamic, mode:Int):String {
+        var r:Dynamic = untyped __php__('$socket->recv($mode)');
+        // Detect if php has returned boolean false value (if NOBLOCK/DONTWAIT used)
+        if (Std.is(r, Bool) && !r)
+            return null;
+        else
+            return Std.string(r);
+    }
+
+#end
 }

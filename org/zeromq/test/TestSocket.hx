@@ -44,9 +44,9 @@ class TestSocket extends BaseTest
 		assertFalse(s.closed);
 				
 		// Test bind to invalid protocol
-		assertRaisesZMQException(function() s.bind("ftl://a"), EPROTONOSUPPORT);
-		assertRaisesZMQException(function() s.bind("tcp://"),EINVAL);
-		assertRaisesZMQException(function() s.connect("ftl://a"),EPROTONOSUPPORT);
+		assertRaisesZMQException(function() s.bind("ftl://a"), #if php ENOTSUP #else EPROTONOSUPPORT #end);
+		assertRaisesZMQException(function() s.bind("tcp://"),#if php ENOTSUP #else EINVAL #end);
+		assertRaisesZMQException(function() s.connect("ftl://a"),#if php ENOTSUP #else EPROTONOSUPPORT #end);
 		
 		s.close();
 		
@@ -87,11 +87,15 @@ class TestSocket extends BaseTest
 			pair = createBoundPair(ZMQ_PUB, ZMQ_SUB);
 			pair.s1.setsockopt(ZMQ_LINGER, 0);
 			assertTrue(pair.s1.getsockopt(ZMQ_LINGER) == 0);
+#if not php            
+            // Setting ZMQ_LINGER to -1 not supported in php-zmq 0.7.0, although since fixed on master branch
 			pair.s1.setsockopt(ZMQ_LINGER, -1);
 			assertTrue(pair.s1.getsockopt(ZMQ_LINGER) == -1);
+            // ZMQ_EVENTS not supported in php-zmq 0.7.0
 			var r:Int = pair.s1.getsockopt(ZMQ_EVENTS);
 			assertEquals(ZMQ.ZMQ_POLLOUT(), r);
 			assertRaisesZMQException(function() { pair.s1.setsockopt(ZMQ_EVENTS, 2 ^ 7 - 1); }, EINVAL);
+#end            
 			assertEquals(ZMQ.socketTypeNo(ZMQ_PUB), pair.s1.getsockopt(ZMQ_TYPE));
 			assertEquals(ZMQ.socketTypeNo(ZMQ_SUB), pair.s2.getsockopt(ZMQ_TYPE));	
 		} catch (e:ZMQException) {
@@ -102,11 +106,19 @@ class TestSocket extends BaseTest
 	}
 
 	public function testInt64SocketOptions() {
-		var pair:SocketPair = null;
+		var pair:SocketPair = null;        
+        var v1, v2:Int;
+#if (neko || cpp)
 		var r:ZMQInt64Type = null;
+
+#elseif php            
+		var r:Int = null;
+        var intsize = untyped __php__('PHP_INT_SIZE');
+#end            
 		
 		try {
 			pair = createBoundPair(ZMQ_PUB, ZMQ_SUB);
+#if (neko || cpp)            
 			pair.s1.setsockopt(ZMQ_LINGER, 0);
 			r = pair.s1.getsockopt(ZMQ_HWM);
 			assertTrue(r.lo == 0);	// Test default HWM is 0 for a new socket
@@ -115,10 +127,8 @@ class TestSocket extends BaseTest
 			var r:ZMQInt64Type = pair.s2.getsockopt(ZMQ_HWM);
 			assertTrue(r.lo == 128);
 			assertTrue(r.hi == 128);
-			
 			r = pair.s1.getsockopt(ZMQ_AFFINITY);
-			assertEquals(0, r.lo);
-			
+			assertEquals(0, r.lo);			
 			r = pair.s1.getsockopt(ZMQ_SWAP);
 			assertTrue(r.lo == 0);
 			assertTrue(r.hi == 0);
@@ -126,7 +136,24 @@ class TestSocket extends BaseTest
 			r = pair.s1.getsockopt(ZMQ_SWAP);
 			assertTrue(r.lo == 255);
 			assertTrue(r.hi == 1);
-			
+#elseif php            
+			pair.s1.setsockopt(ZMQ_LINGER, 0);
+			r = pair.s1.getsockopt(ZMQ_HWM);
+			assertTrue(r == 0);	// Test default HWM is 0 for a new socket
+            // If PHP int is 64bits, try a larger int value, else try a 32bit number.
+            v1 = { if (intsize == 8) (128 * 2 ^ 32) + 128;  else 128; };
+			pair.s2.setsockopt(ZMQ_HWM, v1 );
+			var r:Int = pair.s2.getsockopt(ZMQ_HWM);
+			assertTrue(r == v1);
+			r = pair.s1.getsockopt(ZMQ_AFFINITY);
+			assertEquals(0, r);			
+			r = pair.s1.getsockopt(ZMQ_SWAP);
+			assertTrue(r == 0);
+            v2 = { if (intsize == 8) (2 ^ 32) + 128;  else 128; };
+			pair.s1.setsockopt(ZMQ_SWAP, v2 );    
+			r = pair.s1.getsockopt(ZMQ_SWAP);
+			assertTrue(r == v2);
+#end			
 		} catch (e:ZMQException) {
 			trace("ZMQException #:" + e.errNo + ", str:" + e.str());
 			trace (Stack.toString(Stack.exceptionStack()));
@@ -144,7 +171,7 @@ class TestSocket extends BaseTest
 			
 			// Test that you cannot retrieve a previously sefined SUBSCRIBE option value using getsockopt
 			// See: http://api.zeromq.org/2-1-3:zmq-getsockopt
-			assertRaisesZMQException(function() pair.s2.getsockopt(ZMQ_SUBSCRIBE),EINVAL);
+			assertRaisesZMQException(function() pair.s2.getsockopt(ZMQ_SUBSCRIBE),#if php ENOTSUP #else EINVAL #end);
 			
 			pair.s1.setsockopt(ZMQ_IDENTITY, Bytes.ofString("Socket1"));
 			var b:Bytes = pair.s1.getsockopt(ZMQ_IDENTITY);

@@ -23,7 +23,9 @@ import haxe.io.Bytes;
 import haxe.Stack;
 import neko.Lib;
 import neko.Sys;
+#if !php
 import neko.vm.Thread;
+#end
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQContext;
 import org.zeromq.ZMQPoller;
@@ -34,6 +36,7 @@ import org.zeromq.ZMQSocket;
  * 
  * See: http://zguide.zeromq.org/page:all#Multithreading-with-MQ
  * Use with HelloWorldClient.hx
+ * 
  */
 class MTServer 
 {
@@ -43,8 +46,11 @@ class MTServer
 		
 		// Socket to talk to dispatcher
 		var responder:ZMQSocket = context.socket(ZMQ_REP);
+#if (neko || cpp)        
 		responder.connect("inproc://workers");
-		
+#elseif php
+        responder.connect("ipc://workers.ipc");
+#end        
 		ZMQ.catchSignals();
 		
 		while (true) {
@@ -126,9 +132,7 @@ class MTServer
 		}
 		
 	}
-	public static function main() {
-		var workerThreads:List<Thread> = new List<Thread>();
-		
+	public static function main() {		
 		var context:ZMQContext = ZMQContext.instance();
 		
 		Lib.println ("** MTServer (see: http://zguide.zeromq.org/page:all#Multithreading-with-MQ)");
@@ -139,13 +143,30 @@ class MTServer
 		
 		// Socket to talk to workers
 		var workers:ZMQSocket = context.socket(ZMQ_DEALER);
-		workers.bind ("inproc://workers");
 		
+#if (neko || cpp)        
+		workers.bind ("inproc://workers");
+        
 		// Launch worker thread pool
+		var workerThreads:List<Thread> = new List<Thread>();
 		for (thread_nbr in 0 ... 5) {
 			workerThreads.add(Thread.create(worker));
 		}
-		
+#elseif php
+		workers.bind ("ipc://workers.ipc");
+
+        // Launch pool of worker processes, due to php's lack of thread support
+        // See: https://github.com/imatix/zguide/blob/master/examples/PHP/mtserver.php
+        for (thread_nbr in 0 ... 5) {
+            untyped __php__('
+                $pid = pcntl_fork();
+                if ($pid == 0) {
+                    // Running in child process
+                    worker();
+                    exit();
+                }');
+        }
+#end        
 		// Invoke request / reply broker (aka QUEUE device) to connect clients to workers
 		queueDevice(context, clients, workers);
 		

@@ -31,9 +31,13 @@ class ZMQException {
 	
 	public var errNo(default,null):Int;
 	
-	public function new(e:ErrorType) {
+    // Allows error string to be overriden on creation (e.g. for preserving php-zmq errors)
+    private var overriddenStr:String;
+    
+	public function new(e:ErrorType, ?str:String ) {
 		this.err = e;
 		this.errNo = ZMQ.errorTypeToErrNo(err);
+        if (str != null) this.overriddenStr = str;
 	}
 	
 	/**
@@ -41,7 +45,7 @@ class ZMQException {
 	 * @return
 	 */
 	public function str():String {
-		return ZMQ.strError(errNo);
+		return { if (overriddenStr != null) overriddenStr else ZMQ.strError(errNo); };
 	}
 	
 	public function toString():String {
@@ -52,6 +56,4 @@ class ZMQException {
 		return b.toString();
 	}
 	
-	//private static var _hx_zmq_strerror = neko.Lib.load("hxzmq", "hx_zmq_strerror", 1);
-
 }

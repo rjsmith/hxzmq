@@ -14,3 +14,11 @@
 -debug
 -main org.zeromq.guide.Run
 
+# Build PHP guide target
+--next
+-cp ..
+-php out-php/Linux
+-debug
+--remap neko:php
+-main org.zeromq.guide.Run
+

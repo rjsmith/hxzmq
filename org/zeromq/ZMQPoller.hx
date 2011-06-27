@@ -20,6 +20,9 @@
 package org.zeromq;
 
 import neko.Lib;
+#if php
+import php.NativeArray;
+#end
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQSocket;
 
@@ -105,13 +108,13 @@ class ZMQPoller
 	 */
 	public function poll(?timeout:Int = -1):Int 
 	{
-		
-		// Split pollItems array into 2 separate arrays to pass to the native layer
-		var sArray:Array<Dynamic> = new Array<Dynamic>();
-		var eArray:Array<Int> = new Array<Int>();
-		
 		revents = null;		// Clear out revents array ready for next set of results
 		revents = new Array<Int>();
+#if (neko || cpp)
+		// Split pollItems array into 2 separate arrays to pass to the native layer
+		var sArray:Array<Dynamic> = new Array<Dynamic>();   // ZMQ Sockets
+		var eArray:Array<Int> = new Array<Int>();           // Polled Event Types
+
 		for (p in pollItems) {
 			sArray.push(p._socket._socketHandle);
 			eArray.push(p._event);
@@ -131,6 +134,50 @@ class ZMQPoller
 		} catch (e:Dynamic) {
 			return -1;
 		}
+#elseif php
+        var ZMQPollHandle:Dynamic = untyped __php__('new ZMQPoll()');      
+        for (p in pollItems) {
+            var s = p._socket._socketHandle;
+            var e = p._event;
+            untyped __php__('$ZMQPollHandle->add($s, $e)');
+        }
+        var _readableNativeArr:NativeArray = untyped __php__('array()');
+        var _writableNativeArr:NativeArray = untyped __php__('array()');
+        
+        var r = untyped __php__('$ZMQPollHandle->poll($_readableNativeArr, $_writableNativeArr, $timeout)');
+        var errs:NativeArray = untyped __php__('$ZMQPollHandle-> getLastErrors()');
+        var errsArr = Lib.toHaxeArray(errs);
+        if (errsArr.length > 0) {
+            return -1;
+        }
+        // Convert native Array to haXe arrays
+        var _readableArr:Array<Dynamic> = Lib.toHaxeArray(_readableNativeArr);
+        var _writableArr:Array<Dynamic> = Lib.toHaxeArray(_writableNativeArr);
+        // Iterate over registered sockets to build up revents array
+        var item = 0;
+        var numEvents = 0;
+        for (p in pollItems) {
+            revents[item] = 0;
+            // Is this socket in the readableArr returned from the php poll?
+            for (ra in _readableArr) {
+                if (ra == p._socket._socketHandle) {
+                    revents[item] |= ZMQ.ZMQ_POLLIN();
+                    break;
+                }
+            }
+            // Is this socket in the writableArr returned from the php poll?
+            for (ra in _writableArr) {
+                if (ra == p._socket._socketHandle) {
+                    revents[item] |= ZMQ.ZMQ_POLLOUT();
+                    break;
+                }
+            }
+            if (revents[item] != 0) numEvents++;
+            item++;
+        }
+        return numEvents;
+
+#end
 	}
 	
 	/**
@@ -170,7 +217,9 @@ class ZMQPoller
 		return (!pollin(s) && !pollout(s));
 	}
 	
+#if (neko || cpp)    
 	private static var _hx_zmq_poll = Lib.load("hxzmq", "hx_zmq_poll", 3);
+#end
 }
 
 typedef PollSocketEventTuple = {

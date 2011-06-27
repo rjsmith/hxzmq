@@ -26,6 +26,17 @@ class TestVersion extends BaseTest
 
 	public function testVersionMethods() 
 	{
+#if php
+        // version functions not supported
+        assertRaisesZMQException(function() ZMQ.versionMajor(), ENOTSUP);        
+        assertRaisesZMQException(function() ZMQ.versionMinor(), ENOTSUP);
+        assertRaisesZMQException(function() ZMQ.versionPatch(), ENOTSUP);
+        
+		var _version = ZMQ.version_full();
+		trace ("version_full:" + _version);
+		assertTrue(_version >= 0);
+        
+#else
 		var _major = ZMQ.versionMajor();
 		assertTrue(_major >= 2);
 
@@ -38,12 +49,16 @@ class TestVersion extends BaseTest
 		var _version = ZMQ.version_full();
 		trace ("version_full:" + _version);
 		assertTrue(_version >= 0);
-
+#end
 	}
 
 	public function testMakeVersion() 
 	{
+#if php
+        assertRaisesZMQException(function() ZMQ.makeVersion(1, 2, 3), ENOTSUP);
+#else        
 		assertTrue(ZMQ.makeVersion(1, 2, 3) == 10203);
+#end        
 	}
 	
 	public override function setup():Void {

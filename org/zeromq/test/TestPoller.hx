@@ -63,7 +63,7 @@ class TestPoller extends BaseTest
 			poller.registerSocket(pair.s2, pollinout);
 			
 			var numSocks = poller.poll();
-			assertEquals(2, numSocks);
+   		    assertEquals(2, numSocks);
 			assertEquals(2, poller.revents.length);
 			assertTrue(poller.pollout(1));		// PAIR socket s1 should be ready for writing
 			assertTrue(poller.pollout(2));		// PAIR socket s2 should be ready for writing

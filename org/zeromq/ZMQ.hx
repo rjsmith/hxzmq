@@ -223,7 +223,11 @@ class ZMQ {
 	 */
 	public static function strError(e:Int):String
 	{
+#if php
+        return _hx_zmq_str_error(e);
+#else        
 		return Lib.nekoToHaxe(_hx_zmq_str_error(e));
+#end        
 	}
 
 	/**
@@ -511,6 +515,125 @@ class ZMQ {
 	private static var _hx_zmq_ENOCOMPATPROTO = Lib.load("hxzmq", "hx_zmq_ENOCOMPATPROTO", 0);
 	private static var _hx_zmq_ETERM = Lib.load("hxzmq", "hx_zmq_ETERM", 0);
 	
+    #elseif php
+    //      Load functions and constants from php-zmq
+    
+
+    private static function _hx_zmq_version_full():Int {
+        return untyped __php__('ZMQ::LIBZMQ_VER');
+    }
+    // Not supported in php-zmq 0.7.0
+    private static function _hx_zmq_version_major():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    // Not supported in php-zmq 0.7.0
+    private static function _hx_zmq_version_minor():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    // Not supported in php-zmq 0.7.0
+    private static function _hx_zmq_version_patch():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    // Not supported in php-zmq 0.7.0
+    private static function _hx_zmq_make_version(major:Int, minor:Int, patch:Int):Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    // Not supported in php-zmq 0.7.0
+	private static function _hx_zmq_str_error(e:Int):String {
+        return "ZMQ Error";     // php-zmq doesnt expose the str_error function
+    }
+    private static function _hx_zmq_catch_signals():Void {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    private static function _hx_zmq_interrupted():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    
+    
+    private static function _hx_zmq_ZMQ_PUB():Int {return untyped __php__('ZMQ::SOCKET_PUB');}
+    private static function _hx_zmq_ZMQ_SUB():Int {return untyped __php__('ZMQ::SOCKET_SUB');}
+    private static function _hx_zmq_ZMQ_PAIR():Int {return untyped __php__('ZMQ::SOCKET_PAIR');}
+    private static function _hx_zmq_ZMQ_REQ():Int {return untyped __php__('ZMQ::SOCKET_REQ');}
+    private static function _hx_zmq_ZMQ_REP():Int {return untyped __php__('ZMQ::SOCKET_REP');}
+    private static function _hx_zmq_ZMQ_DEALER():Int {return untyped __php__('ZMQ::SOCKET_XREQ');}
+    private static function _hx_zmq_ZMQ_ROUTER():Int {return untyped __php__('ZMQ::SOCKET_XREP');}
+    private static function _hx_zmq_ZMQ_PULL():Int {return untyped __php__('ZMQ::SOCKET_PULL');}
+    private static function _hx_zmq_ZMQ_PUSH():Int {return untyped __php__('ZMQ::SOCKET_PUSH');}
+    
+    
+    private static function _hx_zmq_ZMQ_LINGER():Int {return untyped __php__('ZMQ::SOCKOPT_LINGER');}
+    private static function _hx_zmq_ZMQ_HWM():Int {return untyped __php__('ZMQ::SOCKOPT_HWM');}
+    private static function _hx_zmq_ZMQ_RCVMORE():Int {return untyped __php__('ZMQ::SOCKOPT_RCVMORE');}
+    private static function _hx_zmq_ZMQ_SUBSCRIBE():Int {return untyped __php__('ZMQ::SOCKOPT_SUBSCRIBE');}
+    private static function _hx_zmq_ZMQ_UNSUBSCRIBE():Int {return untyped __php__('ZMQ::SOCKOPT_UNSUBSCRIBE');}
+    private static function _hx_zmq_ZMQ_SWAP():Int {return untyped __php__('ZMQ::SOCKOPT_SWAP');}
+    private static function _hx_zmq_ZMQ_AFFINITY():Int {return untyped __php__('ZMQ::SOCKOPT_AFFINITY');}
+    private static function _hx_zmq_ZMQ_IDENTITY():Int {return untyped __php__('ZMQ::SOCKOPT_IDENTITY');}
+
+    private static function _hx_zmq_ZMQ_RATE():Int {return untyped __php__('ZMQ::SOCKOPT_RATE');}
+    private static function _hx_zmq_ZMQ_RECOVERY_IVL():Int {return untyped __php__('ZMQ::SOCKOPT_RECOVERY_IVL');}
+    private static function _hx_zmq_ZMQ_RECOVERY_IVL_MSEC():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    private static function _hx_zmq_ZMQ_MCAST_LOOP():Int {return untyped __php__('ZMQ::SOCKOPT_MCAST_LOOP');}
+    private static function _hx_zmq_ZMQ_SNDBUF():Int {return untyped __php__('ZMQ::SOCKOPT_SNDBUF');}
+    private static function _hx_zmq_ZMQ_RCVBUF():Int {return untyped __php__('ZMQ::SOCKOPT_RCVBUF');}
+    private static function _hx_zmq_ZMQ_RECONNECT_IVL():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    private static function _hx_zmq_ZMQ_RECONNECT_IVL_MAX():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    private static function _hx_zmq_ZMQ_BACKLOG():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    private static function _hx_zmq_ZMQ_FD():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    private static function _hx_zmq_ZMQ_EVENTS():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    private static function _hx_zmq_ZMQ_TYPE():Int {return untyped __php__('ZMQ::SOCKOPT_TYPE');}
+
+    private static function _hx_zmq_ZMQ_POLLIN():Int {return untyped __php__('ZMQ::POLL_IN');}
+    private static function _hx_zmq_ZMQ_POLLOUT():Int {return untyped __php__('ZMQ::POLL_OUT');}
+    private static function _hx_zmq_ZMQ_POLLERR():Int {
+        throw new ZMQException(ENOTSUP);
+        return null;
+    }
+    private static function _hx_zmq_DONTWAIT():Int {return untyped __php__('ZMQ::MODE_NOBLOCK');}
+    private static function _hx_zmq_SNDMORE():Int {return untyped __php__('ZMQ::MODE_SNDMORE');}
+    
+    // Use the ZMQ::ERR_ENOTSUP for any Exxxx codes not supported by php-zmq binding
+    private static inline function _hx_zmq_EINVAL():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_ENOTSUP():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_EPROTONOSUPPORT():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_EAGAIN():Int {return untyped __php__('ZMQ::ERR_EAGAIN');}
+    private static inline function _hx_zmq_ENOMEM():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_ENODEV():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_ENOBUFS():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_ENETDOWN():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_EADDRINUSE():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_EADDRNOTAVAIL():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_ECONNREFUSED():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_EINPROGRESS():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_EMTHREAD():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_EFSM():Int {return untyped __php__('ZMQ::ERR_EFSM');}
+    private static inline function _hx_zmq_ENOCOMPATPROTO():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
+    private static inline function _hx_zmq_ETERM():Int {return untyped __php__('ZMQ::ERR_ETERM');}
+        
   	#end
 }
 

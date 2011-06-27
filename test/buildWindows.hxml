@@ -13,3 +13,10 @@
 -neko out-neko/Windows/TestAll.n
 -debug
 -main org.zeromq.test.TestAll
+--next
+# Build PHP unit test target for Windows
+-cp ..
+-php out-php/Windows
+-debug
+--remap neko:php
+-main org.zeromq.test.TestAll

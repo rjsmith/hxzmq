@@ -9,3 +9,11 @@
 -main org.zeromq.guide.Run
 
 # todo: Neko Mac0SX 64 bit target
+
+# Build PHP guide target
+--next
+-cp ..
+-php out-php/Mac64
+-debug
+--remap neko:php
+-main org.zeromq.guide.Run

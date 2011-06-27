@@ -73,10 +73,9 @@ class TestPubSub extends BaseTest
 			Sys.sleep(0.1); // make sure subscriber gets first message published by publisher
 			
 			pair.s1.sendMsg(Bytes.ofString("message"));	// send message that shouldnt meet the subscribe filter
-			pair.s1.sendMsg(Bytes.ofString("xmessage"));	// send message that should meet the subscribe filter
 			var msg:Bytes = pair.s2.recvMsg(DONTWAIT); // This is a non-blocking call
 			assertTrue(msg == null);
-			
+			pair.s1.sendMsg(Bytes.ofString("xmessage"));	// send message that should meet the subscribe filter			
 			msg = pair.s2.recvMsg();	// this is a blocking call
 			assertTrue(msg != null);
 			assertTrue(msg.toString() == "xmessage");

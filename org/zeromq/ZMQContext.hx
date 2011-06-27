@@ -116,9 +116,22 @@ class ZMQContext  {
 		}
 	}
 
-	
+#if (cpp || neko)	
 	private static var _hx_zmq_construct = neko.Lib.load("hxzmq", "hx_zmq_construct", 1);
 	private static var _hx_zmq_term = neko.Lib.load("hxzmq", "hx_zmq_term", 1);
-	
-	
+#elseif php
+    private static function _hx_zmq_construct(ioThreads:Int):Dynamic {
+        // Implement this test explicitly as php-zmq doesnt seem to detect / trap it.
+        if (ioThreads == 0) {
+            throw ZMQ.errorTypeToErrNo(EINVAL);
+            return null;
+        }
+        return untyped __php__('new ZMQContext($ioThreads)');
+    }
+    
+    private static function _hx_zmq_term(ctx:Dynamic):Void {
+        // Explicity destroy the php ZMQContext object (which invokes zmq_term in the php-zmq binding)
+        untyped __call__('unset', ctx);
+    }
+#end	
 }

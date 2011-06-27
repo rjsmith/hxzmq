@@ -14,9 +14,15 @@ test/out-cpp/Windows/*
 test/out-neko/Linux/*
 test/out-neko/Mac64/*
 test/out-neko/Windows/*
+test/out-php/Linux/*
+test/out-php/Mac64/*
+test/out-php/Windows/*
 guide/out-cpp/Linux/*
 guide/out-cpp/Mac64/*
 guide/out-cpp/Windows/*
 guide/out-neko/Linux/*
 guide/out-neko/Mac64/*
 guide/out-neko/Windows/*
+guide/out-php/Linux/*
+guide/out-php/Mac64/*
+guide/out-php/Windows/*

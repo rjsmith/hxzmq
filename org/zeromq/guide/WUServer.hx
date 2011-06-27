@@ -20,7 +20,6 @@
 package org.zeromq.guide;
 import haxe.io.Bytes;
 import neko.Lib;
-import neko.Random;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQContext;
 import org.zeromq.ZMQSocket;
@@ -47,7 +46,7 @@ class WUServer
 		
 		while (true) {
 			// Get values that will fool the boss
-			var zipcode, temperature, relhumidity;
+			var zipcode, temperature, relhumidity;           
 			zipcode = Std.random(100000) + 1;
 			temperature = Std.random(215) - 80 + 1;
 			relhumidity = Std.random(50) + 10 + 1;

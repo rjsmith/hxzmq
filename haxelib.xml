@@ -3,6 +3,7 @@
 	<user name="rjsmith"/>
 	<tag v="cpp"/>
 	<tag v="neko"/>
+        <tag v="php"/>
 	<description>Haxe language binding for the ZeroMQ socket library</description>
-	<version name="1.0.0">Initial upload, compatable with libzmq 2.1.6+</version>
+	<version name="1.1.0">Added php target by integrating with php-zmq binding</version>
 </project>
