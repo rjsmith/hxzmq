@@ -1,0 +1,11 @@
+# haXe build file for class documentation
+#cpp
+-cp .
+-cpp out-cpp/Mac64
+--no-output
+-D HXCPP_MULTI_THREADED
+-D HXCPP_M64
+--remap neko:cpp
+-xml docs/cpp.xml
+org.zeromq.IncludeAll
+

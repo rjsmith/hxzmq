@@ -1,0 +1,2962 @@
+<haxe>
+	<class path="haxe.remoting.AsyncConnection" params="" file="/usr/lib/haxe/std/haxe/remoting/AsyncConnection.hx" interface="1">
+		<resolve public="1" set="method"><f a="name">
+	<c path="String"/>
+	<c path="haxe.remoting.AsyncConnection"/>
+</f></resolve>
+		<call public="1" set="method"><f a="params:?result">
+	<c path="Array"><d/></c>
+	<f a="">
+		<d/>
+		<e path="Void"/>
+	</f>
+	<e path="Void"/>
+</f></call>
+		<setErrorHandler public="1" set="method"><f a="error">
+	<f a="">
+		<d/>
+		<e path="Void"/>
+	</f>
+	<e path="Void"/>
+</f></setErrorHandler>
+		<haxe_dynamic><c path="haxe.remoting.AsyncConnection"/></haxe_dynamic>
+	</class>
+	<class path="org.zeromq.remoting.ZMQConnection" params="" file="./org/zeromq/remoting/ZMQConnection.hx">
+		<implements path="haxe.remoting.AsyncConnection"/>
+		<create public="1" set="method" line="146" static="1"><f a="s:?ctx">
+	<c path="org.zeromq.ZMQSocket"/>
+	<c path="haxe.remoting.Context"/>
+	<c path="org.zeromq.remoting.ZMQConnection"/>
+</f></create>
+		<__path><c path="Array"><c path="String"/></c></__path>
+		<__data><a>
+	<results><c path="List"><a>
+	<onResult><f a="">
+	<d/>
+	<e path="Void"/>
+</f></onResult>
+	<onError><f a="">
+	<d/>
+	<e path="Void"/>
+</f></onError>
+</a></c></results>
+	<protocol><c path="org.zeromq.remoting.ZMQSocketProtocol"/></protocol>
+	<log><f a="::">
+	<c path="Array"><c path="String"/></c>
+	<c path="Array"><d/></c>
+	<d/>
+	<e path="Void"/>
+</f></log>
+	<error><f a="">
+	<d/>
+	<e path="Void"/>
+</f></error>
+</a></__data>
+		<resolve public="1" set="method" line="70"><f a="name">
+	<c path="String"/>
+	<c path="haxe.remoting.AsyncConnection"/>
+</f></resolve>
+		<call public="1" set="method" line="76"><f a="params:?onResult">
+	<c path="Array"><d/></c>
+	<f a="">
+		<d/>
+		<e path="Void"/>
+	</f>
+	<e path="Void"/>
+</f></call>
+		<setErrorHandler public="1" set="method" line="85"><f a="h">
+	<f a="">
+		<d/>
+		<e path="Void"/>
+	</f>
+	<e path="Void"/>
+</f></setErrorHandler>
+		<setErrorLogger public="1" set="method" line="89"><f a="h">
+	<f a="::">
+		<c path="Array"><c path="String"/></c>
+		<c path="Array"><d/></c>
+		<d/>
+		<e path="Void"/>
+	</f>
+	<e path="Void"/>
+</f></setErrorLogger>
+		<setProtocol public="1" set="method" line="93"><f a="p">
+	<c path="org.zeromq.remoting.ZMQSocketProtocol"/>
+	<e path="Void"/>
+</f></setProtocol>
+		<getProtocol public="1" set="method" line="97"><f a=""><c path="org.zeromq.remoting.ZMQSocketProtocol"/></f></getProtocol>
+		<close public="1" set="method" line="101"><f a=""><e path="Void"/></f></close>
+		<processMessage public="1" set="method" line="105"><f a="data">
+	<c path="String"/>
+	<e path="Void"/>
+</f></processMessage>
+		<defaultLog set="method" line="137"><f a="path:args:e">
+	<a><join set="null"><f a="">
+	<c path="String"/>
+	<c path="String"/>
+</f></join></a>
+	<a><join set="null"><f a="">
+	<c path="String"/>
+	<c path="String"/>
+</f></join></a>
+	<unknown/>
+	<e path="Void"/>
+</f></defaultLog>
+		<new set="method" line="65"><f a="data:path">
+	<a>
+		<results><c path="List"><a>
+	<onResult><f a="">
+	<d/>
+	<e path="Void"/>
+</f></onResult>
+	<onError><f a="">
+	<d/>
+	<e path="Void"/>
+</f></onError>
+</a></c></results>
+		<protocol><c path="org.zeromq.remoting.ZMQSocketProtocol"/></protocol>
+		<log><f a="::">
+	<c path="Array"><c path="String"/></c>
+	<c path="Array"><d/></c>
+	<d/>
+	<e path="Void"/>
+</f></log>
+		<error><f a="">
+	<d/>
+	<e path="Void"/>
+</f></error>
+	</a>
+	<c path="Array"><c path="String"/></c>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc>
+ * This class provides a haXe remoting adapter using the zeroMQ message 
+ * library (via hxzmq) as the transport layer
+ </haxe_doc>
+		<haxe_dynamic><c path="haxe.remoting.AsyncConnection"/></haxe_dynamic>
+	</class>
+	<enum path="org.zeromq.SocketType" params="" file="./org/zeromq/ZMQ.hx" module="org.zeromq.ZMQ">
+		<ZMQ_SUB/>
+		<ZMQ_ROUTER/>
+		<ZMQ_REQ/>
+		<ZMQ_REP/>
+		<ZMQ_PUSH/>
+		<ZMQ_PULL/>
+		<ZMQ_PUB/>
+		<ZMQ_PAIR/>
+		<ZMQ_DEALER/>
+		<haxe_doc>
+ * Enumeration of 0MQ socket types
+ </haxe_doc>
+	</enum>
+	<enum path="org.zeromq.ErrorType" params="" file="./org/zeromq/ZMQ.hx" module="org.zeromq.ZMQ">
+		<ETERM/>
+		<EPROTONOSUPPORT/>
+		<ENOTSUP/>
+		<ENOMEM/>
+		<ENODEV/>
+		<ENOCOMPATPROTO/>
+		<ENOBUFS/>
+		<ENETDOWN/>
+		<EMTHREAD/>
+		<EINVAL/>
+		<EINPROGRESS/>
+		<EFSM/>
+		<ECONNREFUSED/>
+		<EAGAIN/>
+		<EADDRNOTAVAIL/>
+		<EADDRINUSE/>
+		<haxe_doc>
+ * Enumeration of 0MQ error types
+ </haxe_doc>
+	</enum>
+	<enum path="org.zeromq.SendReceiveFlagType" params="" file="./org/zeromq/ZMQ.hx" module="org.zeromq.ZMQ">
+		<SNDMORE/>
+		<DONTWAIT/>
+		<haxe_doc>
+ * Enumeration of 0MQ send and receive flags
+ </haxe_doc>
+	</enum>
+	<enum path="org.zeromq.SocketOptionsType" params="" file="./org/zeromq/ZMQ.hx" module="org.zeromq.ZMQ">
+		<ZMQ_UNSUBSCRIBE/>
+		<ZMQ_TYPE/>
+		<ZMQ_SWAP/>
+		<ZMQ_SUBSCRIBE/>
+		<ZMQ_SNDBUF/>
+		<ZMQ_RECOVERY_IVL_MSEC/>
+		<ZMQ_RECOVERY_IVL/>
+		<ZMQ_RECONNECT_IVL_MAX/>
+		<ZMQ_RECONNECT_IVL/>
+		<ZMQ_RCVMORE/>
+		<ZMQ_RCVBUF/>
+		<ZMQ_RATE/>
+		<ZMQ_MCAST_LOOP/>
+		<ZMQ_LINGER/>
+		<ZMQ_IDENTITY/>
+		<ZMQ_HWM/>
+		<ZMQ_FD/>
+		<ZMQ_EVENTS/>
+		<ZMQ_BACKLOG/>
+		<ZMQ_AFFINITY/>
+		<haxe_doc>
+ * Enumeration of 0MQ socket types
+ * See: http://api.zeromq.org/master:zmq-setsockopt
+ </haxe_doc>
+	</enum>
+	<typedef path="org.zeromq.ZMQInt64Type" params="" file="./org/zeromq/ZMQ.hx" module="org.zeromq.ZMQ">
+		<a>
+			<lo><c path="Int"/></lo>
+			<hi><c path="Int"/></hi>
+		</a>
+		<haxe_doc>
+ * Used to pass 64 bit ints to setlongsockopt
+ </haxe_doc>
+	</typedef>
+	<class path="cpp.Lib" params="" file="/usr/lib/haxe/std/cpp/Lib.hx">
+		<load public="1" set="method" line="32" static="1">
+			<f a="lib:prim:nargs">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Load and return a Cpp primitive from a DLL library.
+	</haxe_doc>
+		</load>
+		<loadLazy public="1" set="method" line="44" static="1">
+			<f a="lib:prim:nargs">
+				<unknown/>
+				<unknown/>
+				<c path="Int"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Tries to load, and always returns a valid function, but the function may throw
+		if called.
+	</haxe_doc>
+		</loadLazy>
+		<rethrow public="1" set="method" line="59" static="1"><f a="inExp">
+	<d/>
+	<e path="Void"/>
+</f></rethrow>
+		<stringReference public="1" set="method" line="61" static="1"><f a="inExp">
+	<d/>
+	<e path="Void"/>
+</f></stringReference>
+		<print public="1" set="method" line="66" static="1">
+			<f a="v">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Print the specified value on the default output.
+	</haxe_doc>
+		</print>
+		<haxeToNeko public="1" set="method" line="74" static="1">
+			<f a="v">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>
+		This function is used to make porting from neko to cpp easy.
+		It does not need to do anything because the c-code can work with any Dynamic
+	</haxe_doc>
+		</haxeToNeko>
+		<nekoToHaxe public="1" set="method" line="82" static="1">
+			<f a="v">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>
+		This function is used to make porting from neko to cpp easy.
+		It does not need to do anything because the c-code can work with any Dynamic
+	</haxe_doc>
+		</nekoToHaxe>
+		<println public="1" set="method" line="88" static="1">
+			<f a="v">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Print the specified value on the default output followed by a newline character.
+	</haxe_doc>
+		</println>
+	</class>
+	<class path="org.zeromq.ZMQ" params="" file="./org/zeromq/ZMQ.hx">
+		<bytesSocketOptionTypes public="1" line="112" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></bytesSocketOptionTypes>
+		<int64SocketOptionTypes public="1" line="118" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></int64SocketOptionTypes>
+		<intSocketOptionTypes public="1" line="132" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></intSocketOptionTypes>
+		<STREAMER public="1" get="inline" set="null" line="146" static="1">
+			<c path="Int"/>
+			<haxe_doc>
+     * Flag to specify a STREAMER device.
+     </haxe_doc>
+		</STREAMER>
+		<FORWARDER public="1" get="inline" set="null" line="151" static="1">
+			<c path="Int"/>
+			<haxe_doc>
+     * Flag to specify a FORWARDER device.
+     </haxe_doc>
+		</FORWARDER>
+		<QUEUE public="1" get="inline" set="null" line="156" static="1">
+			<c path="Int"/>
+			<haxe_doc>
+     * Flag to specify a QUEUE device.
+     </haxe_doc>
+		</QUEUE>
+		<ZMQ_POLLIN public="1" get="inline" set="null" line="160" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLIN>
+		<ZMQ_POLLOUT public="1" get="inline" set="null" line="163" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLOUT>
+		<ZMQ_POLLERR public="1" get="inline" set="null" line="166" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLERR>
+		<version_full public="1" set="method" line="174" static="1">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+	 * Gets complete 0MQ library version 
+	 * @return		0MQ library version in form MMmmpp (MM=major, mm=minor, pp=patch)
+	 </haxe_doc>
+		</version_full>
+		<versionMajor public="1" set="method" line="183" static="1">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+	 * Gets 0MQ library major version
+	 * @return		0MQ major library version (2, 3 etc)
+	 </haxe_doc>
+		</versionMajor>
+		<versionMinor public="1" set="method" line="192" static="1">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+	 * Gets 0MQ library minor version
+	 * @return		0MQ minor library version
+	 </haxe_doc>
+		</versionMinor>
+		<versionPatch public="1" set="method" line="201" static="1">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+	 * Gets 0MQ library patch version
+	 * @return		0MQ library patch version
+	 </haxe_doc>
+		</versionPatch>
+		<makeVersion public="1" set="method" line="213" static="1">
+			<f a="major:minor:patch">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+	 * Creates an integer in same form as given by versionFull()
+	 * @param	major
+	 * @param	minor
+	 * @param	patch
+	 * @return
+	 </haxe_doc>
+		</makeVersion>
+		<strError public="1" set="method" line="224" static="1">
+			<f a="e">
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+	 * Returns a human-readable description from a ZMQException object errNo number
+	 * @param	errNo		A valid 0MQ error number.
+	 * 						Use the errorTypeToErrNo method to convert a ZMQ.ErrorType
+	 * @return				A short description of the error
+	 </haxe_doc>
+		</strError>
+		<socketTypeNo public="1" set="method" line="238" static="1">
+			<f a="type">
+				<e path="org.zeromq.SocketType"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+	 * Converts a SocketType enum into a ZMQ socket type integer value
+	 * @param	type
+	 * @return
+	 </haxe_doc>
+		</socketTypeNo>
+		<socketOptionTypeNo public="1" set="method" line="270" static="1">
+			<f a="option">
+				<e path="org.zeromq.SocketOptionsType"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+	 * Converts a SocketOptionsType enum into a ZMQ int
+	 * @param	option
+	 * @return
+	 </haxe_doc>
+		</socketOptionTypeNo>
+		<sendReceiveFlagNo public="1" set="method" line="324" static="1">
+			<f a="type">
+				<e path="org.zeromq.SendReceiveFlagType"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+	 * Converts a SendReceiveFlagType enum value into the corresponding 0MQ library int value
+	 * @param	type
+	 * @return
+	 </haxe_doc>
+		</sendReceiveFlagNo>
+		<errorTypeToErrNo public="1" set="method" line="343" static="1">
+			<f a="e">
+				<e path="org.zeromq.ErrorType"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+	 * Converts Haxe ErrorType enum value to ZMQ errNo integer value
+	 * @param	e
+	 * @return
+	 </haxe_doc>
+		</errorTypeToErrNo>
+		<errNoToErrorType public="1" set="method" line="389" static="1">
+			<f a="e">
+				<c path="Int"/>
+				<e path="org.zeromq.ErrorType"/>
+			</f>
+			<haxe_doc>
+	 * Converts ZMQ errNo integer value to Haxe ErrorType enum value
+	 * @param	e
+	 * @return
+	 </haxe_doc>
+		</errNoToErrorType>
+		<catchSignals public="1" set="method" line="434" static="1">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+	 * Sets up interrupt signal handling.
+	 * Use isInterrupted() to subsequwnrly test for interruption
+	 </haxe_doc>
+		</catchSignals>
+		<isInterrupted public="1" set="method" line="446" static="1">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+	 * Indicates if 0MQ has been interrupted by a system signal (SIGINT or SIGTERM)
+	 * Use this method to detect interrupt, and exit cleanly (close 0MQ sockets and contexts),
+	 * particularly after recvMsg() and poll() calls.
+	 * See: http://zguide.zeromq.org/page:all#Handling-Interrupt-Signals
+	 * 
+	 * @return		True if 0MQ has been interrupted
+	 </haxe_doc>
+		</isInterrupted>
+		<_hx_zmq_version_full line="453" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_full>
+		<_hx_zmq_version_major line="454" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_major>
+		<_hx_zmq_version_minor line="455" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_minor>
+		<_hx_zmq_version_patch line="456" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_patch>
+		<_hx_zmq_make_version line="457" static="1"><f a="::">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></_hx_zmq_make_version>
+		<_hx_zmq_str_error line="458" static="1"><f a="">
+	<c path="Int"/>
+	<unknown/>
+</f></_hx_zmq_str_error>
+		<_hx_zmq_catch_signals line="459" static="1"><f a=""><unknown/></f></_hx_zmq_catch_signals>
+		<_hx_zmq_interrupted line="460" static="1"><f a=""><c path="Int"/></f></_hx_zmq_interrupted>
+		<_hx_zmq_ZMQ_PUB line="462" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PUB>
+		<_hx_zmq_ZMQ_SUB line="463" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SUB>
+		<_hx_zmq_ZMQ_PAIR line="464" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PAIR>
+		<_hx_zmq_ZMQ_REQ line="465" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_REQ>
+		<_hx_zmq_ZMQ_REP line="466" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_REP>
+		<_hx_zmq_ZMQ_DEALER line="467" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_DEALER>
+		<_hx_zmq_ZMQ_ROUTER line="468" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_ROUTER>
+		<_hx_zmq_ZMQ_PULL line="469" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PULL>
+		<_hx_zmq_ZMQ_PUSH line="470" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PUSH>
+		<_hx_zmq_ZMQ_LINGER line="472" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_LINGER>
+		<_hx_zmq_ZMQ_HWM line="473" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_HWM>
+		<_hx_zmq_ZMQ_RCVMORE line="474" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RCVMORE>
+		<_hx_zmq_ZMQ_SUBSCRIBE line="475" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SUBSCRIBE>
+		<_hx_zmq_ZMQ_UNSUBSCRIBE line="476" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_UNSUBSCRIBE>
+		<_hx_zmq_ZMQ_SWAP line="477" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SWAP>
+		<_hx_zmq_ZMQ_AFFINITY line="478" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_AFFINITY>
+		<_hx_zmq_ZMQ_IDENTITY line="479" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_IDENTITY>
+		<_hx_zmq_ZMQ_RATE line="481" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RATE>
+		<_hx_zmq_ZMQ_RECOVERY_IVL line="482" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECOVERY_IVL>
+		<_hx_zmq_ZMQ_RECOVERY_IVL_MSEC line="483" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECOVERY_IVL_MSEC>
+		<_hx_zmq_ZMQ_MCAST_LOOP line="484" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_MCAST_LOOP>
+		<_hx_zmq_ZMQ_SNDBUF line="485" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SNDBUF>
+		<_hx_zmq_ZMQ_RCVBUF line="486" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RCVBUF>
+		<_hx_zmq_ZMQ_RECONNECT_IVL line="487" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECONNECT_IVL>
+		<_hx_zmq_ZMQ_RECONNECT_IVL_MAX line="488" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECONNECT_IVL_MAX>
+		<_hx_zmq_ZMQ_BACKLOG line="489" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_BACKLOG>
+		<_hx_zmq_ZMQ_FD line="490" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_FD>
+		<_hx_zmq_ZMQ_EVENTS line="491" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_EVENTS>
+		<_hx_zmq_ZMQ_TYPE line="492" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_TYPE>
+		<_hx_zmq_ZMQ_POLLIN line="494" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLIN>
+		<_hx_zmq_ZMQ_POLLOUT line="495" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLOUT>
+		<_hx_zmq_ZMQ_POLLERR line="496" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLERR>
+		<_hx_zmq_DONTWAIT line="498" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_DONTWAIT>
+		<_hx_zmq_SNDMORE line="499" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_SNDMORE>
+		<_hx_zmq_EINVAL line="501" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EINVAL>
+		<_hx_zmq_ENOTSUP line="502" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOTSUP>
+		<_hx_zmq_EPROTONOSUPPORT line="503" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EPROTONOSUPPORT>
+		<_hx_zmq_EAGAIN line="504" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EAGAIN>
+		<_hx_zmq_ENOMEM line="505" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOMEM>
+		<_hx_zmq_ENODEV line="506" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENODEV>
+		<_hx_zmq_ENOBUFS line="507" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOBUFS>
+		<_hx_zmq_ENETDOWN line="508" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENETDOWN>
+		<_hx_zmq_EADDRINUSE line="509" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EADDRINUSE>
+		<_hx_zmq_EADDRNOTAVAIL line="510" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EADDRNOTAVAIL>
+		<_hx_zmq_ECONNREFUSED line="511" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ECONNREFUSED>
+		<_hx_zmq_EINPROGRESS line="512" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EINPROGRESS>
+		<_hx_zmq_EMTHREAD line="513" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EMTHREAD>
+		<_hx_zmq_EFSM line="514" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EFSM>
+		<_hx_zmq_ENOCOMPATPROTO line="515" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOCOMPATPROTO>
+		<_hx_zmq_ETERM line="516" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ETERM>
+		<haxe_doc>
+ * Core class for 0MQ Haxe bindings
+ </haxe_doc>
+	</class>
+	<class path="Enum" params="T" file="/usr/lib/haxe/std/Enum.hx" extern="1"><haxe_doc>
+	An abstract type that represents an Enum.
+	See [Type] for the haXe Reflection API.
+</haxe_doc></class>
+	<typedef path="neko.Sys" params="" file="/usr/lib/haxe/std/cpp/Sys.hx"><c path="cpp.Sys"/></typedef>
+	<class path="StringTools" params="" file="/usr/lib/haxe/std/StringTools.hx">
+		<urlEncode public="1" set="method" line="38" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Encode an URL by using the standard format.
+	</haxe_doc>
+		</urlEncode>
+		<urlDecode public="1" set="method" line="59" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Decode an URL using the standard format.
+	</haxe_doc>
+		</urlDecode>
+		<htmlEscape public="1" set="method" line="80" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Escape HTML special characters of the string.
+	</haxe_doc>
+		</htmlEscape>
+		<htmlUnescape public="1" set="method" line="87" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Unescape HTML special characters of the string.
+	</haxe_doc>
+		</htmlUnescape>
+		<startsWith public="1" set="method" line="98" static="1">
+			<f a="s:start">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the string [s] starts with the string [start].
+	</haxe_doc>
+		</startsWith>
+		<endsWith public="1" set="method" line="105" static="1">
+			<f a="s:end">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the string [s] ends with the string [end].
+	</haxe_doc>
+		</endsWith>
+		<isSpace public="1" set="method" line="114" static="1">
+			<f a="s:pos">
+				<c path="String"/>
+				<c path="Int"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the character in the string [s] at position [pos] is a space.
+	</haxe_doc>
+		</isSpace>
+		<ltrim public="1" set="method" line="122" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the left of the String [s].
+	</haxe_doc>
+		</ltrim>
+		<rtrim public="1" set="method" line="141" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the right of the String [s].
+	</haxe_doc>
+		</rtrim>
+		<trim public="1" set="method" line="161" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the beginning and the end of the String [s].
+	</haxe_doc>
+		</trim>
+		<rpad public="1" set="method" line="172" static="1">
+			<f a="s:c:l">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Pad the string [s] by appending [c] at its right until it reach [l] characters.
+	</haxe_doc>
+		</rpad>
+		<lpad public="1" set="method" line="194" static="1">
+			<f a="s:c:l">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Pad the string [s] by appending [c] at its left until it reach [l] characters.
+	</haxe_doc>
+		</lpad>
+		<replace public="1" set="method" line="219" static="1">
+			<f a="s:sub:by">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Replace all occurences of the string [sub] in the string [s] by the string [by].
+	</haxe_doc>
+		</replace>
+		<hex public="1" set="method" line="230" static="1">
+			<f a="n:?digits">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Encode a number into a hexadecimal representation, with an optional number of zeros for left padding.
+	</haxe_doc>
+		</hex>
+		<fastCodeAt public="1" get="inline" set="null" line="253" static="1">
+			<f a="s:index">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Provides a fast native string charCodeAt access. Since the EOF value might vary depending on the platforms, always test with StringTools.isEOF.
+		Only guaranteed to work if index in [0,s.length] range. Might not work with strings containing \0 char.
+	</haxe_doc>
+		</fastCodeAt>
+		<isEOF public="1" get="inline" set="null" line="270" static="1"><f a="c">
+	<c path="Int"/>
+	<e path="Bool"/>
+</f></isEOF>
+		<haxe_doc>
+	The StringTools class contains some extra functionalities for [String]
+	manipulation. It's stored in a different class in order to prevent
+	the standard [String] of being bloated and thus increasing the size of
+	each application using it.
+</haxe_doc>
+	</class>
+	<class path="Reflect" params="" file="/usr/lib/haxe/std/cpp/_std/Reflect.hx">
+		<hasField public="1" set="method" line="29" static="1">
+			<f a="o:field">
+				<d/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if an object has a field set. This doesn't take into account the object prototype (class methods).
+	</haxe_doc>
+		</hasField>
+		<field public="1" set="method" line="33" static="1">
+			<f a="o:field">
+				<d/>
+				<c path="String"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Returns the field of an object, or null if [o] is not an object or doesn't have this field.
+	</haxe_doc>
+		</field>
+		<setField public="1" get="inline" set="null" line="37" static="1">
+			<f a="o:field:value">
+				<d/>
+				<c path="String"/>
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Set an object field value.
+	</haxe_doc>
+		</setField>
+		<callMethod public="1" set="method" line="42" static="1">
+			<f a="o:func:args">
+				<d/>
+				<d/>
+				<c path="Array"><d/></c>
+				<d/>
+			</f>
+			<haxe_doc>
+		Call a method with the given object and arguments.
+	</haxe_doc>
+		</callMethod>
+		<fields public="1" set="method" line="49" static="1">
+			<f a="o">
+				<d/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Returns the list of fields of an object, excluding its prototype (class methods).
+	</haxe_doc>
+		</fields>
+		<isFunction public="1" set="method" line="56" static="1">
+			<f a="f">
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value is a function or not.
+	</haxe_doc>
+		</isFunction>
+		<compare public="1" params="T" set="method" line="60" static="1">
+			<f a="a:b">
+				<c path="compare.T"/>
+				<c path="compare.T"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Generic comparison function, does not work for methods, see [compareMethods]
+	</haxe_doc>
+		</compare>
+		<compareMethods public="1" set="method" line="64" static="1">
+			<f a="f1:f2">
+				<d/>
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Compare two methods closures. Returns true if it's the same method of the same instance.
+		Does not work on Neko platform.
+	</haxe_doc>
+		</compareMethods>
+		<isObject public="1" set="method" line="72" static="1">
+			<f a="v">
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value is an object or not.
+
+	</haxe_doc>
+		</isObject>
+		<deleteField public="1" set="method" line="79" static="1">
+			<f a="o:f">
+				<d/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Delete an object field.
+	</haxe_doc>
+		</deleteField>
+		<copy public="1" params="T" set="method" line="84" static="1">
+			<f a="o">
+				<c path="copy.T"/>
+				<c path="copy.T"/>
+			</f>
+			<haxe_doc>
+		Make a copy of the fields of an object.
+	</haxe_doc>
+		</copy>
+		<makeVarArgs public="1" set="method" line="95" static="1">
+			<f a="f">
+				<f a="">
+					<c path="Array"><d/></c>
+					<d/>
+				</f>
+				<d/>
+			</f>
+			<haxe_doc>
+		Transform a function taking an array of arguments into a function that can
+		be called with any number of arguments.
+	</haxe_doc>
+		</makeVarArgs>
+		<haxe_doc>
+	The Reflect API is a way to manipulate values dynamicly through an
+	abstract interface in an untyped manner. Use with care.
+</haxe_doc>
+	</class>
+	<class path="org.zeromq.ZMQException" params="" file="./org/zeromq/ZMQException.hx">
+		<err public="1" set="null"><e path="org.zeromq.ErrorType"/></err>
+		<errNo public="1" set="null"><c path="Int"/></errNo>
+		<overriddenStr><c path="String"/></overriddenStr>
+		<str public="1" set="method" line="47">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+	 * Returns ZMQ - specified human-readable error description
+	 * @return
+	 </haxe_doc>
+		</str>
+		<toString public="1" set="method" line="51"><f a=""><c path="String"/></f></toString>
+		<new public="1" set="method" line="37"><f a="e:?str">
+	<e path="org.zeromq.ErrorType"/>
+	<c path="String"/>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc>
+ * Encapsulates ZMQ Errors
+ * Provides the ZMQ - specified errno and a human - readable description
+ </haxe_doc>
+	</class>
+	<class path="haxe.Log" params="" file="/usr/lib/haxe/std/haxe/Log.hx">
+		<trace public="1" set="dynamic" line="29" static="1"><f a="v:?infos">
+	<d/>
+	<t path="haxe.PosInfos"/>
+	<e path="Void"/>
+</f></trace>
+		<clear public="1" set="dynamic" line="43" static="1"><f a=""><e path="Void"/></f></clear>
+	</class>
+	<class path="org.zeromq.remoting.ZMQSocketProtocol" params="" file="./org/zeromq/remoting/ZMQSocketProtocol.hx">
+		<socket public="1"><c path="org.zeromq.ZMQSocket"/></socket>
+		<context public="1"><c path="haxe.remoting.Context"/></context>
+		<decodeChar set="method" line="78"><f a="c">
+	<c path="Int"/>
+	<t path="Null"><c path="Int"/></t>
+</f></decodeChar>
+		<encodeChar set="method" line="97"><f a="c">
+	<c path="Int"/>
+	<t path="Null"><c path="Int"/></t>
+</f></encodeChar>
+		<sendRequest public="1" set="method" line="118"><f a="path:params">
+	<c path="Array"><c path="String"/></c>
+	<c path="Array"><d/></c>
+	<e path="Void"/>
+</f></sendRequest>
+		<sendAnswer public="1" set="method" line="126"><f a="answer:?isException">
+	<d/>
+	<e path="Bool"/>
+	<e path="Void"/>
+</f></sendAnswer>
+		<sendMessage public="1" set="method" line="136"><f a="msg">
+	<c path="String"/>
+	<e path="Void"/>
+</f></sendMessage>
+		<decodeData public="1" set="dynamic" line="142"><f a="data">
+	<c path="String"/>
+	<c path="String"/>
+</f></decodeData>
+		<isRequest public="1" set="method" line="146"><f a="data">
+	<c path="String"/>
+	<e path="Bool"/>
+</f></isRequest>
+		<processRequest public="1" set="method" line="154"><f a="data:?onError">
+	<c path="String"/>
+	<f a="::">
+		<c path="Array"><c path="String"/></c>
+		<c path="Array"><d/></c>
+		<d/>
+		<e path="Void"/>
+	</f>
+	<e path="Void"/>
+</f></processRequest>
+		<processAnswer public="1" set="method" line="176"><f a="data">
+	<c path="String"/>
+	<d/>
+</f></processAnswer>
+		<readMessage public="1" set="method" line="184"><f a=""><c path="String"/></f></readMessage>
+		<new public="1" set="method" line="73"><f a="sock:ctx">
+	<c path="org.zeromq.ZMQSocket"/>
+	<c path="haxe.remoting.Context"/>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc>
+    ZeroMQ - based socket protocol for haXe remoting.
+    Heavily based on the haxe.remoting.SocketProtocol class implementation.
+    
+	The ZeroMQ haXe Remoting Socket Protocol is composed of serialized strings converted into byte data exchanges.
+    Eeach message (request or answer) is sent as a single-part zeroMQ message.
+    
+	A request string is composed of the following serialized values :
+		- the boolean true for a request
+		- an array of strings representing the object+method path
+		- an array of parameters
+	A response string is composed of the following serialized values :
+		- the boolean false for a response
+		- a serialized value representing the result
+	Exceptions are serialized with [serializeException] so they will be thrown immediatly
+	when they are unserialized.
+</haxe_doc>
+	</class>
+	<class path="org.zeromq.ZMQContext" params="" file="./org/zeromq/ZMQContext.hx">
+		<_instance static="1"><c path="org.zeromq.ZMQContext"/></_instance>
+		<_hasInstance static="1"><e path="Bool"/></_hasInstance>
+		<instance public="1" set="method" line="108" static="1">
+			<f a="?ioThreads">
+				<c path="Int"/>
+				<c path="org.zeromq.ZMQContext"/>
+			</f>
+			<haxe_doc>
+	 * Returns a global ZMQContext instance, or null
+	 * 
+	 * @param	?ioThreads = 1
+	 </haxe_doc>
+		</instance>
+		<_hx_zmq_construct line="120" static="1"><f a="">
+	<c path="Int"/>
+	<unknown/>
+</f></_hx_zmq_construct>
+		<_hx_zmq_term line="121" static="1"><f a="">
+	<d/>
+	<unknown/>
+</f></_hx_zmq_term>
+		<contextHandle public="1" set="null">
+			<d/>
+			<haxe_doc> Opaque data used by hxzmq driver </haxe_doc>
+		</contextHandle>
+		<closed public="1" set="null">
+			<e path="Bool"/>
+			<haxe_doc> Records if context has been terminated </haxe_doc>
+		</closed>
+		<term public="1" set="method" line="65">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+	 * Close or terminate the context
+	 * 
+	 * This can be called to close the context by hand. If this is not
+     * called, the context will automatically be closed when it is
+     * garbage collected.
+	 </haxe_doc>
+		</term>
+		<socket public="1" set="method" line="84">
+			<f a="type">
+				<e path="org.zeromq.SocketType"/>
+				<c path="org.zeromq.ZMQSocket"/>
+			</f>
+			<haxe_doc>
+	 * Create a Socket associated with this Context
+	 * @param	socketType	The socket type which can be any of the ZMQ socket types
+	 * @return  A ZMQSocket object
+	 </haxe_doc>
+		</socket>
+		<poller public="1" set="method" line="96">
+			<f a=""><c path="org.zeromq.ZMQPoller"/></f>
+			<haxe_doc>
+	 * Convenience method to create a ZMQPoller object.
+	 * Raises a ENOTSUP ZMQException if context is closed
+	 * @return	A ZMQPoller object
+	 </haxe_doc>
+		</poller>
+		<new set="method" line="44">
+			<f a="ioThreads">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Creates a ZMQ Context
+	 * 
+	 * Can throw EINVAL if invalid number of iothreads requested
+	 * 
+	 * See: http://api.zeromq.org/master:zmq-init
+	 </haxe_doc>
+		</new>
+	</class>
+	<class path="StringBuf" params="" file="/usr/lib/haxe/std/StringBuf.hx">
+		<add public="1" get="inline" set="null" line="46">
+			<f a="?x">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds the representation of any value to the string buffer.
+	</haxe_doc>
+		</add>
+		<addSub public="1" get="inline" set="null" line="57">
+			<f a="s:pos:?len">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds a part of a string to the string buffer.
+	</haxe_doc>
+		</addSub>
+		<addChar public="1" get="inline" set="null" line="73">
+			<f a="c">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds a character to the string buffer.
+	</haxe_doc>
+		</addChar>
+		<toString public="1" get="inline" set="null" line="87">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the content of the string buffer.
+		The buffer is not emptied by this operation.
+	</haxe_doc>
+		</toString>
+		<b><c path="Array"><d/></c></b>
+		<new public="1" set="method" line="35">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new string buffer.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	A String buffer is an efficient way to build a big string by
+	appending small elements together.
+</haxe_doc>
+	</class>
+	<class path="org.zeromq.ZMQPoller" params="" file="./org/zeromq/ZMQPoller.hx">
+		<_hx_zmq_poll line="221" static="1"><f a="::">
+	<c path="Array"><d/></c>
+	<c path="Array"><c path="Int"/></c>
+	<c path="Int"/>
+	<t path="org.zeromq.PollResult"/>
+</f></_hx_zmq_poll>
+		<revents public="1" set="null">
+			<c path="Array"><c path="Int"/></c>
+			<haxe_doc>
+     * Provides the last-polled set of rececived events
+     </haxe_doc>
+		</revents>
+		<pollItems><c path="List"><t path="org.zeromq.PollSocketEventTuple"/></c></pollItems>
+		<getSize public="1" set="method" line="53"><f a=""><c path="Int"/></f></getSize>
+		<registerSocket public="1" set="method" line="62">
+			<f a="socket:event">
+				<c path="org.zeromq.ZMQSocket"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Adds a socket to the internak list of polled sockets
+	 * @param	socket	A ZMQScxket object
+	 * @param	event	Bitmasked Int for polled events (ZMQ_POLLIN, ZMQ_POLLOUT)
+	 </haxe_doc>
+		</registerSocket>
+		<unregisterSocket public="1" set="method" line="79">
+			<f a="socket">
+				<c path="org.zeromq.ZMQSocket"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	 * Removes a previously registered socket
+	 * @param	socket
+	 * @return
+	 </haxe_doc>
+		</unregisterSocket>
+		<unregisterAllSockets public="1" set="method" line="100">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+	 * Removes all current registered sockets
+	 </haxe_doc>
+		</unregisterAllSockets>
+		<poll public="1" set="method" line="109">
+			<f a="?timeout">
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+	 * Poll a set of 0MQ sockets, 
+	 * @param	?timeout	Timeout in microseconds, or 0 to return immediately, or -1 to block indefintely (default)
+	 * @return	how many objects signalled, or 0 if none, or -1 if failure
+	 </haxe_doc>
+		</poll>
+		<pollin public="1" set="method" line="190">
+			<f a="s">
+				<c path="Int"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	 * Test if the s'th registered socket has a registered POLLIN event.
+	 * Call this after a poll() method call to test the results.
+	 * 
+	 * @param	s	Valid s parameter range from 1 to revents.length
+	 * @return		True if specified registered socket has a current POLLIN event, else False
+	 </haxe_doc>
+		</pollin>
+		<pollout public="1" set="method" line="204">
+			<f a="s">
+				<c path="Int"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	 * Test if the s'th registered socket has a registered POLLOUT event.
+	 * Call this after a poll() method call to test the results.
+	 * 
+	 * @param	s	Valid s parameter range from 1 to revents.length
+	 * @return		True if specified registered socket has a current POLLOUT event, else False
+	 </haxe_doc>
+		</pollout>
+		<noevents public="1" set="method" line="216">
+			<f a="s">
+				<c path="Int"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	 * Test of the s'th registered socket has no received polled events
+	 * @param	s	Valid s parameter range from 1 to revents.length
+	 * @return		True if no received polled events on the socket
+	 </haxe_doc>
+		</noevents>
+		<new public="1" set="method" line="46">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+	 * Constructor
+	 </haxe_doc>
+		</new>
+		<haxe_doc>
+ * Encapsulates ZMQ Poller functions.
+ * 
+ * Statefull class, maintaining a set of sockets to poll, events to poll for
+ </haxe_doc>
+	</class>
+	<typedef path="org.zeromq.PollSocketEventTuple" params="" file="./org/zeromq/ZMQPoller.hx" module="org.zeromq.ZMQPoller"><a>
+	<_socket><c path="org.zeromq.ZMQSocket"/></_socket>
+	<_event><c path="Int"/></_event>
+</a></typedef>
+	<typedef path="org.zeromq.PollResult" params="" file="./org/zeromq/ZMQPoller.hx" module="org.zeromq.ZMQPoller"><a>
+	<_revents><c path="Array"><c path="Int"/></c></_revents>
+	<_ret><c path="Int"/></_ret>
+</a></typedef>
+	<typedef path="cpp.Int32" params="" file="/usr/lib/haxe/std/cpp/CppInt32__.hx" module="cpp.CppInt32__"><c path="cpp.CppInt32__"/></typedef>
+	<class path="cpp.CppInt32__" params="" file="/usr/lib/haxe/std/cpp/CppInt32__.hx" extern="1">
+		<make public="1" set="method" static="1"><f a="a:b">
+	<c path="Int"/>
+	<c path="Int"/>
+	<t path="cpp.Int32"/>
+</f></make>
+		<ofInt public="1" set="method" static="1"><f a="x">
+	<c path="Int"/>
+	<t path="cpp.Int32"/>
+</f></ofInt>
+		<toInt public="1" set="method" static="1"><f a="x">
+	<t path="cpp.Int32"/>
+	<c path="Int"/>
+</f></toInt>
+		<add public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></add>
+		<sub public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></sub>
+		<mul public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></mul>
+		<div public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></div>
+		<mod public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></mod>
+		<shl public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<c path="Int"/>
+	<t path="cpp.Int32"/>
+</f></shl>
+		<shr public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<c path="Int"/>
+	<t path="cpp.Int32"/>
+</f></shr>
+		<ushr public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<c path="Int"/>
+	<t path="cpp.Int32"/>
+</f></ushr>
+		<and public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></and>
+		<or public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></or>
+		<xor public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></xor>
+		<neg public="1" set="method" static="1"><f a="a">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></neg>
+		<complement public="1" set="method" static="1"><f a="a">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+</f></complement>
+		<compare public="1" set="method" static="1"><f a="a:b">
+	<t path="cpp.Int32"/>
+	<t path="cpp.Int32"/>
+	<c path="Int"/>
+</f></compare>
+	</class>
+	<typedef path="haxe.Int32" params="" file="/usr/lib/haxe/std/haxe/Int32.hx"><c path="cpp.CppInt32__"/></typedef>
+	<class path="org.zeromq.ZMQSocket" params="" file="./org/zeromq/ZMQSocket.hx">
+		<_hx_zmq_construct_socket line="449" static="1"><f a=":">
+	<d/>
+	<c path="Int"/>
+	<unknown/>
+</f></_hx_zmq_construct_socket>
+		<_hx_zmq_close line="450" static="1"><f a="">
+	<d/>
+	<unknown/>
+</f></_hx_zmq_close>
+		<_hx_zmq_bind line="451" static="1"><f a=":">
+	<d/>
+	<d/>
+	<unknown/>
+</f></_hx_zmq_bind>
+		<_hx_zmq_connect line="452" static="1"><f a=":">
+	<d/>
+	<d/>
+	<unknown/>
+</f></_hx_zmq_connect>
+		<_hx_zmq_send line="453" static="1"><f a="::">
+	<d/>
+	<t path="haxe.io.BytesData"/>
+	<c path="Int"/>
+	<unknown/>
+</f></_hx_zmq_send>
+		<_hx_zmq_rcv line="454" static="1"><f a=":">
+	<d/>
+	<c path="Int"/>
+	<t path="haxe.io.BytesData"/>
+</f></_hx_zmq_rcv>
+		<_hx_zmq_setintsockopt line="455" static="1"><f a="::">
+	<d/>
+	<c path="Int"/>
+	<d/>
+	<unknown/>
+</f></_hx_zmq_setintsockopt>
+		<_hx_zmq_setint64sockopt line="456" static="1"><f a=":::">
+	<d/>
+	<c path="Int"/>
+	<unknown/>
+	<unknown/>
+	<unknown/>
+</f></_hx_zmq_setint64sockopt>
+		<_hx_zmq_setbytessockopt line="457" static="1"><f a="::">
+	<d/>
+	<c path="Int"/>
+	<d/>
+	<unknown/>
+</f></_hx_zmq_setbytessockopt>
+		<_hx_zmq_getintsockopt line="458" static="1"><f a=":">
+	<d/>
+	<c path="Int"/>
+	<unknown/>
+</f></_hx_zmq_getintsockopt>
+		<_hx_zmq_getint64sockopt line="459" static="1"><f a=":">
+	<d/>
+	<c path="Int"/>
+	<unknown/>
+</f></_hx_zmq_getint64sockopt>
+		<_hx_zmq_getbytessockopt line="460" static="1"><f a=":">
+	<d/>
+	<c path="Int"/>
+	<unknown/>
+</f></_hx_zmq_getbytessockopt>
+		<closed public="1" set="null">
+			<e path="Bool"/>
+			<haxe_doc> Records if socket has been closed </haxe_doc>
+		</closed>
+		<context public="1" set="null">
+			<c path="org.zeromq.ZMQContext"/>
+			<haxe_doc>
+	 * Hold reference to context associated with socket, to stop it being garbage collected
+	 </haxe_doc>
+		</context>
+		<_socketHandle public="1" set="null">
+			<d/>
+			<haxe_doc> Opaque data used by hxzmq driver </haxe_doc>
+		</_socketHandle>
+		<close public="1" set="method" line="82">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+	 * Close the socket
+	 * 
+	 * This can be called to close the socket by hand. If this is not
+	 * called, the socket will automatically be closed when it is
+	 * garbage collected.
+	 </haxe_doc>
+		</close>
+		<bind public="1" set="method" line="109">
+			<f a="addr">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Bind a socket to an address
+	 * 
+	 * This causes the socket to listen on a network port. Sockets on the
+	 * other side of this connection will use ``Socket.connect(addr)`` to
+	 * connect to this socket.
+	 * 
+	 * @param	addr	The address string.
+	 * 				This has the form 'protocol://interface:port',
+	 * 				for example 'tcp://127.0.0.1:5555'. Protocols supported are
+	 * 				tcp, upd, pgm, inproc and ipc. If the address is unicode, it is
+	 * 				encoded to utf-8 first.
+	 </haxe_doc>
+		</bind>
+		<connect public="1" set="method" line="139">
+			<f a="addr">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Connect to a remote ZMQ socket
+	 * 
+	 * @param	addr	The address string
+	 * 				This has the form 'protocol://interface:port',
+	 * 				for example 'tcp://127.0.0.1:5555'. Protocols supported are
+	 * 				tcp, upd, pgm, inproc and ipc. If the address is unicode, it is
+	 * 				encoded to utf-8 first.
+	 </haxe_doc>
+		</connect>
+		<setsockopt public="1" set="method" line="177">
+			<f a="option:optval">
+				<e path="org.zeromq.SocketOptionsType"/>
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Set socket options.
+	 * 
+	 * See the ZMQ documentation for details on specific options: 
+	 * http://api.zeromq.org/master:zmq-setsockopt
+	 * 
+	 * C Parameter type     optval haXe type expected
+     * =================    ==========================
+     * int                  Int
+     * int64_t, uint64_t    ZMQInt64Type (if neko or cpp)
+     *                      Int (if php - will be 64bits on 64bit platforms, else 32 bit)
+     * binary               haxe.io.Bytes
+     * 
+	 * @param	option		SocketOptionsType (defined in ZMQ.hx)
+	 * @param	optval		Either Int or String or Bytes
+	 </haxe_doc>
+		</setsockopt>
+		<getsockopt public="1" set="method" line="268">
+			<f a="option">
+				<e path="org.zeromq.SocketOptionsType"/>
+				<d/>
+			</f>
+			<haxe_doc>
+	 * Return a previously set socket option
+	 * 
+	 * @param	option
+	 * @return
+	 </haxe_doc>
+		</getsockopt>
+		<sendMsg public="1" set="method" line="366">
+			<f a="data:?flags">
+				<c path="haxe.io.Bytes"/>
+				<e path="org.zeromq.SendReceiveFlagType"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Send a message on this socket
+	 * 
+	 * This queues the message to be sent by the IO thread at a later time.
+	 * 
+	 * @param	data	The content of the message
+	 * @param	?flags	Any supported SocketFlag DONTWAIT, SNDMORE
+	 </haxe_doc>
+		</sendMsg>
+		<recvMsg public="1" set="method" line="398">
+			<f a="?flags">
+				<e path="org.zeromq.SendReceiveFlagType"/>
+				<c path="haxe.io.Bytes"/>
+			</f>
+			<haxe_doc>
+	 * Receive a message on this socket
+	 * 
+	 * Will return either a message, null (if DONTWAIT was used and there was no data received) or a ZMQException
+	 * 
+	 * @param	?flags
+	 * @return
+	 </haxe_doc>
+		</recvMsg>
+		<hasReceiveMore public="1" set="method" line="438">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+	 * Convenience method to test if socket has more parts of a multipart message to read
+	 * @return
+	 </haxe_doc>
+		</hasReceiveMore>
+		<new public="1" set="method" line="61">
+			<f a="context:type">
+				<c path="org.zeromq.ZMQContext"/>
+				<e path="org.zeromq.SocketType"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Constructor.
+	 * 
+	 * Creates a new ZMQ socket
+	 * @param	context		A ZMQ Context previously created
+	 * @param	type		A ZMQ socket type
+	 </haxe_doc>
+		</new>
+		<haxe_doc>
+ * A 0MQ socket
+ * 
+ * These objects will generally be created via the socket() method of a ZMQContext object.
+ * 
+ * Class based on code from pyzmq project
+ * See: https://github.com/zeromq/pyzmq/blob/master/zmq/core/socket.pyx
+ </haxe_doc>
+	</class>
+	<class path="Date" params="" file="/usr/lib/haxe/std/cpp/_std/Date.hx">
+		<now public="1" set="method" line="55" static="1">
+			<f a=""><c path="Date"/></f>
+			<haxe_doc>
+		Returns a Date representing the current local time.
+	</haxe_doc>
+		</now>
+		<fromTime public="1" set="method" line="59" static="1">
+			<f a="t">
+				<c path="Float"/>
+				<c path="Date"/>
+			</f>
+			<haxe_doc>
+		Returns a Date from a timestamp [t] which is the number of
+		milliseconds elapsed since 1st January 1970.
+	</haxe_doc>
+		</fromTime>
+		<fromString public="1" set="method" line="65" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="Date"/>
+			</f>
+			<haxe_doc>
+		Returns a Date from a formated string of one of the following formats :
+		[YYYY-MM-DD hh:mm:ss] or [YYYY-MM-DD] or [hh:mm:ss]. The first two formats
+		are expressed in local time, the third in UTC Epoch.
+	</haxe_doc>
+		</fromString>
+		<mSeconds><c path="Float"/></mSeconds>
+		<getTime public="1" set="method" line="35">
+			<f a=""><c path="Float"/></f>
+			<haxe_doc>
+		Returns the timestamp of the date. It's the number of milliseconds
+		elapsed since 1st January 1970. It might only have a per-second precision
+		depending on the platforms.
+	</haxe_doc>
+		</getTime>
+		<getHours public="1" set="method" line="39">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the hours value of the date (0-23 range).
+	</haxe_doc>
+		</getHours>
+		<getMinutes public="1" set="method" line="41">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the minutes value of the date (0-59 range).
+	</haxe_doc>
+		</getMinutes>
+		<getSeconds public="1" set="method" line="43">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the seconds of the date (0-59 range).
+	</haxe_doc>
+		</getSeconds>
+		<getFullYear public="1" set="method" line="45">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the full year of the date.
+	</haxe_doc>
+		</getFullYear>
+		<getMonth public="1" set="method" line="47">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the month of the date (0-11 range).
+	</haxe_doc>
+		</getMonth>
+		<getDate public="1" set="method" line="49">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the day of the date (1-31 range).
+	</haxe_doc>
+		</getDate>
+		<getDay public="1" set="method" line="51">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the week day of the date (0-6 range).
+	</haxe_doc>
+		</getDay>
+		<toString public="1" set="method" line="53">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns a string representation for the Date, by using the
+		standard format [YYYY-MM-DD HH:MM:SS]. See [DateTools.format] for
+		other formating rules.
+	</haxe_doc>
+		</toString>
+		<new public="1" set="method" line="31"><f a="year:month:day:hour:min:sec">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc>
+	The Date class is used for date manipulation. There is some extra functions
+	available in the [DateTools] class.
+</haxe_doc>
+	</class>
+	<class path="haxe.io.Bytes" params="" file="/usr/lib/haxe/std/haxe/io/Bytes.hx">
+		<alloc public="1" set="method" line="211" static="1"><f a="length">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></alloc>
+		<ofString public="1" set="method" line="239" static="1"><f a="s">
+	<c path="String"/>
+	<c path="haxe.io.Bytes"/>
+</f></ofString>
+		<ofData public="1" set="method" line="278" static="1"><f a="b">
+	<t path="haxe.io.BytesData"/>
+	<c path="haxe.io.Bytes"/>
+</f></ofData>
+		<length public="1" set="null"><c path="Int"/></length>
+		<b><t path="haxe.io.BytesData"/></b>
+		<get public="1" get="inline" set="null" line="37"><f a="pos">
+	<c path="Int"/>
+	<c path="Int"/>
+</f></get>
+		<set public="1" get="inline" set="null" line="51"><f a="pos:v">
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></set>
+		<blit public="1" set="method" line="65"><f a="pos:src:srcpos:len">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></blit>
+		<sub public="1" set="method" line="93"><f a="pos:len">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></sub>
+		<compare public="1" set="method" line="112"><f a="other">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+</f></compare>
+		<readString public="1" set="method" line="148"><f a="pos:len">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="String"/>
+</f></readString>
+		<toString public="1" set="method" line="192"><f a=""><c path="String"/></f></toString>
+		<getData public="1" get="inline" set="null" line="207"><f a=""><t path="haxe.io.BytesData"/></f></getData>
+		<new set="method" line="32"><f a="length:b">
+	<c path="Int"/>
+	<t path="haxe.io.BytesData"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="IntIter" params="" file="/usr/lib/haxe/std/IntIter.hx">
+		<min><c path="Int"/></min>
+		<max><c path="Int"/></max>
+		<hasNext public="1" set="method" line="46">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+		Returns true if the iterator has other items, false otherwise.
+	</haxe_doc>
+		</hasNext>
+		<next public="1" set="method" line="53">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Moves to the next item of the iterator.
+	</haxe_doc>
+		</next>
+		<new public="1" set="method" line="38">
+			<f a="min:max">
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+		Iterate from [min] (inclusive) to [max] (exclusive).
+		If [max <= min], the iterator will not act as a countdown.
+	]]></haxe_doc>
+		</new>
+		<haxe_doc>
+	Integer iterator. Used for interval implementation.
+</haxe_doc>
+	</class>
+	<enum path="haxe.io.Error" params="" file="/usr/lib/haxe/std/haxe/io/Error.hx">
+		<Overflow><haxe_doc> An integer value is outside its allowed range </haxe_doc></Overflow>
+		<OutsideBounds><haxe_doc> An operation on Bytes is outside of its valid range </haxe_doc></OutsideBounds>
+		<Custom a="e">
+			<d/>
+			<haxe_doc> Other errors </haxe_doc>
+		</Custom>
+		<Blocked><haxe_doc> The IO is set into nonblocking mode and some data cannot be read or written </haxe_doc></Blocked>
+		<haxe_doc>
+	The possible IO errors that can occur
+</haxe_doc>
+	</enum>
+	<typedef path="haxe.TypeResolver" params="" file="/usr/lib/haxe/std/haxe/Unserializer.hx" module="haxe.Unserializer"><a>
+	<resolveEnum set="method"><f a="name">
+	<c path="String"/>
+	<c path="Enum"><d/></c>
+</f></resolveEnum>
+	<resolveClass set="method"><f a="name">
+	<c path="String"/>
+	<c path="Class"><d/></c>
+</f></resolveClass>
+</a></typedef>
+	<class path="Type" params="" file="/usr/lib/haxe/std/cpp/_std/Type.hx">
+		<getClass public="1" params="T" set="method" line="39" static="1">
+			<f a="o">
+				<c path="getClass.T"/>
+				<c path="Class"><c path="getClass.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns the class of a value or [null] if this value is not a Class instance.
+	</haxe_doc>
+		</getClass>
+		<getEnum public="1" set="method" line="50" static="1">
+			<f a="o">
+				<d/>
+				<c path="Enum"><d/></c>
+			</f>
+			<haxe_doc>
+		Returns the enum of a value or [null] if this value is not an Enum instance.
+	</haxe_doc>
+		</getEnum>
+		<getSuperClass public="1" set="method" line="56" static="1">
+			<f a="c">
+				<c path="Class"><d/></c>
+				<c path="Class"><d/></c>
+			</f>
+			<haxe_doc>
+		Returns the super-class of a class, or null if no super class.
+	</haxe_doc>
+		</getSuperClass>
+		<getClassName public="1" set="method" line="60" static="1">
+			<f a="c">
+				<c path="Class"><d/></c>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the complete name of a class.
+	</haxe_doc>
+		</getClassName>
+		<getEnumName public="1" set="method" line="66" static="1">
+			<f a="e">
+				<c path="Enum"><d/></c>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the complete name of an enum.
+	</haxe_doc>
+		</getEnumName>
+		<resolveClass public="1" set="method" line="70" static="1">
+			<f a="name">
+				<c path="String"/>
+				<c path="Class"><d/></c>
+			</f>
+			<haxe_doc>
+		Evaluates a class from a name. The class must have been compiled
+		to be accessible.
+	</haxe_doc>
+		</resolveClass>
+		<resolveEnum public="1" set="method" line="77" static="1">
+			<f a="name">
+				<c path="String"/>
+				<c path="Enum"><d/></c>
+			</f>
+			<haxe_doc>
+		Evaluates an enum from a name. The enum must have been compiled
+		to be accessible.
+	</haxe_doc>
+		</resolveEnum>
+		<createInstance public="1" params="T" set="method" line="84" static="1">
+			<f a="cl:args">
+				<c path="Class"><c path="createInstance.T"/></c>
+				<c path="Array"><d/></c>
+				<c path="createInstance.T"/>
+			</f>
+			<haxe_doc>
+		Creates an instance of the given class with the list of constructor arguments.
+	</haxe_doc>
+		</createInstance>
+		<createEmptyInstance public="1" params="T" set="method" line="90" static="1">
+			<f a="cl">
+				<c path="Class"><c path="createEmptyInstance.T"/></c>
+				<c path="createEmptyInstance.T"/>
+			</f>
+			<haxe_doc>
+		Similar to [Reflect.createInstance] excepts that the constructor is not called.
+		This enables you to create an instance without any side-effect.
+	</haxe_doc>
+		</createEmptyInstance>
+		<createEnum public="1" params="T" set="method" line="94" static="1">
+			<f a="e:constr:?params">
+				<c path="Enum"><c path="createEnum.T"/></c>
+				<c path="String"/>
+				<c path="Array"><d/></c>
+				<c path="createEnum.T"/>
+			</f>
+			<haxe_doc>
+		Create an instance of an enum by using a constructor name and parameters.
+	</haxe_doc>
+		</createEnum>
+		<createEnumIndex public="1" params="T" set="method" line="100" static="1">
+			<f a="e:index:?params">
+				<c path="Enum"><c path="createEnumIndex.T"/></c>
+				<c path="Int"/>
+				<c path="Array"><d/></c>
+				<c path="createEnumIndex.T"/>
+			</f>
+			<haxe_doc>
+		Create an instance of an enum by using a constructor index and parameters.
+	</haxe_doc>
+		</createEnumIndex>
+		<getInstanceFields public="1" set="method" line="106" static="1">
+			<f a="c">
+				<c path="Class"><d/></c>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Returns the list of instance fields.
+	</haxe_doc>
+		</getInstanceFields>
+		<getClassFields public="1" set="method" line="110" static="1">
+			<f a="c">
+				<c path="Class"><d/></c>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Returns the list of a class static fields.
+	</haxe_doc>
+		</getClassFields>
+		<getEnumConstructs public="1" set="method" line="114" static="1">
+			<f a="e">
+				<c path="Enum"><d/></c>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Returns all the available constructor names for an enum.
+	</haxe_doc>
+		</getEnumConstructs>
+		<typeof public="1" set="method" line="118" static="1">
+			<f a="v">
+				<d/>
+				<e path="ValueType"/>
+			</f>
+			<haxe_doc>
+		Returns the runtime type of a value.
+	</haxe_doc>
+		</typeof>
+		<enumEq public="1" params="T" set="method" line="134" static="1">
+			<f a="a:b">
+				<c path="enumEq.T"/>
+				<c path="enumEq.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Recursively compare two enums constructors and parameters.
+	</haxe_doc>
+		</enumEq>
+		<enumConstructor public="1" set="method" line="138" static="1">
+			<f a="e">
+				<d/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the constructor of an enum
+	</haxe_doc>
+		</enumConstructor>
+		<enumParameters public="1" set="method" line="142" static="1">
+			<f a="e">
+				<d/>
+				<c path="Array"><d/></c>
+			</f>
+			<haxe_doc>
+		Returns the parameters of an enum
+	</haxe_doc>
+		</enumParameters>
+		<enumIndex public="1" get="inline" set="null" line="147" static="1">
+			<f a="e">
+				<d/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Returns the index of the constructor of an enum
+	</haxe_doc>
+		</enumIndex>
+		<haxe_doc>
+	The haXe Reflection API enables you to retreive informations about any value,
+	Classes and Enums at runtime.
+</haxe_doc>
+	</class>
+	<class path="haxe.Unserializer" params="" file="/usr/lib/haxe/std/haxe/Unserializer.hx">
+		<DEFAULT_RESOLVER public="1" line="34" static="1"><t path="haxe.TypeResolver"/></DEFAULT_RESOLVER>
+		<BASE64 line="36" static="1"><c path="String"/></BASE64>
+		<CODES line="39" static="1"><c path="Array"><c path="Int"/></c></CODES>
+		<initCodes set="method" line="41" static="1"><f a=""><c path="Array"><c path="Int"/></c></f></initCodes>
+		<run public="1" set="method" line="351" static="1">
+			<f a="v">
+				<c path="String"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Unserialize a single value and return it.
+	</haxe_doc>
+		</run>
+		<buf><c path="String"/></buf>
+		<pos><c path="Int"/></pos>
+		<length><c path="Int"/></length>
+		<cache><c path="Array"><d/></c></cache>
+		<scache><c path="Array"><c path="String"/></c></scache>
+		<resolver><t path="haxe.TypeResolver"/></resolver>
+		<setResolver public="1" set="method" line="76"><f a="r">
+	<t path="haxe.TypeResolver"/>
+	<e path="Void"/>
+</f></setResolver>
+		<getResolver public="1" set="method" line="86"><f a=""><t path="haxe.TypeResolver"/></f></getResolver>
+		<get get="inline" set="null" line="90"><f a="p">
+	<c path="Int"/>
+	<c path="Int"/>
+</f></get>
+		<readDigits set="method" line="94"><f a=""><c path="Int"/></f></readDigits>
+		<unserializeObject set="method" line="119"><f a="o">
+	<a/>
+	<e path="Void"/>
+</f></unserializeObject>
+		<unserializeEnum set="method" line="134"><f a="edecl:tag">
+	<c path="Enum"><d/></c>
+	<c path="String"/>
+	<unknown/>
+</f></unserializeEnum>
+		<unserialize public="1" set="method" line="155"><f a=""><d/></f></unserialize>
+		<new public="1" set="method" line="64"><f a="buf">
+	<c path="String"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="haxe.remoting.Context" params="" file="/usr/lib/haxe/std/haxe/remoting/Context.hx">
+		<share public="1" set="method" line="58" static="1"><f a="name:obj">
+	<c path="String"/>
+	<a/>
+	<c path="haxe.remoting.Context"/>
+</f></share>
+		<objects><c path="Hash"><a>
+	<rec><e path="Bool"/></rec>
+	<obj><d/></obj>
+</a></c></objects>
+		<addObject public="1" set="method" line="35"><f a="name:obj:?recursive">
+	<c path="String"/>
+	<a/>
+	<e path="Bool"/>
+	<e path="Void"/>
+</f></addObject>
+		<call public="1" set="method" line="39"><f a="path:params">
+	<c path="Array"><c path="String"/></c>
+	<c path="Array"><d/></c>
+	<d/>
+</f></call>
+		<new public="1" set="method" line="31"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="Std" params="" file="/usr/lib/haxe/std/cpp/_std/Std.hx">
+		<is public="1" set="method" line="27" static="1">
+			<f a="v:t">
+				<d/>
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value v is of the type t.
+	</haxe_doc>
+		</is>
+		<string public="1" set="method" line="31" static="1">
+			<f a="s">
+				<d/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Convert any value to a String
+	</haxe_doc>
+		</string>
+		<int public="1" set="method" line="35" static="1">
+			<f a="x">
+				<c path="Float"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Convert a Float to an Int, rounded down.
+	</haxe_doc>
+		</int>
+		<parseInt public="1" set="method" line="39" static="1">
+			<f a="x">
+				<c path="String"/>
+				<t path="Null"><c path="Int"/></t>
+			</f>
+			<haxe_doc>
+		Convert a String to an Int, parsing different possible representations. Returns [null] if could not be parsed.
+	</haxe_doc>
+		</parseInt>
+		<parseFloat public="1" set="method" line="43" static="1">
+			<f a="x">
+				<c path="String"/>
+				<c path="Float"/>
+			</f>
+			<haxe_doc>
+		Convert a String to a Float, parsing different possible reprensations.
+	</haxe_doc>
+		</parseFloat>
+		<random public="1" set="method" line="47" static="1">
+			<f a="x">
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Return a random integer between 0 included and x excluded.
+	</haxe_doc>
+		</random>
+		<haxe_doc>
+	The Std class provides standard methods for manipulating basic types.
+</haxe_doc>
+	</class>
+	<enum path="Void" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes"><haxe_doc>
+	The standard Void type. Only [null] values can be of the type [Void].
+</haxe_doc></enum>
+	<class path="Float" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
+	The standard Float type, this is a double-precision IEEE 64bit float.
+</haxe_doc></class>
+	<class path="Int" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1">
+		<extends path="Float"/>
+		<haxe_doc>
+	The standard Int type. Its precision depends on the platform.
+</haxe_doc>
+	</class>
+	<typedef path="Null" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<c path="Null.T"/>
+		<haxe_doc>
+	[Null] can be useful in two cases. In order to document some methods
+	that accepts or can return a [null] value, or for the Flash9 compiler and AS3
+	generator to distinguish between base values that can be null and others that
+	can't.
+</haxe_doc>
+	</typedef>
+	<enum path="Bool" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<true/>
+		<false/>
+		<haxe_doc>
+	The standard Boolean type is represented as an enum with two choices.
+</haxe_doc>
+	</enum>
+	<class path="Dynamic" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
+	Dynamic is an internal compiler type which has special behavior.
+	See the haXe language reference for more informations.
+</haxe_doc></class>
+	<typedef path="Iterator" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<a>
+			<next set="method"><f a=""><c path="Iterator.T"/></f></next>
+			<hasNext set="method"><f a=""><e path="Bool"/></f></hasNext>
+		</a>
+		<haxe_doc>
+	An Iterator is a structure that permits to list a given container
+	values. It can be used by your own data structures. See the haXe
+	documentation for more informations.
+</haxe_doc>
+	</typedef>
+	<typedef path="Iterable" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<a><iterator set="method"><f a=""><t path="Iterator"><c path="Iterable.T"/></t></f></iterator></a>
+		<haxe_doc>
+	An Iterable is a data structure which has an iterator() method.
+	See [Lambda] for generic functions on iterable structures.
+</haxe_doc>
+	</typedef>
+	<class path="ArrayAccess" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1" interface="1"><haxe_doc>
+	ArrayAccess is used to indicate a class that can be accessed using brackets.
+	The type parameter represent the type of the elements stored.
+</haxe_doc></class>
+	<class path="Lambda" params="" file="/usr/lib/haxe/std/Lambda.hx">
+		<array public="1" params="A" set="method" line="35" static="1">
+			<f a="it">
+				<t path="Iterable"><c path="array.A"/></t>
+				<c path="Array"><c path="array.A"/></c>
+			</f>
+			<haxe_doc>
+		Creates an [Array] from an [Iterable]
+	</haxe_doc>
+		</array>
+		<list public="1" params="A" set="method" line="45" static="1">
+			<f a="it">
+				<t path="Iterable"><c path="list.A"/></t>
+				<c path="List"><c path="list.A"/></c>
+			</f>
+			<haxe_doc>
+		Creates a [List] from an [Iterable]
+	</haxe_doc>
+		</list>
+		<map public="1" params="A:B" set="method" line="56" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="map.A"/></t>
+				<f a="">
+					<c path="map.A"/>
+					<c path="map.B"/>
+				</f>
+				<c path="List"><c path="map.B"/></c>
+			</f>
+			<haxe_doc>
+		Creates a new [Iterable] by appling the function 'f' to all
+		elements of the iterator 'it'.
+	</haxe_doc>
+		</map>
+		<mapi public="1" params="A:B" set="method" line="66" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="mapi.A"/></t>
+				<f a=":">
+					<c path="Int"/>
+					<c path="mapi.A"/>
+					<c path="mapi.B"/>
+				</f>
+				<c path="List"><c path="mapi.B"/></c>
+			</f>
+			<haxe_doc>
+		Similar to [map], but also pass an index for each item iterated.
+	</haxe_doc>
+		</mapi>
+		<has public="1" params="A" set="method" line="81" static="1">
+			<f a="it:elt:?cmp">
+				<t path="Iterable"><c path="has.A"/></t>
+				<c path="has.A"/>
+				<f a=":">
+					<c path="has.A"/>
+					<c path="has.A"/>
+					<e path="Bool"/>
+				</f>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the element is part of an iterable. The comparison
+		is made using the [==] operator. Optionally you can pass as
+		a third parameter a function that performs the comparison.
+		That function must take as arguments the two items to
+		compare and returns a boolean value.
+	</haxe_doc>
+		</has>
+		<exists public="1" params="A" set="method" line="97" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="exists.A"/></t>
+				<f a="">
+					<c path="exists.A"/>
+					<e path="Bool"/>
+				</f>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if at least one element of the iterable is found by using the specific function.
+	</haxe_doc>
+		</exists>
+		<foreach public="1" params="A" set="method" line="107" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="foreach.A"/></t>
+				<f a="">
+					<c path="foreach.A"/>
+					<e path="Bool"/>
+				</f>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if all elements of the iterable have the specified property defined by [f].
+	</haxe_doc>
+		</foreach>
+		<iter public="1" params="A" set="method" line="117" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="iter.A"/></t>
+				<f a="">
+					<c path="iter.A"/>
+					<e path="Void"/>
+				</f>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Call the function 'f' on all elements of the [Iterable] 'it'.
+	</haxe_doc>
+		</iter>
+		<filter public="1" params="A" set="method" line="125" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="filter.A"/></t>
+				<f a="">
+					<c path="filter.A"/>
+					<e path="Bool"/>
+				</f>
+				<c path="List"><c path="filter.A"/></c>
+			</f>
+			<haxe_doc>
+		Return the list of elements matching the function 'f'
+	</haxe_doc>
+		</filter>
+		<fold public="1" params="A:B" set="method" line="136" static="1">
+			<f a="it:f:first">
+				<t path="Iterable"><c path="fold.A"/></t>
+				<f a=":">
+					<c path="fold.A"/>
+					<c path="fold.B"/>
+					<c path="fold.B"/>
+				</f>
+				<c path="fold.B"/>
+				<c path="fold.B"/>
+			</f>
+			<haxe_doc>
+		Functional 'fold' using an [Iterable]
+	</haxe_doc>
+		</fold>
+		<count public="1" params="A" set="method" line="145" static="1">
+			<f a="it:?pred">
+				<t path="Iterable"><c path="count.A"/></t>
+				<f a="">
+					<c path="count.A"/>
+					<e path="Bool"/>
+				</f>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Count the number of elements in an [Iterable] having [pred] returning true.
+	</haxe_doc>
+		</count>
+		<empty public="1" set="method" line="160" static="1">
+			<f a="it">
+				<t path="Iterable"><d/></t>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if an iterable does not contain any element.
+	</haxe_doc>
+		</empty>
+		<indexOf public="1" params="T" set="method" line="168" static="1">
+			<f a="it:v">
+				<t path="Iterable"><c path="indexOf.T"/></t>
+				<c path="indexOf.T"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Returns the index of the item in the given Iterable, depending on the order of the Iterator.
+		Returns -1 if the item was not found.
+	</haxe_doc>
+		</indexOf>
+		<concat public="1" params="T" set="method" line="181" static="1">
+			<f a="a:b">
+				<t path="Iterable"><c path="concat.T"/></t>
+				<t path="Iterable"><c path="concat.T"/></t>
+				<c path="List"><c path="concat.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns a list containing all items of 'a' followed by all items of 'b'
+	</haxe_doc>
+		</concat>
+		<haxe_doc>
+	The [Lambda] class is a collection of functional methods in order to
+	use functional-style programming with haXe.
+</haxe_doc>
+	</class>
+	<class path="Math" params="" file="/usr/lib/haxe/std/Math.hx" extern="1">
+		<PI public="1" set="null" static="1"><c path="Float"/></PI>
+		<NaN public="1" set="null" static="1"><c path="Float"/></NaN>
+		<NEGATIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></NEGATIVE_INFINITY>
+		<POSITIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></POSITIVE_INFINITY>
+		<abs public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></abs>
+		<min public="1" set="method" static="1"><f a="a:b">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></min>
+		<max public="1" set="method" static="1"><f a="a:b">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></max>
+		<sin public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></sin>
+		<cos public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></cos>
+		<atan2 public="1" set="method" static="1"><f a="y:x">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></atan2>
+		<tan public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></tan>
+		<exp public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></exp>
+		<log public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></log>
+		<sqrt public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></sqrt>
+		<round public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></round>
+		<floor public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></floor>
+		<ceil public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></ceil>
+		<atan public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></atan>
+		<asin public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></asin>
+		<acos public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></acos>
+		<pow public="1" set="method" static="1"><f a="v:exp">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></pow>
+		<random public="1" set="method" static="1"><f a=""><c path="Float"/></f></random>
+		<isFinite public="1" set="method" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isFinite>
+		<isNaN public="1" set="method" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isNaN>
+		<haxe_doc>
+	This class defines mathematical functions and constants.
+</haxe_doc>
+	</class>
+	<class path="haxe.Serializer" params="" file="/usr/lib/haxe/std/haxe/Serializer.hx">
+		<USE_CACHE public="1" line="34" static="1">
+			<e path="Bool"/>
+			<haxe_doc>
+		If the values you are serializing can contain
+		circular references or objects repetitions, you should
+		set USE_CACHE to true to prevent infinite loops.
+	</haxe_doc>
+		</USE_CACHE>
+		<USE_ENUM_INDEX public="1" line="40" static="1">
+			<e path="Bool"/>
+			<haxe_doc>
+		Use constructor indexes for enums instead of names.
+		This is less reliable but more compact.
+	</haxe_doc>
+		</USE_ENUM_INDEX>
+		<BASE64 line="42" static="1"><c path="String"/></BASE64>
+		<run public="1" set="method" line="409" static="1">
+			<f a="v">
+				<d/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Serialize a single value and return the string.
+	</haxe_doc>
+		</run>
+		<buf><c path="StringBuf"/></buf>
+		<cache><c path="Array"><d/></c></cache>
+		<shash><c path="Hash"><c path="Int"/></c></shash>
+		<scount><c path="Int"/></scount>
+		<useCache public="1"><e path="Bool"/></useCache>
+		<useEnumIndex public="1"><e path="Bool"/></useEnumIndex>
+		<toString public="1" set="method" line="60"><f a=""><c path="String"/></f></toString>
+		<serializeString set="method" line="94"><f a="s">
+	<c path="String"/>
+	<e path="Void"/>
+</f></serializeString>
+		<serializeRef set="method" line="113"><f a="v">
+	<unknown/>
+	<e path="Bool"/>
+</f></serializeRef>
+		<serializeFields set="method" line="150"><f a="v">
+	<unknown/>
+	<e path="Void"/>
+</f></serializeFields>
+		<serialize public="1" set="method" line="158"><f a="v">
+	<d/>
+	<e path="Void"/>
+</f></serialize>
+		<serializeException public="1" set="method" line="390"><f a="e">
+	<d/>
+	<e path="Void"/>
+</f></serializeException>
+		<new public="1" set="method" line="51"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="List" params="T" file="/usr/lib/haxe/std/List.hx">
+		<h><c path="Array"><d/></c></h>
+		<q><c path="Array"><d/></c></q>
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The number of elements in this list.
+	</haxe_doc>
+		</length>
+		<add public="1" set="method" line="51">
+			<f a="item">
+				<c path="List.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Add an element at the end of the list.
+	</haxe_doc>
+		</add>
+		<push public="1" set="method" line="64">
+			<f a="item">
+				<c path="List.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Push an element at the beginning of the list.
+	</haxe_doc>
+		</push>
+		<first public="1" set="method" line="80">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Returns the first element of the list, or null
+		if the list is empty.
+	</haxe_doc>
+		</first>
+		<last public="1" set="method" line="88">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Returns the last element of the list, or null
+		if the list is empty.
+	</haxe_doc>
+		</last>
+		<pop public="1" set="method" line="98">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Removes the first element of the list and
+		returns it or simply returns null if the
+		list is empty.
+	</haxe_doc>
+		</pop>
+		<isEmpty public="1" set="method" line="112">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+		Tells if a list is empty.
+	</haxe_doc>
+		</isEmpty>
+		<clear public="1" set="method" line="119">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Makes the list empty.
+	</haxe_doc>
+		</clear>
+		<remove public="1" set="method" line="129">
+			<f a="v">
+				<c path="List.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Remove the first element that is [== v] from the list.
+		Returns [true] if an element was removed, [false] otherwise.
+	</haxe_doc>
+		</remove>
+		<iterator public="1" set="method" line="152">
+			<f a=""><t path="Iterator"><c path="List.T"/></t></f>
+			<haxe_doc>
+		Returns an iterator on the elements of the list.
+	</haxe_doc>
+		</iterator>
+		<toString public="1" set="method" line="173">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns a displayable representation of the String.
+	</haxe_doc>
+		</toString>
+		<join public="1" set="method" line="193">
+			<f a="sep">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Join the element of the list by using the separator [sep].
+	</haxe_doc>
+		</join>
+		<filter public="1" set="method" line="212">
+			<f a="f">
+				<f a="">
+					<c path="List.T"/>
+					<e path="Bool"/>
+				</f>
+				<c path="List"><c path="List.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns a list filtered with [f]. The returned list
+		will contain all elements [x] for which [f(x) = true].
+	</haxe_doc>
+		</filter>
+		<map public="1" params="X" set="method" line="228">
+			<f a="f">
+				<f a="">
+					<c path="List.T"/>
+					<c path="map.X"/>
+				</f>
+				<c path="List"><c path="map.X"/></c>
+			</f>
+			<haxe_doc>
+		Returns a new list where all elements have been converted
+		by the function [f].
+	</haxe_doc>
+		</map>
+		<new public="1" set="method" line="44">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new empty list.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	A linked-list of elements. The list is composed of two-elements arrays
+	that are chained together. It's optimized so that adding or removing an
+	element doesn't imply to copy the whole array content everytime.
+</haxe_doc>
+	</class>
+	<enum path="ValueType" params="" file="/usr/lib/haxe/std/cpp/_std/Type.hx" module="Type">
+		<TUnknown/>
+		<TObject/>
+		<TNull/>
+		<TInt/>
+		<TFunction/>
+		<TFloat/>
+		<TEnum a="e"><c path="Enum"><d/></c></TEnum>
+		<TClass a="c"><c path="Class"><d/></c></TClass>
+		<TBool/>
+	</enum>
+	<class path="IntHash" params="T" file="/usr/lib/haxe/std/cpp/_std/IntHash.hx">
+		<h><d/></h>
+		<set public="1" set="method" line="34">
+			<f a="key:value">
+				<c path="Int"/>
+				<c path="IntHash.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Set a value for the given key.
+	</haxe_doc>
+		</set>
+		<get public="1" set="method" line="38">
+			<f a="key">
+				<c path="Int"/>
+				<t path="Null"><c path="IntHash.T"/></t>
+			</f>
+			<haxe_doc>
+		Get a value for the given key.
+	</haxe_doc>
+		</get>
+		<exists public="1" set="method" line="42">
+			<f a="key">
+				<c path="Int"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value exists for the given key.
+		In particular, it's useful to tells if a key has
+		a [null] value versus no value.
+	</haxe_doc>
+		</exists>
+		<remove public="1" set="method" line="46">
+			<f a="key">
+				<c path="Int"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Removes a hashtable entry. Returns [true] if
+		there was such entry.
+	</haxe_doc>
+		</remove>
+		<keys public="1" set="method" line="50">
+			<f a=""><t path="Iterator"><c path="Int"/></t></f>
+			<haxe_doc>
+		Returns an iterator of all keys in the hashtable.
+	</haxe_doc>
+		</keys>
+		<iterator public="1" set="method" line="55">
+			<f a=""><t path="Iterator"><c path="IntHash.T"/></t></f>
+			<haxe_doc>
+		Returns an iterator of all values in the hashtable.
+	</haxe_doc>
+		</iterator>
+		<toString public="1" set="method" line="60">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an displayable representation of the hashtable content.
+	</haxe_doc>
+		</toString>
+		<new public="1" set="method" line="30"><f a=""><e path="Void"/></f></new>
+		<haxe_doc>
+	Hashtable over a set of elements, using [Int] as keys.
+	On Flash and Javascript, the underlying structure is an Object.
+</haxe_doc>
+	</class>
+	<class path="Class" params="T" file="/usr/lib/haxe/std/Class.hx" extern="1"><haxe_doc>
+	An abstract type that represents a Class.
+	See [Type] for the haXe Reflection API.
+</haxe_doc></class>
+	<class path="String" params="" file="/usr/lib/haxe/std/String.hx" extern="1">
+		<fromCharCode public="1" set="method" static="1"><f a="code">
+	<c path="Int"/>
+	<c path="String"/>
+</f></fromCharCode>
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The number of characters in the String.
+	</haxe_doc>
+		</length>
+		<toUpperCase public="1" set="method">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an String where all characters have been uppercased.
+	</haxe_doc>
+		</toUpperCase>
+		<toLowerCase public="1" set="method">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an String where all characters have been lowercased.
+	</haxe_doc>
+		</toLowerCase>
+		<charAt public="1" set="method">
+			<f a="index">
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the character at the given position.
+		Returns the empty String if outside of String bounds.
+	</haxe_doc>
+		</charAt>
+		<charCodeAt public="1" set="method">
+			<f a="index">
+				<c path="Int"/>
+				<t path="Null"><c path="Int"/></t>
+			</f>
+			<haxe_doc>
+		Returns the character code at the given position.
+		Returns [null] if outside of String bounds.
+	</haxe_doc>
+		</charCodeAt>
+		<indexOf public="1" set="method">
+			<f a="str:?startIndex">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Returns the index of first occurence of [value]
+		Returns [1-1] if [value] is not found.
+		The optional [startIndex] parameter allows you to specify at which character to start searching.
+		The position returned is still relative to the beginning of the string.
+	</haxe_doc>
+		</indexOf>
+		<lastIndexOf public="1" set="method">
+			<f a="str:?startIndex">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Similar to [indexOf] but returns the latest index.
+	</haxe_doc>
+		</lastIndexOf>
+		<split public="1" set="method">
+			<f a="delimiter">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Split the string using the specified delimiter.
+	</haxe_doc>
+		</split>
+		<substr public="1" set="method">
+			<f a="pos:?len">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a part of the String, taking [len] characters starting from [pos].
+		If [len] is not specified, it takes all the remaining characters.
+	</haxe_doc>
+		</substr>
+		<toString public="1" set="method">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the String itself.
+	</haxe_doc>
+		</toString>
+		<new public="1" set="method">
+			<f a="string">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Creates a copy from a given String.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	The basic String class.
+</haxe_doc>
+	</class>
+	<typedef path="neko.Lib" params="" file="/usr/lib/haxe/std/cpp/Lib.hx"><c path="cpp.Lib"/></typedef>
+	<class path="Array" params="T" file="/usr/lib/haxe/std/Array.hx" extern="1">
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The length of the Array
+	</haxe_doc>
+		</length>
+		<concat public="1" set="method">
+			<f a="a">
+				<c path="Array"><c path="Array.T"/></c>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns a new Array by appending [a] to [this].
+	</haxe_doc>
+		</concat>
+		<join public="1" set="method">
+			<f a="sep">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a representation of an array with [sep] for separating each element.
+	</haxe_doc>
+		</join>
+		<pop public="1" set="method">
+			<f a=""><t path="Null"><c path="Array.T"/></t></f>
+			<haxe_doc>
+		Removes the last element of the array and returns it.
+	</haxe_doc>
+		</pop>
+		<push public="1" set="method">
+			<f a="x">
+				<c path="Array.T"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Adds the element [x] at the end of the array.
+	</haxe_doc>
+		</push>
+		<reverse public="1" set="method">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Reverse the order of elements of the Array.
+	</haxe_doc>
+		</reverse>
+		<shift public="1" set="method">
+			<f a=""><t path="Null"><c path="Array.T"/></t></f>
+			<haxe_doc>
+		Removes the first element and returns it.
+	</haxe_doc>
+		</shift>
+		<slice public="1" set="method">
+			<f a="pos:?end">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Copies the range of the array starting at [pos] up to,
+		but not including, [end]. Both [pos] and [end] can be
+		negative to count from the end: -1 is the last item in
+		the array.
+	</haxe_doc>
+		</slice>
+		<sort public="1" set="method">
+			<f a="f">
+				<f a=":">
+					<c path="Array.T"/>
+					<c path="Array.T"/>
+					<c path="Int"/>
+				</f>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+		Sort the Array according to the comparison function [f].
+		[f(x,y)] should return [0] if [x == y], [>0] if [x > y]
+		and [<0] if [x < y].
+	]]></haxe_doc>
+		</sort>
+		<splice public="1" set="method">
+			<f a="pos:len">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Removes [len] elements starting from [pos] an returns them.
+	</haxe_doc>
+		</splice>
+		<toString public="1" set="method">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns a displayable representation of the Array content.
+	</haxe_doc>
+		</toString>
+		<unshift public="1" set="method">
+			<f a="x">
+				<c path="Array.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds the element [x] at the start of the array.
+	</haxe_doc>
+		</unshift>
+		<insert public="1" set="method">
+			<f a="pos:x">
+				<c path="Int"/>
+				<c path="Array.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Inserts the element [x] at the position [pos].
+		All elements after [pos] are moved one index ahead.
+	</haxe_doc>
+		</insert>
+		<remove public="1" set="method">
+			<f a="x">
+				<c path="Array.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Removes the first occurence of [x].
+		Returns false if [x] was not present.
+		Elements are compared by using standard equality.
+	</haxe_doc>
+		</remove>
+		<copy public="1" set="method">
+			<f a=""><c path="Array"><c path="Array.T"/></c></f>
+			<haxe_doc>
+		Returns a copy of the Array. The values are not
+		copied, only the Array structure.
+	</haxe_doc>
+		</copy>
+		<iterator public="1" set="method">
+			<f a=""><t path="Iterator"><t path="Null"><c path="Array.T"/></t></t></f>
+			<haxe_doc>
+		Returns an iterator of the Array values.
+	</haxe_doc>
+		</iterator>
+		<new public="1" set="method">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new Array.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	An Array is a storage for values. You can access it using indexes or
+	with its API. On the server side, it's often better to use a [List] which
+	is less memory and CPU consuming, unless you really need indexed access.
+</haxe_doc>
+	</class>
+	<typedef path="haxe.PosInfos" params="" file="/usr/lib/haxe/std/haxe/PosInfos.hx"><a>
+	<methodName><c path="String"/></methodName>
+	<lineNumber><c path="Int"/></lineNumber>
+	<fileName><c path="String"/></fileName>
+	<customParams><c path="Array"><d/></c></customParams>
+	<className><c path="String"/></className>
+</a></typedef>
+	<class path="cpp.Sys" params="" file="/usr/lib/haxe/std/cpp/Sys.hx">
+		<args public="1" set="method" line="5" static="1"><f a=""><c path="Array"><c path="String"/></c></f></args>
+		<getEnv public="1" set="method" line="9" static="1"><f a="s">
+	<c path="String"/>
+	<c path="String"/>
+</f></getEnv>
+		<putEnv public="1" set="method" line="16" static="1"><f a="s:v">
+	<c path="String"/>
+	<c path="String"/>
+	<e path="Void"/>
+</f></putEnv>
+		<sleep public="1" set="method" line="20" static="1"><f a="seconds">
+	<c path="Float"/>
+	<e path="Void"/>
+</f></sleep>
+		<setTimeLocale public="1" set="method" line="24" static="1"><f a="loc">
+	<c path="String"/>
+	<e path="Bool"/>
+</f></setTimeLocale>
+		<getCwd public="1" set="method" line="28" static="1"><f a=""><c path="String"/></f></getCwd>
+		<setCwd public="1" set="method" line="32" static="1"><f a="s">
+	<c path="String"/>
+	<e path="Void"/>
+</f></setCwd>
+		<systemName public="1" set="method" line="36" static="1"><f a=""><c path="String"/></f></systemName>
+		<escapeArgument public="1" set="method" line="40" static="1"><f a="arg">
+	<c path="String"/>
+	<c path="String"/>
+</f></escapeArgument>
+		<command public="1" set="method" line="54" static="1"><f a="cmd:?args">
+	<c path="String"/>
+	<c path="Array"><c path="String"/></c>
+	<c path="Int"/>
+</f></command>
+		<exit public="1" set="method" line="63" static="1"><f a="code">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></exit>
+		<time public="1" set="method" line="67" static="1"><f a=""><c path="Float"/></f></time>
+		<cpuTime public="1" set="method" line="71" static="1"><f a=""><c path="Float"/></f></cpuTime>
+		<executablePath public="1" set="method" line="75" static="1"><f a=""><c path="String"/></f></executablePath>
+		<environment public="1" set="method" line="79" static="1"><f a=""><c path="Hash"><c path="String"/></c></f></environment>
+		<get_env line="91" static="1"><f a="">
+	<c path="String"/>
+	<c path="String"/>
+</f></get_env>
+		<put_env line="92" static="1"><f a=":">
+	<c path="String"/>
+	<c path="String"/>
+	<unknown/>
+</f></put_env>
+		<_sleep line="93" static="1"><f a="">
+	<c path="Float"/>
+	<unknown/>
+</f></_sleep>
+		<set_time_locale line="94" static="1"><f a="">
+	<c path="String"/>
+	<e path="Bool"/>
+</f></set_time_locale>
+		<get_cwd line="95" static="1"><f a=""><c path="String"/></f></get_cwd>
+		<set_cwd line="96" static="1"><f a="">
+	<c path="String"/>
+	<unknown/>
+</f></set_cwd>
+		<sys_string line="97" static="1"><f a=""><c path="String"/></f></sys_string>
+		<sys_command line="98" static="1"><f a="">
+	<c path="String"/>
+	<c path="Int"/>
+</f></sys_command>
+		<sys_exit line="99" static="1"><f a="">
+	<c path="Int"/>
+	<unknown/>
+</f></sys_exit>
+		<sys_time line="100" static="1"><f a=""><c path="Float"/></f></sys_time>
+		<sys_cpu_time line="101" static="1"><f a=""><c path="Float"/></f></sys_cpu_time>
+		<sys_exe_path line="102" static="1"><f a=""><c path="String"/></f></sys_exe_path>
+		<sys_env line="103" static="1"><f a=""><c path="Array"><c path="String"/></c></f></sys_env>
+	</class>
+	<class path="haxe.io.Unsigned_char__" params="" file="/usr/lib/haxe/std/haxe/io/BytesData.hx" module="haxe.io.BytesData" extern="1"/>
+	<typedef path="haxe.io.BytesData" params="" file="/usr/lib/haxe/std/haxe/io/BytesData.hx"><c path="Array"><c path="haxe.io.Unsigned_char__"/></c></typedef>
+	<class path="Hash" params="T" file="/usr/lib/haxe/std/cpp/_std/Hash.hx">
+		<__Internal><d/></__Internal>
+		<set public="1" set="method" line="33">
+			<f a="key:value">
+				<c path="String"/>
+				<c path="Hash.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Set a value for the given key.
+	</haxe_doc>
+		</set>
+		<get public="1" set="method" line="37">
+			<f a="key">
+				<c path="String"/>
+				<t path="Null"><c path="Hash.T"/></t>
+			</f>
+			<haxe_doc>
+		Get a value for the given key.
+	</haxe_doc>
+		</get>
+		<exists public="1" set="method" line="41">
+			<f a="key">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value exists for the given key.
+		In particular, it's useful to tells if a key has
+		a [null] value versus no value.
+	</haxe_doc>
+		</exists>
+		<remove public="1" set="method" line="45">
+			<f a="key">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Removes a hashtable entry. Returns [true] if
+		there was such entry.
+	</haxe_doc>
+		</remove>
+		<keys public="1" set="method" line="52">
+			<f a=""><t path="Iterator"><c path="String"/></t></f>
+			<haxe_doc>
+		Returns an iterator of all keys in the hashtable.
+	</haxe_doc>
+		</keys>
+		<iterator public="1" set="method" line="61">
+			<f a=""><t path="Iterator"><c path="Hash.T"/></t></f>
+			<haxe_doc>
+		Returns an iterator of all values in the hashtable.
+	</haxe_doc>
+		</iterator>
+		<toString public="1" set="method" line="75">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an displayable representation of the hashtable content.
+	</haxe_doc>
+		</toString>
+		<new public="1" set="method" line="29"><f a=""><e path="Void"/></f></new>
+		<haxe_doc>
+	Hashtable over a set of elements, using [String] as keys.
+	Other kind of keys are not possible on all platforms since they
+	can't always be implemented efficiently.
+</haxe_doc>
+	</class>
+</haxe>
