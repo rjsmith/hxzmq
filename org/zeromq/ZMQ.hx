@@ -429,7 +429,7 @@ class ZMQ {
 	
 	/**
 	 * Sets up interrupt signal handling.
-	 * Use isInterrupted() to subsequwnrly test for interruption
+	 * Use isInterrupted() to subsequently test for interruption
 	 */
 	public static function catchSignals() {
 		_hx_zmq_catch_signals();

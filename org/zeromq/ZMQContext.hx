@@ -41,7 +41,7 @@ class ZMQContext  {
 	 * 
 	 * See: http://api.zeromq.org/master:zmq-init
 	 */
-	private function new(ioThreads:Int) {
+	public function new(ioThreads:Int) {
 		closed = true;
 		
 		// Initialize the zmq context

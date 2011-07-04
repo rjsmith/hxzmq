@@ -105,7 +105,7 @@ Key files and folders contained in this repository:
 	
 *   */org/zeromq*
 
-    The haXe code that invokes the native functions defined in hxzmq.ndll. Provides the core API used by haXe applications.
+    The haXe code that invokes the native functions defined in hxzmq.ndll. Provides the core API used by haXe applications (ZMQxxxxx.hx files) and higher-level API classes (Zxxxx.hx files).
     
 *   */org/zeromq/remoting*
     
@@ -130,10 +130,14 @@ Key files and folders contained in this repository:
 *   *ndll/*
 
     Contains pre-built ndll files for different platforms
+    
+*   *doc/*
+
+    Contains generated HTML documentation for the ZMQxxx.hx and Zxxx.hx class files.
 	
 ## Versions
 
-The current release of hxzmq is 1.1.0, compatable with libzmq-2.1.4 or any later 2.1.x version.  The latest released hxzmq package shall also be available in the [haxelib repository] [4], accessable via the [haxelib tool] [5] which is included in the standard haXe distribution.
+The current release of hxzmq is 1.2.0, compatable with libzmq-2.1.4 or any later 2.1.x version.  The latest released hxzmq package shall also be available in the [haxelib repository] [4], accessable via the [haxelib tool] [5] which is included in the standard haXe distribution.
 
 This version of hxzmq has also been tested against [php-zmq v0.7.0] [13] 
 

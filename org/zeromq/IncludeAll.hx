@@ -26,6 +26,11 @@ import org.zeromq.ZMQPoller;
 import org.zeromq.ZMQSocket;
 import org.zeromq.remoting.ZMQConnection;
 import org.zeromq.remoting.ZMQSocketProtocol;
+import org.zeromq.ZContext;
+import org.zeromq.ZSocket;
+import org.zeromq.ZFrame;
+import org.zeromq.ZMsg;
+import org.zeromq.ZLoop;
 
 #if php
 import org.zeromq.externals.phpzmq.ZMQException;

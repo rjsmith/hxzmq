@@ -23,6 +23,7 @@ import haxe.unit.TestRunner;
 import org.zeromq.test.TestContext;
 import org.zeromq.test.TestVersion;
 
+
 class TestAll 
 {
 
@@ -42,6 +43,13 @@ class TestAll
         //
 		// org.zeromq.remoting package tests
         runner.add(new TestZMQRemoting());
+        
+        // Higher-level management class tests
+        runner.add(new TestZContext());
+        runner.add(new TestZSocket());
+        runner.add(new TestZFrame());
+        runner.add(new TestZMsg());
+        runner.add(new TestZLoop());
         
 		// Run
 		runner.run();

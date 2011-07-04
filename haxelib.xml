@@ -5,5 +5,5 @@
 	<tag v="neko"/>
         <tag v="php"/>
 	<description>Haxe language binding for the ZeroMQ socket library</description>
-	<version name="1.1.0">Added php target by integrating with php-zmq binding</version>
+	<version name="1.2.0">Added higher-level API classes, based on imatix's czmq binding library.</version>
 </project>

@@ -51,6 +51,11 @@ class ZMQSocket
 	/** Opaque data used by hxzmq driver */
  	public var _socketHandle(default,null):Dynamic;
 
+    /**
+     * Holds type of socket
+     */
+    public var type(default, null):SocketType;
+    
 	/**
 	 * Constructor.
 	 * 
@@ -68,7 +73,7 @@ class ZMQSocket
 		} catch (e:Int) {
 			throw new ZMQException(ZMQ.errNoToErrorType(e));
 		} 
-		
+		this.type = type;
 		closed = false;
 	}
 	

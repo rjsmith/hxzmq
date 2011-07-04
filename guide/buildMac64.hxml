@@ -1,6 +1,7 @@
 # Haxe build file
 # Build CPP guide target
 -cp ..
+-cp ../../zguide/examples/Haxe
 -cpp out-cpp/Mac64
 -debug
 -D HXCPP_M64
@@ -13,6 +14,7 @@
 # Build PHP guide target
 --next
 -cp ..
+-cp ../../zguide/examples/Haxe
 -php out-php/Mac64
 -debug
 --remap neko:php

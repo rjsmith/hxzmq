@@ -1,4 +1,8 @@
 <haxe>
+	<class path="Enum" params="T" file="/usr/lib/haxe/std/Enum.hx" extern="1"><haxe_doc>
+	An abstract type that represents an Enum.
+	See [Type] for the haXe Reflection API.
+</haxe_doc></class>
 	<class path="haxe.remoting.AsyncConnection" params="" file="/usr/lib/haxe/std/haxe/remoting/AsyncConnection.hx" interface="1">
 		<resolve public="1" set="method"><f a="name">
 	<c path="String"/>
@@ -422,7 +426,7 @@
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
 	 * Sets up interrupt signal handling.
-	 * Use isInterrupted() to subsequwnrly test for interruption
+	 * Use isInterrupted() to subsequently test for interruption
 	 </haxe_doc>
 		</catchSignals>
 		<isInterrupted public="1" set="method" line="446" static="1">
@@ -506,11 +510,155 @@
  * Core class for 0MQ Haxe bindings
  </haxe_doc>
 	</class>
-	<class path="Enum" params="T" file="/usr/lib/haxe/std/Enum.hx" extern="1"><haxe_doc>
-	An abstract type that represents an Enum.
-	See [Type] for the haXe Reflection API.
-</haxe_doc></class>
-	<typedef path="neko.Sys" params="" file="/usr/lib/haxe/std/cpp/Sys.hx"><c path="cpp.Sys"/></typedef>
+	<typedef path="cpp.io.FileHandle" params="" file="/usr/lib/haxe/std/cpp/io/File.hx" module="cpp.io.File"><d/></typedef>
+	<enum path="cpp.io.FileSeek" params="" file="/usr/lib/haxe/std/cpp/io/File.hx" module="cpp.io.File">
+		<SeekEnd/>
+		<SeekCur/>
+		<SeekBegin/>
+	</enum>
+	<class path="cpp.io.File" params="" file="/usr/lib/haxe/std/cpp/io/File.hx">
+		<getContent public="1" set="method" line="40" static="1"><f a="path">
+	<c path="String"/>
+	<c path="String"/>
+</f></getContent>
+		<getBytes public="1" set="method" line="45" static="1"><f a="path">
+	<c path="String"/>
+	<c path="haxe.io.Bytes"/>
+</f></getBytes>
+		<read public="1" set="method" line="50" static="1"><f a="path:binary">
+	<c path="String"/>
+	<e path="Bool"/>
+	<c path="cpp.io.FileInput"/>
+</f></read>
+		<write public="1" set="method" line="54" static="1"><f a="path:binary">
+	<c path="String"/>
+	<e path="Bool"/>
+	<c path="cpp.io.FileOutput"/>
+</f></write>
+		<append public="1" set="method" line="58" static="1"><f a="path:binary">
+	<c path="String"/>
+	<e path="Bool"/>
+	<c path="cpp.io.FileOutput"/>
+</f></append>
+		<copy public="1" set="method" line="62" static="1"><f a="src:dst">
+	<c path="String"/>
+	<c path="String"/>
+	<e path="Void"/>
+</f></copy>
+		<stdin public="1" set="method" line="70" static="1"><f a=""><c path="cpp.io.FileInput"/></f></stdin>
+		<stdout public="1" set="method" line="74" static="1"><f a=""><c path="cpp.io.FileOutput"/></f></stdout>
+		<stderr public="1" set="method" line="78" static="1"><f a=""><c path="cpp.io.FileOutput"/></f></stderr>
+		<getChar public="1" set="method" line="82" static="1"><f a="echo">
+	<e path="Bool"/>
+	<c path="Int"/>
+</f></getChar>
+		<file_stdin line="86" static="1"><f a=""><t path="cpp.io.FileHandle"/></f></file_stdin>
+		<file_stdout line="87" static="1"><f a=""><t path="cpp.io.FileHandle"/></f></file_stdout>
+		<file_stderr line="88" static="1"><f a=""><t path="cpp.io.FileHandle"/></f></file_stderr>
+		<file_contents line="90" static="1"><f a="">
+	<c path="String"/>
+	<t path="haxe.io.BytesData"/>
+</f></file_contents>
+		<file_open line="91" static="1"><f a=":">
+	<c path="String"/>
+	<c path="String"/>
+	<t path="cpp.io.FileHandle"/>
+</f></file_open>
+		<getch line="93" static="1"><f a="">
+	<e path="Bool"/>
+	<c path="Int"/>
+</f></getch>
+		<haxe_doc>
+	API for reading and writing to files.
+</haxe_doc>
+	</class>
+	<class path="haxe.io.BytesBuffer" params="" file="/usr/lib/haxe/std/haxe/io/BytesBuffer.hx">
+		<b><t path="haxe.io.BytesData"/></b>
+		<addByte public="1" get="inline" set="null" line="55"><f a="byte">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></addByte>
+		<add public="1" get="inline" set="null" line="69"><f a="src">
+	<c path="haxe.io.Bytes"/>
+	<e path="Void"/>
+</f></add>
+		<addBytes public="1" get="inline" set="null" line="84"><f a="src:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></addBytes>
+		<getBytes public="1" set="method" line="106">
+			<f a=""><c path="haxe.io.Bytes"/></f>
+			<haxe_doc>
+		Returns either a copy or a reference of the current bytes.
+		Once called, the buffer can no longer be used.
+	</haxe_doc>
+		</getBytes>
+		<new public="1" set="method" line="41"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="haxe.io.Input" params="" file="/usr/lib/haxe/std/haxe/io/Input.hx">
+		<_float_of_bytes line="259" static="1"><f a=":">
+	<t path="haxe.io.BytesData"/>
+	<e path="Bool"/>
+	<c path="Float"/>
+</f></_float_of_bytes>
+		<_double_of_bytes line="260" static="1"><f a=":">
+	<t path="haxe.io.BytesData"/>
+	<e path="Bool"/>
+	<c path="Float"/>
+</f></_double_of_bytes>
+		<bigEndian public="1" set="setEndian"><e path="Bool"/></bigEndian>
+		<readByte public="1" set="method" line="35"><f a=""><c path="Int"/></f></readByte>
+		<readBytes public="1" set="method" line="44"><f a="s:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></readBytes>
+		<close public="1" set="method" line="65"><f a=""><e path="Void"/></f></close>
+		<setEndian set="method" line="68"><f a="b">
+	<e path="Bool"/>
+	<e path="Bool"/>
+</f></setEndian>
+		<readAll public="1" set="method" line="75"><f a="?bufsize">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></readAll>
+		<readFullBytes public="1" set="method" line="96"><f a="s:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></readFullBytes>
+		<read public="1" set="method" line="104"><f a="nbytes">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></read>
+		<readUntil public="1" set="method" line="116"><f a="end">
+	<c path="Int"/>
+	<c path="String"/>
+</f></readUntil>
+		<readLine public="1" set="method" line="124"><f a=""><c path="String"/></f></readLine>
+		<readFloat public="1" set="method" line="141"><f a=""><c path="Float"/></f></readFloat>
+		<readDouble public="1" set="method" line="155"><f a=""><c path="Float"/></f></readDouble>
+		<readInt8 public="1" set="method" line="169"><f a=""><c path="Int"/></f></readInt8>
+		<readInt16 public="1" set="method" line="176"><f a=""><c path="Int"/></f></readInt16>
+		<readUInt16 public="1" set="method" line="185"><f a=""><c path="Int"/></f></readUInt16>
+		<readInt24 public="1" set="method" line="191"><f a=""><c path="Int"/></f></readInt24>
+		<readUInt24 public="1" set="method" line="201"><f a=""><c path="Int"/></f></readUInt24>
+		<readInt31 public="1" set="method" line="208"><f a=""><c path="Int"/></f></readInt31>
+		<readUInt30 public="1" set="method" line="225"><f a=""><c path="Int"/></f></readUInt30>
+		<readInt32 public="1" set="method" line="234"><f a=""><t path="cpp.Int32"/></f></readInt32>
+		<readString public="1" set="method" line="242"><f a="len">
+	<c path="Int"/>
+	<c path="String"/>
+</f></readString>
+		<haxe_doc>
+	An Input is an abstract reader. See other classes in the [haxe.io] package
+	for several possible implementations.
+</haxe_doc>
+	</class>
 	<class path="StringTools" params="" file="/usr/lib/haxe/std/StringTools.hx">
 		<urlEncode public="1" set="method" line="38" static="1">
 			<f a="s">
@@ -670,6 +818,7 @@
 	each application using it.
 </haxe_doc>
 	</class>
+	<typedef path="neko.Sys" params="" file="/usr/lib/haxe/std/cpp/Sys.hx"><c path="cpp.Sys"/></typedef>
 	<class path="Reflect" params="" file="/usr/lib/haxe/std/cpp/_std/Reflect.hx">
 		<hasField public="1" set="method" line="29" static="1">
 			<f a="o:field">
@@ -900,6 +1049,675 @@
 	when they are unserialized.
 </haxe_doc>
 	</class>
+	<class path="org.zeromq.ZFrame" params="" file="./org/zeromq/ZFrame.hx">
+		<ZFRAME_MORE public="1" get="inline" set="null" line="40" static="1"><c path="Int"/></ZFRAME_MORE>
+		<ZFRAME_REUSE public="1" get="inline" set="null" line="41" static="1"><c path="Int"/></ZFRAME_REUSE>
+		<recvFrame public="1" set="method" line="211" static="1">
+			<f a="socket">
+				<c path="org.zeromq.ZMQSocket"/>
+				<c path="org.zeromq.ZFrame"/>
+			</f>
+			<haxe_doc>
+     * Receives single frame from socket, returns the received frame object, or null if the recv
+     * was interrupted. Does a blocking recv, if you want to not block then use
+     * recvFrameNoWait()
+     * 
+     * @param	socket      Socket to read from
+     * @return  received frame, else null
+     </haxe_doc>
+		</recvFrame>
+		<recvFrameNoWait public="1" set="method" line="223" static="1">
+			<f a="socket">
+				<c path="org.zeromq.ZMQSocket"/>
+				<c path="org.zeromq.ZFrame"/>
+			</f>
+			<haxe_doc>
+     * Receive a new frame off the socket, Returns newly-allocated frame, or
+     * null if there was no input waiting, or if the read was interrupted.
+     * @param	socket
+     * @return  received frame, else null
+     </haxe_doc>
+		</recvFrameNoWait>
+		<more public="1" set="null">
+			<e path="Bool"/>
+			<haxe_doc> More flag, from last frame read </haxe_doc>
+		</more>
+		<data public="1" set="null">
+			<c path="haxe.io.Bytes"/>
+			<haxe_doc> Message blob for frame </haxe_doc>
+		</data>
+		<destroy public="1" set="method" line="65">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+     * Destructor
+     </haxe_doc>
+		</destroy>
+		<recv set="method" line="71"><f a="socket">
+	<c path="org.zeromq.ZMQSocket"/>
+	<c path="haxe.io.Bytes"/>
+</f></recv>
+		<recvNoWait set="method" line="88"><f a="socket">
+	<c path="org.zeromq.ZMQSocket"/>
+	<c path="haxe.io.Bytes"/>
+</f></recvNoWait>
+		<send public="1" set="method" line="110">
+			<f a="socket:?flags">
+				<c path="org.zeromq.ZMQSocket"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Sends frame to socket, destroy after sending unless ZFRAME_REUSE is set
+     * @param	socket
+     * @param	flags
+     </haxe_doc>
+		</send>
+		<size public="1" get="inline" set="null" line="125">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+     * Returns byte size of frame, if set, else 0
+     * @return
+     </haxe_doc>
+		</size>
+		<duplicate public="1" set="method" line="135">
+			<f a=""><c path="org.zeromq.ZFrame"/></f>
+			<haxe_doc>
+     * Creates a new frame that duplicates an existing frame
+     * @return  A duplicates ZFrame object
+     </haxe_doc>
+		</duplicate>
+		<equals public="1" set="method" line="144">
+			<f a="other">
+				<c path="org.zeromq.ZFrame"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+     * Returns true if both frames have identical size and data
+     * @param	other
+     * @return
+     </haxe_doc>
+		</equals>
+		<reset public="1" set="method" line="160">
+			<f a="data">
+				<c path="haxe.io.Bytes"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Set new contents for frame
+     * @param	data    New data bytes for this frame
+     </haxe_doc>
+		</reset>
+		<strhex public="1" set="method" line="171">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+     * Return frame data encoded as printable hex string
+     * @return
+     </haxe_doc>
+		</strhex>
+		<streq public="1" set="method" line="189">
+			<f a="str">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+     * Returns true if frame body is equivalent to given string
+     * @param	str
+     * @return  true if matches, else false
+     </haxe_doc>
+		</streq>
+		<hasData public="1" set="method" line="198">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+     * Convenience method to ascertain if this frame contains some message data
+     * @return
+     </haxe_doc>
+		</hasData>
+		<new public="1" set="method" line="54">
+			<f a="?data">
+				<c path="haxe.io.Bytes"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Constructor.
+     * Copies message data into zframe object
+     * @param	data
+     </haxe_doc>
+		</new>
+		<haxe_doc>
+ * The ZFrame class provides methods to send and receive single message
+ * frames across 0MQ sockets. A 'frame' corresponds to one underlying zmq_msg_t in the libzmq code.
+ * When you read a frame from a socket, the more() method indicates if the frame is part of an 
+ * unfinished multipart message.  The send() method normaly destroys the frame, but with the ZFRAME_RESUE flag, you can send
+ * the same frame many times. Frames are binary, and this class has no special support for text data.
+ * 
+ * Based on zframe.c in czmq
+ * @see http://github.com/zeromq/czmq/blob/master/src/zframe.c
+ </haxe_doc>
+	</class>
+	<class path="haxe.io.Output" params="" file="/usr/lib/haxe/std/haxe/io/Output.hx">
+		<_float_bytes line="253" static="1"><f a=":">
+	<c path="Float"/>
+	<e path="Bool"/>
+	<t path="haxe.io.BytesData"/>
+</f></_float_bytes>
+		<_double_bytes line="254" static="1"><f a=":">
+	<c path="Float"/>
+	<e path="Bool"/>
+	<t path="haxe.io.BytesData"/>
+</f></_double_bytes>
+		<bigEndian public="1" set="setEndian"><e path="Bool"/></bigEndian>
+		<writeByte public="1" set="method" line="37"><f a="c">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeByte>
+		<writeBytes public="1" set="method" line="41"><f a="s:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></writeBytes>
+		<flush public="1" set="method" line="64"><f a=""><e path="Void"/></f></flush>
+		<close public="1" set="method" line="67"><f a=""><e path="Void"/></f></close>
+		<setEndian set="method" line="70"><f a="b">
+	<e path="Bool"/>
+	<e path="Bool"/>
+</f></setEndian>
+		<write public="1" set="method" line="77"><f a="s">
+	<c path="haxe.io.Bytes"/>
+	<e path="Void"/>
+</f></write>
+		<writeFullBytes public="1" set="method" line="88"><f a="s:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeFullBytes>
+		<writeFloat public="1" set="method" line="96"><f a="x">
+	<c path="Float"/>
+	<e path="Void"/>
+</f></writeFloat>
+		<writeDouble public="1" set="method" line="108"><f a="x">
+	<c path="Float"/>
+	<e path="Void"/>
+</f></writeDouble>
+		<writeInt8 public="1" set="method" line="120"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInt8>
+		<writeInt16 public="1" set="method" line="126"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInt16>
+		<writeUInt16 public="1" set="method" line="131"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeUInt16>
+		<writeInt24 public="1" set="method" line="142"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInt24>
+		<writeUInt24 public="1" set="method" line="147"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeUInt24>
+		<writeInt31 public="1" set="method" line="160"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInt31>
+		<writeUInt30 public="1" set="method" line="177"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeUInt30>
+		<writeInt32 public="1" set="method" line="192"><f a="x">
+	<t path="haxe.Int32"/>
+	<e path="Void"/>
+</f></writeInt32>
+		<prepare public="1" set="method" line="212">
+			<f a="nbytes">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Inform that we are about to write at least a specified number of bytes.
+		The underlying implementation can allocate proper working space depending
+		on this information, or simply ignore it. This is not a mandatory call
+		but a tip and is only used in some specific cases.
+	</haxe_doc>
+		</prepare>
+		<writeInput public="1" set="method" line="215"><f a="i:?bufsize">
+	<c path="haxe.io.Input"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInput>
+		<writeString public="1" set="method" line="237"><f a="s">
+	<c path="String"/>
+	<e path="Void"/>
+</f></writeString>
+		<haxe_doc>
+	An Output is an abstract write. A specific output implementation will only
+	have to override the [writeChar] and maybe the [write], [flush] and [close]
+	methods. See [File.write] and [String.write] for two ways of creating an
+	Output.
+</haxe_doc>
+	</class>
+	<class path="cpp.io.FileOutput" params="" file="/usr/lib/haxe/std/cpp/io/FileOutput.hx">
+		<extends path="haxe.io.Output"/>
+		<file_close line="64" static="1"><f a="">
+	<t path="cpp.io.FileHandle"/>
+	<unknown/>
+</f></file_close>
+		<file_seek line="65" static="1"><f a="::">
+	<t path="cpp.io.FileHandle"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<unknown/>
+</f></file_seek>
+		<file_tell line="66" static="1"><f a="">
+	<t path="cpp.io.FileHandle"/>
+	<c path="Int"/>
+</f></file_tell>
+		<file_flush line="68" static="1"><f a="">
+	<t path="cpp.io.FileHandle"/>
+	<unknown/>
+</f></file_flush>
+		<file_write line="69" static="1"><f a=":::">
+	<t path="cpp.io.FileHandle"/>
+	<t path="haxe.io.BytesData"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></file_write>
+		<file_write_char line="70" static="1"><f a=":">
+	<t path="cpp.io.FileHandle"/>
+	<c path="Int"/>
+	<unknown/>
+</f></file_write_char>
+		<__f><t path="cpp.io.FileHandle"/></__f>
+		<writeByte public="1" set="method" line="39" override="1"><f a="c">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeByte>
+		<writeBytes public="1" set="method" line="43" override="1"><f a="s:p:l">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></writeBytes>
+		<flush public="1" set="method" line="47" override="1"><f a=""><e path="Void"/></f></flush>
+		<close public="1" set="method" line="51" override="1"><f a=""><e path="Void"/></f></close>
+		<seek public="1" set="method" line="56"><f a="p:pos">
+	<c path="Int"/>
+	<e path="cpp.io.FileSeek"/>
+	<e path="Void"/>
+</f></seek>
+		<tell public="1" set="method" line="60"><f a=""><c path="Int"/></f></tell>
+		<new public="1" set="method" line="35"><f a="f">
+	<t path="cpp.io.FileHandle"/>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc>
+	Use [cpp.io.File.write] to create a [FileOutput]
+</haxe_doc>
+	</class>
+	<class path="org.zeromq.ZSocket" params="" file="./org/zeromq/ZSocket.hx">
+		<DYNFROM public="1" get="inline" set="null" line="40" static="1">
+			<c path="Int"/>
+			<haxe_doc> This port range is defined by IANA for dynamic or private ports.
+     * Used when choosing port for dynamic binding.
+     </haxe_doc>
+		</DYNFROM>
+		<DYNTO public="1" get="inline" set="null" line="41" static="1"><c path="Int"/></DYNTO>
+		<create public="1" set="method" line="52" static="1">
+			<f a="ctx:type">
+				<c path="org.zeromq.ZContext"/>
+				<e path="org.zeromq.SocketType"/>
+				<c path="org.zeromq.ZMQSocket"/>
+			</f>
+			<haxe_doc>
+     * Creates a new managed socket within the ZContext context.
+     * If the socket is a SUB socket, autmatically subscribes to everything
+     * Use this to get automatic management of the socket at shutdown
+     * 
+     * @param	ctx     The ZContext context
+     * @param	type    Socket type
+     * @return  Managed ZMQSocket
+     </haxe_doc>
+		</create>
+		<destroy public="1" set="method" line="70" static="1">
+			<f a="ctx:socket">
+				<c path="org.zeromq.ZContext"/>
+				<c path="org.zeromq.ZMQSocket"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Destroys the socket.
+     * Must be used for any socket created via the ZSocket.create() method
+     * @param	ctx
+     * @param	socket
+     </haxe_doc>
+		</destroy>
+		<isType public="1" set="method" line="83" static="1">
+			<f a="socket:type">
+				<c path="org.zeromq.ZMQSocket"/>
+				<e path="org.zeromq.SocketType"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+     * Tests type of socket
+     * @param	socket  Socket to test
+     * @param	type    SocketType enum to test for
+     * @return  true if socket is of given type, else false, else null if could not determine socket type
+     </haxe_doc>
+		</isType>
+		<bind public="1" set="method" line="108" static="1">
+			<f a="socket:protocol:interf:?port">
+				<c path="org.zeromq.ZMQSocket"/>
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+     * Bind a socket to an endpoint given by a specified protoype, interface address and port number
+     * If the port is specified as null, or not specified, binds to any free port from DYNFROM to DYNTO
+     * and returns the actual port number used. Otherwise asserts that the bind succeeded with the 
+     * specified port number. Always return the port number if successful.
+     * @param	socket      ZMQSocket to bind to
+     * @param	protocol    Network protocol "tcp", "inproc" etc
+     * @param	interf      Bind address "foo.com", "127.0.0.3"
+     * @param	port        (optional) Port number
+     * @return  Port number if bind successful, else -1
+     </haxe_doc>
+		</bind>
+		<connect public="1" set="method" line="141" static="1">
+			<f a="socket:protocol:interf:?port">
+				<c path="org.zeromq.ZMQSocket"/>
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Connects a socket to a defined endpoint
+     * 
+     * @param	socket      ZMQSocket to bind to
+     * @param	protocol    Network protocol "tcp", "inproc" etc
+     * @param	interf      Bind address "foo.com", "127.0.0.3"
+     * @param	port        Port number
+     </haxe_doc>
+		</connect>
+		<haxe_doc>
+ * ZSocket provides a higher-level zeroMQ socket management class.
+ * It is inspired by the zsocket.c source code in the czmq project:
+ * @see http://github.com/zeromq/czmq/blob/master/src/zsocket.c
+ * 
+ * Automatically subscribes SUB socket to "" (all)
+ </haxe_doc>
+	</class>
+	<typedef path="org.zeromq.PollItemT" params="" file="./org/zeromq/ZLoop.hx" module="org.zeromq.ZLoop">
+		<a>
+			<socket><c path="org.zeromq.ZMQSocket"/></socket>
+			<event><c path="Int"/></event>
+		</a>
+		<haxe_doc><![CDATA[
+ * (c) 2011 Richard J Smith
+ *
+ * This file is part of hxzmq
+ *
+ * hxzmq is free software; you can redistribute it and/or modify it under
+ * the terms of the Lesser GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * hxzmq is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * Lesser GNU General Public License for more details.
+ *
+ * You should have received a copy of the Lesser GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ]]></haxe_doc>
+	</typedef>
+	<typedef path="org.zeromq.PollerT" params="" file="./org/zeromq/ZLoop.hx" module="org.zeromq.ZLoop"><a>
+	<pollItem><t path="org.zeromq.PollItemT"/></pollItem>
+	<handler><f a="">
+	<c path="org.zeromq.ZMQSocket"/>
+	<c path="Int"/>
+</f></handler>
+</a></typedef>
+	<typedef path="org.zeromq.TimerT" params="" file="./org/zeromq/ZLoop.hx" module="org.zeromq.ZLoop"><a>
+	<when><c path="Float"/></when>
+	<times><c path="Int"/></times>
+	<handler><f a=""><c path="Int"/></f></handler>
+	<delay><c path="Float"/></delay>
+</a></typedef>
+	<class path="org.zeromq.ZLoop" params="" file="./org/zeromq/ZLoop.hx">
+		<newPoller set="method" line="261" static="1">
+			<f a="item:handler">
+				<t path="org.zeromq.PollItemT"/>
+				<f a="">
+					<c path="org.zeromq.ZMQSocket"/>
+					<c path="Int"/>
+				</f>
+				<t path="org.zeromq.PollerT"/>
+			</f>
+			<haxe_doc>
+     * Creates a new Poller T anonymous object
+     * @param	item
+     * @param	handler
+     * @return
+     </haxe_doc>
+		</newPoller>
+		<newTimer set="method" line="275" static="1">
+			<f a="delay:times:handler">
+				<c path="Float"/>
+				<c path="Int"/>
+				<f a=""><c path="Int"/></f>
+				<t path="org.zeromq.TimerT"/>
+			</f>
+			<haxe_doc>
+     * Creates a new TimerT anonymous object
+     * @param	delay
+     * @param	times
+     * @param	handler
+     * @return
+     </haxe_doc>
+		</newTimer>
+		<verbose public="1"><e path="Bool"/></verbose>
+		<pollers><c path="List"><t path="org.zeromq.PollerT"/></c></pollers>
+		<timers><c path="List"><t path="org.zeromq.TimerT"/></c></timers>
+		<zombies><c path="List"><t path="org.zeromq.TimerT"/></c></zombies>
+		<poller><c path="org.zeromq.ZMQPoller"/></poller>
+		<dirty><e path="Bool"/></dirty>
+		<log><f a="">
+	<d/>
+	<e path="Void"/>
+</f></log>
+		<destroy public="1" set="method" line="95">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+     * Destructor
+     </haxe_doc>
+		</destroy>
+		<registerTimer public="1" set="method" line="114">
+			<f a="delay:times:handler">
+				<c path="Float"/>
+				<c path="Int"/>
+				<f a=""><c path="Int"/></f>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+     * Register a timer that expires after some delay and rpeats some number of times. At each expiry, will call the handler.
+     * To run a timer forever, use 0 times. Returns true if OK, false if there was an error
+     * @param	delay       Number of milliseconds to delay event for
+     * @param	times       Number of times to repeat, else 0 for forever
+     * @param	handler     Handler function
+     * @return  true if OK, else false
+     </haxe_doc>
+		</registerTimer>
+		<registerPoller public="1" set="method" line="130">
+			<f a="item:handler">
+				<t path="org.zeromq.PollItemT"/>
+				<f a="">
+					<c path="org.zeromq.ZMQSocket"/>
+					<c path="Int"/>
+				</f>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc><![CDATA[
+     * Register pollitem with the reactor. When the pollitem is ready, will call
+     * the handler.  Returns true if OK, else false.
+     * If you register a pollitem more than once, each instance will invoke its
+     * corresponding handler.
+     * @param	item        PollItem (socket & polled-for event)
+     * @param	handler     Handler function, receives polled ZMQSocket object
+     * @return  true if OK, else false
+     ]]></haxe_doc>
+		</registerPoller>
+		<start public="1" set="method" line="147">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+     * Start the reactor. Takes control of the thread and returns when the 0MQ
+     * context is terminated or the process is interrupted, or any event handler returns -1.
+     * Event handlers may register new sokets and timers, and cancel sockets.
+     * @return Returns 0 if interrupted, -1 if cancelled by a handler
+     </haxe_doc>
+		</start>
+		<rebuildPollset set="method" line="226">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+     * Rebuilds pollset held within the poller object from list of registered pollers
+     </haxe_doc>
+		</rebuildPollset>
+		<ticklessTimer set="method" line="238">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+     * Calculate timeout between now and next timed event
+     * @return  Number of milliseconds between now and next timed event
+     </haxe_doc>
+		</ticklessTimer>
+		<new public="1" set="method" line="78">
+			<f a="?logger">
+				<f a="">
+					<d/>
+					<e path="Void"/>
+				</f>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Constructor
+     </haxe_doc>
+		</new>
+		<haxe_doc>
+ * The ZLoop class provides an event-driven reactor pattern. The reactor handles socket readers not writers,
+ * and once-off or repeated timers.  its resolution is 1 msec. It uses a tickless timer to reduce CPU interrupts in
+ * inactive processes.
+ </haxe_doc>
+	</class>
+	<class path="StringBuf" params="" file="/usr/lib/haxe/std/StringBuf.hx">
+		<add public="1" get="inline" set="null" line="46">
+			<f a="?x">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds the representation of any value to the string buffer.
+	</haxe_doc>
+		</add>
+		<addSub public="1" get="inline" set="null" line="57">
+			<f a="s:pos:?len">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds a part of a string to the string buffer.
+	</haxe_doc>
+		</addSub>
+		<addChar public="1" get="inline" set="null" line="73">
+			<f a="c">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds a character to the string buffer.
+	</haxe_doc>
+		</addChar>
+		<toString public="1" get="inline" set="null" line="87">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the content of the string buffer.
+		The buffer is not emptied by this operation.
+	</haxe_doc>
+		</toString>
+		<b><c path="Array"><d/></c></b>
+		<new public="1" set="method" line="35">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new string buffer.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	A String buffer is an efficient way to build a big string by
+	appending small elements together.
+</haxe_doc>
+	</class>
+	<class path="cpp.io.FileInput" params="" file="/usr/lib/haxe/std/cpp/io/FileInput.hx">
+		<extends path="haxe.io.Input"/>
+		<file_eof line="79" static="1"><f a="">
+	<t path="cpp.io.FileHandle"/>
+	<e path="Bool"/>
+</f></file_eof>
+		<file_read line="81" static="1"><f a=":::">
+	<t path="cpp.io.FileHandle"/>
+	<t path="haxe.io.BytesData"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></file_read>
+		<file_read_char line="82" static="1"><f a="">
+	<t path="cpp.io.FileHandle"/>
+	<c path="Int"/>
+</f></file_read_char>
+		<file_close line="84" static="1"><f a="">
+	<t path="cpp.io.FileHandle"/>
+	<unknown/>
+</f></file_close>
+		<file_seek line="85" static="1"><f a="::">
+	<t path="cpp.io.FileHandle"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<unknown/>
+</f></file_seek>
+		<file_tell line="86" static="1"><f a="">
+	<t path="cpp.io.FileHandle"/>
+	<c path="Int"/>
+</f></file_tell>
+		<__f><t path="cpp.io.FileHandle"/></__f>
+		<readByte public="1" set="method" line="39" override="1"><f a=""><c path="Int"/></f></readByte>
+		<readBytes public="1" set="method" line="50" override="1"><f a="s:p:l">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></readBytes>
+		<close public="1" set="method" line="61" override="1"><f a=""><e path="Void"/></f></close>
+		<seek public="1" set="method" line="66"><f a="p:pos">
+	<c path="Int"/>
+	<e path="cpp.io.FileSeek"/>
+	<e path="Void"/>
+</f></seek>
+		<tell public="1" set="method" line="70"><f a=""><c path="Int"/></f></tell>
+		<eof public="1" set="method" line="75"><f a=""><e path="Bool"/></f></eof>
+		<new public="1" set="method" line="35"><f a="f">
+	<t path="cpp.io.FileHandle"/>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc>
+	Use [cpp.io.File.read] to create a [FileInput]
+</haxe_doc>
+	</class>
 	<class path="org.zeromq.ZMQContext" params="" file="./org/zeromq/ZMQContext.hx">
 		<_instance static="1"><c path="org.zeromq.ZMQContext"/></_instance>
 		<_hasInstance static="1"><e path="Bool"/></_hasInstance>
@@ -959,7 +1777,7 @@
 	 * @return	A ZMQPoller object
 	 </haxe_doc>
 		</poller>
-		<new set="method" line="44">
+		<new public="1" set="method" line="44">
 			<f a="ioThreads">
 				<c path="Int"/>
 				<e path="Void"/>
@@ -972,55 +1790,6 @@
 	 * See: http://api.zeromq.org/master:zmq-init
 	 </haxe_doc>
 		</new>
-	</class>
-	<class path="StringBuf" params="" file="/usr/lib/haxe/std/StringBuf.hx">
-		<add public="1" get="inline" set="null" line="46">
-			<f a="?x">
-				<d/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc>
-		Adds the representation of any value to the string buffer.
-	</haxe_doc>
-		</add>
-		<addSub public="1" get="inline" set="null" line="57">
-			<f a="s:pos:?len">
-				<c path="String"/>
-				<c path="Int"/>
-				<c path="Int"/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc>
-		Adds a part of a string to the string buffer.
-	</haxe_doc>
-		</addSub>
-		<addChar public="1" get="inline" set="null" line="73">
-			<f a="c">
-				<c path="Int"/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc>
-		Adds a character to the string buffer.
-	</haxe_doc>
-		</addChar>
-		<toString public="1" get="inline" set="null" line="87">
-			<f a=""><c path="String"/></f>
-			<haxe_doc>
-		Returns the content of the string buffer.
-		The buffer is not emptied by this operation.
-	</haxe_doc>
-		</toString>
-		<b><c path="Array"><d/></c></b>
-		<new public="1" set="method" line="35">
-			<f a=""><e path="Void"/></f>
-			<haxe_doc>
-		Creates a new string buffer.
-	</haxe_doc>
-		</new>
-		<haxe_doc>
-	A String buffer is an efficient way to build a big string by
-	appending small elements together.
-</haxe_doc>
 	</class>
 	<class path="org.zeromq.ZMQPoller" params="" file="./org/zeromq/ZMQPoller.hx">
 		<_hx_zmq_poll line="221" static="1"><f a="::">
@@ -1044,7 +1813,7 @@
 				<e path="Void"/>
 			</f>
 			<haxe_doc>
-	 * Adds a socket to the internak list of polled sockets
+	 * Adds a socket to the internal list of polled sockets
 	 * @param	socket	A ZMQScxket object
 	 * @param	event	Bitmasked Int for polled events (ZMQ_POLLIN, ZMQ_POLLOUT)
 	 </haxe_doc>
@@ -1220,66 +1989,66 @@
 	</class>
 	<typedef path="haxe.Int32" params="" file="/usr/lib/haxe/std/haxe/Int32.hx"><c path="cpp.CppInt32__"/></typedef>
 	<class path="org.zeromq.ZMQSocket" params="" file="./org/zeromq/ZMQSocket.hx">
-		<_hx_zmq_construct_socket line="449" static="1"><f a=":">
+		<_hx_zmq_construct_socket line="454" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_construct_socket>
-		<_hx_zmq_close line="450" static="1"><f a="">
+		<_hx_zmq_close line="455" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></_hx_zmq_close>
-		<_hx_zmq_bind line="451" static="1"><f a=":">
+		<_hx_zmq_bind line="456" static="1"><f a=":">
 	<d/>
 	<d/>
 	<unknown/>
 </f></_hx_zmq_bind>
-		<_hx_zmq_connect line="452" static="1"><f a=":">
+		<_hx_zmq_connect line="457" static="1"><f a=":">
 	<d/>
 	<d/>
 	<unknown/>
 </f></_hx_zmq_connect>
-		<_hx_zmq_send line="453" static="1"><f a="::">
+		<_hx_zmq_send line="458" static="1"><f a="::">
 	<d/>
 	<t path="haxe.io.BytesData"/>
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_send>
-		<_hx_zmq_rcv line="454" static="1"><f a=":">
+		<_hx_zmq_rcv line="459" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<t path="haxe.io.BytesData"/>
 </f></_hx_zmq_rcv>
-		<_hx_zmq_setintsockopt line="455" static="1"><f a="::">
+		<_hx_zmq_setintsockopt line="460" static="1"><f a="::">
 	<d/>
 	<c path="Int"/>
 	<d/>
 	<unknown/>
 </f></_hx_zmq_setintsockopt>
-		<_hx_zmq_setint64sockopt line="456" static="1"><f a=":::">
+		<_hx_zmq_setint64sockopt line="461" static="1"><f a=":::">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
 	<unknown/>
 	<unknown/>
 </f></_hx_zmq_setint64sockopt>
-		<_hx_zmq_setbytessockopt line="457" static="1"><f a="::">
+		<_hx_zmq_setbytessockopt line="462" static="1"><f a="::">
 	<d/>
 	<c path="Int"/>
 	<d/>
 	<unknown/>
 </f></_hx_zmq_setbytessockopt>
-		<_hx_zmq_getintsockopt line="458" static="1"><f a=":">
+		<_hx_zmq_getintsockopt line="463" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_getintsockopt>
-		<_hx_zmq_getint64sockopt line="459" static="1"><f a=":">
+		<_hx_zmq_getint64sockopt line="464" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_getint64sockopt>
-		<_hx_zmq_getbytessockopt line="460" static="1"><f a=":">
+		<_hx_zmq_getbytessockopt line="465" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
@@ -1298,7 +2067,13 @@
 			<d/>
 			<haxe_doc> Opaque data used by hxzmq driver </haxe_doc>
 		</_socketHandle>
-		<close public="1" set="method" line="82">
+		<type public="1" set="null">
+			<e path="org.zeromq.SocketType"/>
+			<haxe_doc>
+     * Holds type of socket
+     </haxe_doc>
+		</type>
+		<close public="1" set="method" line="87">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
 	 * Close the socket
@@ -1308,7 +2083,7 @@
 	 * garbage collected.
 	 </haxe_doc>
 		</close>
-		<bind public="1" set="method" line="109">
+		<bind public="1" set="method" line="114">
 			<f a="addr">
 				<c path="String"/>
 				<e path="Void"/>
@@ -1327,7 +2102,7 @@
 	 * 				encoded to utf-8 first.
 	 </haxe_doc>
 		</bind>
-		<connect public="1" set="method" line="139">
+		<connect public="1" set="method" line="144">
 			<f a="addr">
 				<c path="String"/>
 				<e path="Void"/>
@@ -1342,7 +2117,7 @@
 	 * 				encoded to utf-8 first.
 	 </haxe_doc>
 		</connect>
-		<setsockopt public="1" set="method" line="177">
+		<setsockopt public="1" set="method" line="182">
 			<f a="option:optval">
 				<e path="org.zeromq.SocketOptionsType"/>
 				<d/>
@@ -1365,7 +2140,7 @@
 	 * @param	optval		Either Int or String or Bytes
 	 </haxe_doc>
 		</setsockopt>
-		<getsockopt public="1" set="method" line="268">
+		<getsockopt public="1" set="method" line="273">
 			<f a="option">
 				<e path="org.zeromq.SocketOptionsType"/>
 				<d/>
@@ -1377,7 +2152,7 @@
 	 * @return
 	 </haxe_doc>
 		</getsockopt>
-		<sendMsg public="1" set="method" line="366">
+		<sendMsg public="1" set="method" line="371">
 			<f a="data:?flags">
 				<c path="haxe.io.Bytes"/>
 				<e path="org.zeromq.SendReceiveFlagType"/>
@@ -1392,7 +2167,7 @@
 	 * @param	?flags	Any supported SocketFlag DONTWAIT, SNDMORE
 	 </haxe_doc>
 		</sendMsg>
-		<recvMsg public="1" set="method" line="398">
+		<recvMsg public="1" set="method" line="403">
 			<f a="?flags">
 				<e path="org.zeromq.SendReceiveFlagType"/>
 				<c path="haxe.io.Bytes"/>
@@ -1406,14 +2181,14 @@
 	 * @return
 	 </haxe_doc>
 		</recvMsg>
-		<hasReceiveMore public="1" set="method" line="438">
+		<hasReceiveMore public="1" set="method" line="443">
 			<f a=""><e path="Bool"/></f>
 			<haxe_doc>
 	 * Convenience method to test if socket has more parts of a multipart message to read
 	 * @return
 	 </haxe_doc>
 		</hasReceiveMore>
-		<new public="1" set="method" line="61">
+		<new public="1" set="method" line="66">
 			<f a="context:type">
 				<c path="org.zeromq.ZMQContext"/>
 				<e path="org.zeromq.SocketType"/>
@@ -1436,6 +2211,7 @@
  * See: https://github.com/zeromq/pyzmq/blob/master/zmq/core/socket.pyx
  </haxe_doc>
 	</class>
+	<typedef path="neko.io.FileOutput" params="" file="/usr/lib/haxe/std/cpp/io/FileOutput.hx"><c path="cpp.io.FileOutput"/></typedef>
 	<class path="Date" params="" file="/usr/lib/haxe/std/cpp/_std/Date.hx">
 		<now public="1" set="method" line="55" static="1">
 			<f a=""><c path="Date"/></f>
@@ -1619,6 +2395,91 @@
 		<haxe_doc>
 	Integer iterator. Used for interval implementation.
 </haxe_doc>
+	</class>
+	<class path="org.zeromq.ZContext" params="" file="./org/zeromq/ZContext.hx">
+		<shadow public="1" set="method" line="134" static="1">
+			<f a="ctx">
+				<c path="org.zeromq.ZContext"/>
+				<c path="org.zeromq.ZContext"/>
+			</f>
+			<haxe_doc>
+     * Creates new shadow context.
+     * Shares same underlying ZMQContext but has own list of managed sockets, io thread count etc.
+     * @param   ctx     Original ZContext to create shadow of.
+     * @return  New ZContext object
+     </haxe_doc>
+		</shadow>
+		<context public="1" set="null">
+			<c path="org.zeromq.ZMQContext"/>
+			<haxe_doc> Reference to underlying ZMQContext object </haxe_doc>
+		</context>
+		<sockets public="1" set="null">
+			<c path="List"><c path="org.zeromq.ZMQSocket"/></c>
+			<haxe_doc> List of sockets managed by this ZContext </haxe_doc>
+		</sockets>
+		<ioThreads public="1">
+			<c path="Int"/>
+			<haxe_doc> Number of io threads allocated to this context, default 1 </haxe_doc>
+		</ioThreads>
+		<linger public="1">
+			<c path="Int"/>
+			<haxe_doc> Linger timeout, default 0 </haxe_doc>
+		</linger>
+		<main public="1">
+			<e path="Bool"/>
+			<haxe_doc> Indicates if context object owned by main thread </haxe_doc>
+		</main>
+		<destroy public="1" set="method" line="80">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+     * Destructor. Call this to gracefully close context and managed sockets
+     </haxe_doc>
+		</destroy>
+		<newSocket public="1" set="method" line="101">
+			<f a="type">
+				<e path="org.zeromq.SocketType"/>
+				<c path="org.zeromq.ZMQSocket"/>
+			</f>
+			<haxe_doc>
+     * Creates socket within this ZContext.  For hxzmq internal usage only.
+     * Use ZSocket class to create new socket instead.
+     * @param	type
+     * @return
+     </haxe_doc>
+		</newSocket>
+		<destroySocket public="1" set="method" line="119">
+			<f a="s">
+				<c path="org.zeromq.ZMQSocket"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Destroys socket within this context. For hxzmq internal usage only.
+     * @param	s   Socket to remove
+     </haxe_doc>
+		</destroySocket>
+		<new public="1" set="method" line="63">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+     * Constructor
+     </haxe_doc>
+		</new>
+		<haxe_doc>
+ * ZContext provides a higher-level zeroMQ context management class.
+ * It is inspired by the zctx.c source code in the czmq project:
+ * @see http://github.com/zeromq/czmq/blob/master/src/zctx.c
+ * 
+ * The ZContext class wraps haXe ZMQContext objects, which in turn wrap native ØMQ contexts.
+ * It manages open sockets in the context and automatically closes these before terminating the context. 
+ * It provides a simple way to set the linger timeout on sockets, and configure contexts for number of I/O threads. 
+ * Sets-up signal (interrrupt) handling for the process.
+ * 
+ * The ZContext class has these main features:
+ * 
+ * 1. Tracks all open sockets and automatically closes them before calling zmq_term(). This avoids an infinite wait on open sockets.
+ * 2. Automatically configures sockets with a ZMQ_LINGER timeout you can define, and which defaults to zero. The default behaviour of ZContext is therefore like ØMQ/2.0, immediate termination with loss of any pending messages. You can set any linger timeout you like by calling the zctx_set_linger() method.
+ * 3. Moves the iothreads configuration to a separate method, so that default usage is 1 I/O thread. Lets you configure this value.
+ * 4. Sets up signal (SIGINT and SIGTERM) handling so that blocking calls such as zmq_recv() and zmq_poll() will return when the user presses Ctrl-C.
+ </haxe_doc>
 	</class>
 	<enum path="haxe.io.Error" params="" file="/usr/lib/haxe/std/haxe/io/Error.hx">
 		<Overflow><haxe_doc> An integer value is outside its allowed range </haxe_doc></Overflow>
@@ -2010,6 +2871,96 @@
 	ArrayAccess is used to indicate a class that can be accessed using brackets.
 	The type parameter represent the type of the elements stored.
 </haxe_doc></class>
+	<class path="Math" params="" file="/usr/lib/haxe/std/Math.hx" extern="1">
+		<PI public="1" set="null" static="1"><c path="Float"/></PI>
+		<NaN public="1" set="null" static="1"><c path="Float"/></NaN>
+		<NEGATIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></NEGATIVE_INFINITY>
+		<POSITIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></POSITIVE_INFINITY>
+		<abs public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></abs>
+		<min public="1" set="method" static="1"><f a="a:b">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></min>
+		<max public="1" set="method" static="1"><f a="a:b">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></max>
+		<sin public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></sin>
+		<cos public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></cos>
+		<atan2 public="1" set="method" static="1"><f a="y:x">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></atan2>
+		<tan public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></tan>
+		<exp public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></exp>
+		<log public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></log>
+		<sqrt public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></sqrt>
+		<round public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></round>
+		<floor public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></floor>
+		<ceil public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></ceil>
+		<atan public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></atan>
+		<asin public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></asin>
+		<acos public="1" set="method" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></acos>
+		<pow public="1" set="method" static="1"><f a="v:exp">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></pow>
+		<random public="1" set="method" static="1"><f a=""><c path="Float"/></f></random>
+		<isFinite public="1" set="method" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isFinite>
+		<isNaN public="1" set="method" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isNaN>
+		<haxe_doc>
+	This class defines mathematical functions and constants.
+</haxe_doc>
+	</class>
 	<class path="Lambda" params="" file="/usr/lib/haxe/std/Lambda.hx">
 		<array public="1" params="A" set="method" line="35" static="1">
 			<f a="it">
@@ -2191,96 +3142,6 @@
 	use functional-style programming with haXe.
 </haxe_doc>
 	</class>
-	<class path="Math" params="" file="/usr/lib/haxe/std/Math.hx" extern="1">
-		<PI public="1" set="null" static="1"><c path="Float"/></PI>
-		<NaN public="1" set="null" static="1"><c path="Float"/></NaN>
-		<NEGATIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></NEGATIVE_INFINITY>
-		<POSITIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></POSITIVE_INFINITY>
-		<abs public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></abs>
-		<min public="1" set="method" static="1"><f a="a:b">
-	<c path="Float"/>
-	<c path="Float"/>
-	<c path="Float"/>
-</f></min>
-		<max public="1" set="method" static="1"><f a="a:b">
-	<c path="Float"/>
-	<c path="Float"/>
-	<c path="Float"/>
-</f></max>
-		<sin public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></sin>
-		<cos public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></cos>
-		<atan2 public="1" set="method" static="1"><f a="y:x">
-	<c path="Float"/>
-	<c path="Float"/>
-	<c path="Float"/>
-</f></atan2>
-		<tan public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></tan>
-		<exp public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></exp>
-		<log public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></log>
-		<sqrt public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></sqrt>
-		<round public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Int"/>
-</f></round>
-		<floor public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Int"/>
-</f></floor>
-		<ceil public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Int"/>
-</f></ceil>
-		<atan public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></atan>
-		<asin public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></asin>
-		<acos public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></acos>
-		<pow public="1" set="method" static="1"><f a="v:exp">
-	<c path="Float"/>
-	<c path="Float"/>
-	<c path="Float"/>
-</f></pow>
-		<random public="1" set="method" static="1"><f a=""><c path="Float"/></f></random>
-		<isFinite public="1" set="method" static="1"><f a="f">
-	<c path="Float"/>
-	<e path="Bool"/>
-</f></isFinite>
-		<isNaN public="1" set="method" static="1"><f a="f">
-	<c path="Float"/>
-	<e path="Bool"/>
-</f></isNaN>
-		<haxe_doc>
-	This class defines mathematical functions and constants.
-</haxe_doc>
-	</class>
 	<class path="haxe.Serializer" params="" file="/usr/lib/haxe/std/haxe/Serializer.hx">
 		<USE_CACHE public="1" line="34" static="1">
 			<e path="Bool"/>
@@ -2335,6 +3196,229 @@
 	<e path="Void"/>
 </f></serializeException>
 		<new public="1" set="method" line="51"><f a=""><e path="Void"/></f></new>
+	</class>
+	<class path="org.zeromq.ZMsg" params="" file="./org/zeromq/ZMsg.hx">
+		<recvMsg public="1" set="method" line="275" static="1">
+			<f a="socket">
+				<c path="org.zeromq.ZMQSocket"/>
+				<c path="org.zeromq.ZMsg"/>
+			</f>
+			<haxe_doc>
+     * Receives message from socket, returns ZMsg object or null if the
+     * recv was interrupted. Does a blocking recv, if you want not to block then use
+     * the ZLoop class or ZMQPoller to check for socket input before receiving.
+     * @param	socket
+     * @return
+     </haxe_doc>
+		</recvMsg>
+		<newStringMsg public="1" set="method" line="303" static="1">
+			<f a="data">
+				<c path="String"/>
+				<c path="org.zeromq.ZMsg"/>
+			</f>
+			<haxe_doc>
+     * Simple method that adds a single supplied string to a new ZMsg, and returns the message object
+     * @param	data
+     * @return
+     </haxe_doc>
+		</newStringMsg>
+		<save public="1" set="method" line="322" static="1">
+			<f a="msg:file">
+				<c path="org.zeromq.ZMsg"/>
+				<t path="neko.io.FileOutput"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+     * Save message to an open file, return true if OK, else false
+     * 
+     * Data saved as:
+     * 4 bytes: number of frames
+     * For every frame:
+     *  4 bytes: byte size of frame
+     *  + bytes: frame data bytes
+     * 
+     * @param	msg
+     * @param	file
+     * @return
+     </haxe_doc>
+		</save>
+		<load public="1" set="method" line="353" static="1">
+			<f a="file:?msg">
+				<t path="neko.io.FileInput"/>
+				<c path="org.zeromq.ZMsg"/>
+				<c path="org.zeromq.ZMsg"/>
+			</f>
+			<haxe_doc>
+     * Load / append a ZMsg from an open file.
+     * Create a new message if null message provided.
+     * 
+     * @param	file
+     * @param	?msg
+     * @return
+     </haxe_doc>
+		</load>
+		<frames><c path="List"><c path="org.zeromq.ZFrame"/></c></frames>
+		<destroy public="1" set="method" line="51">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+     * Destructor.
+     * Destroys all ZFrames stored in ZMsg
+     </haxe_doc>
+		</destroy>
+		<size public="1" set="method" line="60">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc> Return number of frames in message </haxe_doc>
+		</size>
+		<contentSize public="1" set="method" line="72">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+     * Return number of bytes contained in all the frames in this message
+     * @return
+     </haxe_doc>
+		</contentSize>
+		<add public="1" set="method" line="86">
+			<f a="frame">
+				<c path="org.zeromq.ZFrame"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Add a ZFrame to end of list
+     * @param	frame   ZFrame to add to list
+     * @throws ZMQException if frame is null
+     </haxe_doc>
+		</add>
+		<remove public="1" set="method" line="99">
+			<f a="frame">
+				<c path="org.zeromq.ZFrame"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+     * Removes an existing frame from the message.
+     * Does not destroy the removed frame.
+     * @param	frame   ZFrame to remove
+     * @return  true if frame is found and removed, else false
+     </haxe_doc>
+		</remove>
+		<iterator public="1" set="method" line="110">
+			<f a=""><t path="Iterator"><c path="org.zeromq.ZFrame"/></t></f>
+			<haxe_doc>
+     * Returns an iterator over the ZFrame list within the ZMsg
+     * @return
+     </haxe_doc>
+		</iterator>
+		<filter public="1" set="method" line="123">
+			<f a="f">
+				<f a="">
+					<c path="org.zeromq.ZFrame"/>
+					<e path="Bool"/>
+				</f>
+				<c path="org.zeromq.ZMsg"/>
+			</f>
+			<haxe_doc>
+     * Returns a new ZMsg object containing only those ZFrames from this message
+     * where f(x) is true
+     * @param	f
+     * @return  Filtered ZMsg object, else null if this message contains no frame list (ie has been destroyed)
+     </haxe_doc>
+		</filter>
+		<first public="1" set="method" line="139">
+			<f a=""><c path="org.zeromq.ZFrame"/></f>
+			<haxe_doc>
+     * Returns last frame in message, else null if frame list is empty or invalid (destroyed)
+     * @return
+     </haxe_doc>
+		</first>
+		<isEmpty public="1" set="method" line="150">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+     * returns True if the ZMsg has no frames, else false
+     * @return
+     </haxe_doc>
+		</isEmpty>
+		<last public="1" set="method" line="158">
+			<f a=""><c path="org.zeromq.ZFrame"/></f>
+			<haxe_doc>
+     * Returns last frame in message, else null if frame list is empty or invalid (destroyed)
+     * @return
+     </haxe_doc>
+		</last>
+		<pop public="1" set="method" line="170">
+			<f a=""><c path="org.zeromq.ZFrame"/></f>
+			<haxe_doc>
+     * Removes first frame from message, if any. Returns frame or null.
+     * Caller now owns frame and must destroy() it when finished with it.
+     * @return
+     </haxe_doc>
+		</pop>
+		<push public="1" set="method" line="182">
+			<f a="frame">
+				<c path="org.zeromq.ZFrame"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Push frame to the front of the message, before all the other frames.
+     * ZMsg object takes ownership of the frame, will destroy it when message is sent.
+     * @param	frame
+     </haxe_doc>
+		</push>
+		<pushString public="1" set="method" line="195">
+			<f a="str">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Pushes string as new ZFrame at front of ZMsg frame list
+     * @param	str
+     </haxe_doc>
+		</pushString>
+		<addString public="1" set="method" line="206">
+			<f a="str">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Adds string as new ZFrame at front of ZMsg frame list
+     * @param	str
+     </haxe_doc>
+		</addString>
+		<popString public="1" set="method" line="218">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+     * Pop frame off top of message, returns as a String, else null if
+     * no frames in message, or if popped frame has no data.
+     * @return
+     </haxe_doc>
+		</popString>
+		<duplicate public="1" set="method" line="234">
+			<f a=""><c path="org.zeromq.ZMsg"/></f>
+			<haxe_doc><![CDATA[
+     * Creates copy of this message, also copying all contained frames & their data
+     * @return  Copied ZMsg object, or null if this message contains an invalid (destroyed) frame list.
+     ]]></haxe_doc>
+		</duplicate>
+		<send public="1" set="method" line="250">
+			<f a="socket">
+				<c path="org.zeromq.ZMQSocket"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+     * Send message to socket, destroys after sending.  If the message has no
+     * frames, sends nothing but destroys the message anyhow.
+     * @param	socket
+     </haxe_doc>
+		</send>
+		<new public="1" set="method" line="43">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+     * Constructor
+     </haxe_doc>
+		</new>
+		<haxe_doc>
+ * The ZMsg class provides methods to send and receive multipart messages
+ * across 0MS sockets. THis class provides a list-lie container interface,
+ * with methods to work with the overall container.  ZMsg messages are
+ * composed of zero or more ZFrame objects.
+ </haxe_doc>
 	</class>
 	<class path="List" params="T" file="/usr/lib/haxe/std/List.hx">
 		<h><c path="Array"><d/></c></h>
@@ -2466,6 +3550,7 @@
 	element doesn't imply to copy the whole array content everytime.
 </haxe_doc>
 	</class>
+	<typedef path="neko.io.FileInput" params="" file="/usr/lib/haxe/std/cpp/io/FileInput.hx"><c path="cpp.io.FileInput"/></typedef>
 	<enum path="ValueType" params="" file="/usr/lib/haxe/std/cpp/_std/Type.hx" module="Type">
 		<TUnknown/>
 		<TObject/>
@@ -2477,6 +3562,13 @@
 		<TClass a="c"><c path="Class"><d/></c></TClass>
 		<TBool/>
 	</enum>
+	<class path="haxe.io.Eof" params="" file="/usr/lib/haxe/std/haxe/io/Eof.hx">
+		<toString set="method" line="33"><f a=""><c path="String"/></f></toString>
+		<new public="1" set="method" line="31"><f a=""><e path="Void"/></f></new>
+		<haxe_doc>
+	This exception is raised when reading while data is no longer available in the [Input].
+</haxe_doc>
+	</class>
 	<class path="IntHash" params="T" file="/usr/lib/haxe/std/cpp/_std/IntHash.hx">
 		<h><d/></h>
 		<set public="1" set="method" line="34">

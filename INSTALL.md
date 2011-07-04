@@ -106,7 +106,7 @@ e.g, to build and run the php unit test target executable on Mac64:
 
 
 You should see output similar to:
-    Class: org.zeromq.test.TestVersion TestVersion.hx:39: version_full:20107
+    Class: org.zeromq.test.TestVersion TestVersion.hx:50: version_full:20107
     ..
     Class: org.zeromq.test.TestContext ......
     Class: org.zeromq.test.TestError ..
@@ -115,8 +115,20 @@ You should see output similar to:
     Class: org.zeromq.test.TestMultiPartMessage .
     Class: org.zeromq.test.TestReqRep ...
     Class: org.zeromq.test.TestPoller ....
+    Class: org.zeromq.test.TestZMQRemoting ..
+    Class: org.zeromq.test.TestZContext .....
+    Class: org.zeromq.test.TestZSocket ..
+    Class: org.zeromq.test.TestZFrame ..
+    Class: org.zeromq.test.TestZMsg .....
+    Class: org.zeromq.test.TestZLoop I: zloop: register timer delay=10 times=1
+    I: zloop: register socket poller ZMQ_PAIR
+    I: ZLoop: polling for 9 msec
+    I: zloop: call timer handler
+    I: ZLoop: polling for 3600000 msec
+    I: zloop: call socket handler
+    .
 
-    OK 27 tests, 0 failed, 27 success
+    OK 44 tests, 0 failed, 44 success
 
 
 ## To build and run the Guide applications

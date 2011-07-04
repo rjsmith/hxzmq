@@ -55,7 +55,7 @@ class ZMQPoller
 	}
 	
 	/**
-	 * Adds a socket to the internak list of polled sockets
+	 * Adds a socket to the internal list of polled sockets
 	 * @param	socket	A ZMQScxket object
 	 * @param	event	Bitmasked Int for polled events (ZMQ_POLLIN, ZMQ_POLLOUT)
 	 */
