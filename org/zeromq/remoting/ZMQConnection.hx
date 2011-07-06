@@ -49,7 +49,11 @@ import haxe.remoting.Context;
 
 /**
  * This class provides a haXe remoting adapter using the zeroMQ message 
- * library (via hxzmq) as the transport layer
+ * library (via hxzmq) as the transport layer.
+ * 
+ * <pre>
+ * 
+ * </pre>
  */
 class ZMQConnection implements AsyncConnection, implements Dynamic<AsyncConnection>
 {

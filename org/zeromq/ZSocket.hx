@@ -24,11 +24,28 @@ import org.zeromq.ZMQ;
 import org.zeromq.ZContext;
 
 /**
- * ZSocket provides a higher-level zeroMQ socket management class.
- * It is inspired by the zsocket.c source code in the czmq project:
- * @see http://github.com/zeromq/czmq/blob/master/src/zsocket.c
+ * <p>
+ * ZSocket provides higher-level ZMQSocket socket helper static methods.
+ * </p>
+ * <p>
+ * <pre>
+ * import org.zeromq.ZMQ;
+ * using org.zeromq.ZSocket;
+ * ...
+ * var output = ctx.createSocket(ZMQ_PUSH);
+ * var input = ctx.createSocket(ZMQ_PULL);
  * 
- * Automatically subscribes SUB socket to "" (all)
+ * // Bind to a tcp port on localhost
+ * var port = output.bind("tcp", "*", "5560");
+ * 
+ * // Connect
+ * input.connect("tcp", "localhost", "5560");
+ * </pre>
+ * 
+ * <p>
+ * Based on the <a href="http://github.com/zeromq/czmq/blob/master/src/zsocket.c">zsocket.c</a> source code in the czmq project.
+ * </p>
+ * 
  */
 
 class ZSocket 
@@ -40,39 +57,6 @@ class ZSocket
     public static inline var DYNFROM:Int = 0xc000;
     public static inline var DYNTO:Int = 0xffff;
     
-    /**
-     * Creates a new managed socket within the ZContext context.
-     * If the socket is a SUB socket, autmatically subscribes to everything
-     * Use this to get automatic management of the socket at shutdown
-     * 
-     * @param	ctx     The ZContext context
-     * @param	type    Socket type
-     * @return  Managed ZMQSocket
-     */
-    public static function create(ctx:ZContext, type:SocketType):ZMQSocket
-    {
-        if (ctx == null) {
-            throw new ZMQException(EINVAL);
-        }
-        var s:ZMQSocket = ctx.newSocket(type);
-        if (type == ZMQ_SUB) {
-            s.setsockopt(ZMQ_SUBSCRIBE, Bytes.ofString(""));
-        }
-        return s;   
-    }
-    
-    /**
-     * Destroys the socket.
-     * Must be used for any socket created via the ZSocket.create() method
-     * @param	ctx
-     * @param	socket
-     */
-    public static function destroy(ctx:ZContext, socket:ZMQSocket) {
-        if (ctx == null) {
-            throw new ZMQException(EINVAL);
-        }
-        ctx.destroySocket(socket);
-    }
     
     /**
      * Tests type of socket
@@ -105,7 +89,7 @@ class ZSocket
      * @param	port        (optional) Port number
      * @return  Port number if bind successful, else -1
      */
-    public static function bind(socket:ZMQSocket, protocol:String, interf:String, ?port:String):Int {
+    public static function bindEndpoint(socket:ZMQSocket, protocol:String, interf:String, ?port:String):Int {
         if (socket == null || protocol == null || interf == null) {
             throw new ZMQException(EINVAL);
         }
@@ -138,7 +122,7 @@ class ZSocket
      * @param	interf      Bind address "foo.com", "127.0.0.3"
      * @param	port        Port number
      */
-    public static function connect(socket:ZMQSocket, protocol:String, interf:String, ?port:String) {
+    public static function connectEndpoint(socket:ZMQSocket, protocol:String, interf:String, ?port:String) {
         if (socket == null || protocol == null || interf == null) {
             throw new ZMQException(EINVAL);
         }

@@ -50,7 +50,7 @@ class TestZContext extends BaseTest
         // Ensure context not destroyed if not in main thread
         var ctx1:ZContext = new ZContext();
         ctx1.main = false;
-        var s:ZMQSocket = ctx1.newSocket(ZMQ_PUB);
+        var s:ZMQSocket = ctx1.createSocket(ZMQ_PUB);
         ctx1.destroy();
         assertFalse(ctx1.context.closed);
     }
@@ -59,10 +59,10 @@ class TestZContext extends BaseTest
         // tests "internal" newSocket method, should not be used outside hxzmq itself
         var ctx:ZContext = new ZContext();
         try {
-            var s:ZMQSocket = ctx.newSocket(ZMQ_PUB);
+            var s:ZMQSocket = ctx.createSocket(ZMQ_PUB);
             assertTrue(s != null);
             assertFalse(s.closed);
-            var s1:ZMQSocket = ctx.newSocket(ZMQ_REQ);
+            var s1:ZMQSocket = ctx.createSocket(ZMQ_REQ);
             assertTrue(s1 != null);
             assertEquals(2, ctx.sockets.length);
         } catch (e:ZMQException) {
@@ -75,10 +75,9 @@ class TestZContext extends BaseTest
     }
     
     public function testRemovingSockets() {
-        // tests "internal" newSocket method, should not be used outside hxzmq itself
         var ctx:ZContext = new ZContext();
         try {
-            var s:ZMQSocket = ctx.newSocket(ZMQ_PUB);
+            var s:ZMQSocket = ctx.createSocket(ZMQ_PUB);
             assertTrue(s != null);
             assertEquals(1, ctx.sockets.length);
             
@@ -97,14 +96,14 @@ class TestZContext extends BaseTest
     
     public function testShadow() {
         var ctx:ZContext = new ZContext();
-        var s:ZMQSocket = ctx.newSocket(ZMQ_PUB);
+        var s:ZMQSocket = ctx.createSocket(ZMQ_PUB);
         assertTrue(s != null);
         assertEquals(ctx.sockets.length, 1);
         
         var shadowCtx = ZContext.shadow(ctx);
         assertEquals(0, shadowCtx.sockets.length);
         assertTrue(ctx.context == shadowCtx.context);
-        var s1:ZMQSocket = shadowCtx.newSocket(ZMQ_SUB);
+        var s1:ZMQSocket = shadowCtx.createSocket(ZMQ_SUB);
         assertEquals(1, shadowCtx.sockets.length);
         assertEquals(1, ctx.sockets.length); 
     }

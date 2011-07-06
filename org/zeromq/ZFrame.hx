@@ -25,14 +25,16 @@ import org.zeromq.ZMQ;
 
 
 /**
+ * <p>
  * The ZFrame class provides methods to send and receive single message
  * frames across 0MQ sockets. A 'frame' corresponds to one underlying zmq_msg_t in the libzmq code.
  * When you read a frame from a socket, the more() method indicates if the frame is part of an 
- * unfinished multipart message.  The send() method normaly destroys the frame, but with the ZFRAME_RESUE flag, you can send
+ * unfinished multipart message.  The send() method normally destroys the frame, but with the ZFRAME_REUSE flag, you can send
  * the same frame many times. Frames are binary, and this class has no special support for text data.
- * 
- * Based on zframe.c in czmq
- * @see http://github.com/zeromq/czmq/blob/master/src/zframe.c
+ * </p>
+ * <p>
+ * Based on <a href="http://github.com/zeromq/czmq/blob/master/src/zframe.c">zframe.c</a> in czmq
+ * </p>
  */
 class ZFrame 
 {
@@ -198,6 +200,15 @@ class ZFrame
     public function hasData():Bool {
         var ret:Bool = data != null;
         return ret;
+    }
+    
+    /**
+     * Returns string representation of frame's data bytes
+     * @return
+     */
+    public function toString():String {
+        if (!hasData()) return null;
+        return this.data.toString();
     }
     
     /**

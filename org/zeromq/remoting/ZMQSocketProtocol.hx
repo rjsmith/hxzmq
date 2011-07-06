@@ -47,21 +47,29 @@ import haxe.remoting.Context;
 import org.zeromq.ZMQSocket;
 
 /**
+    <p>
     ZeroMQ - based socket protocol for haXe remoting.
     Heavily based on the haxe.remoting.SocketProtocol class implementation.
-    
-	The ZeroMQ haXe Remoting Socket Protocol is composed of serialized strings converted into byte data exchanges.
-    Eeach message (request or answer) is sent as a single-part zeroMQ message.
-    
-	A request string is composed of the following serialized values :
-		- the boolean true for a request
-		- an array of strings representing the object+method path
-		- an array of parameters
-	A response string is composed of the following serialized values :
-		- the boolean false for a response
-		- a serialized value representing the result
-	Exceptions are serialized with [serializeException] so they will be thrown immediatly
+    </p>
+    <p>
+	The 0MQ haXe Remoting Socket Protocol is composed of serialized strings converted into byte data exchanges.
+    Each message (request or answer) is sent as a single-part zeroMQ message.
+    </p>
+    <p>
+	A request string is composed of the following serialized values :<br />
+		- the boolean true for a request<br />
+		- an array of strings representing the object+method path<br />
+		- an array of parameters<br />
+    </p>
+    <p>
+	A response string is composed of the following serialized values :<br />
+		- the boolean false for a response<br />
+		- a serialized value representing the result<br />
+    </p>
+    <p>
+	Exceptions are serialized with [serializeException] so they will be thrown immediately
 	when they are unserialized.
+    </p>
 **/
 class ZMQSocketProtocol 
 {

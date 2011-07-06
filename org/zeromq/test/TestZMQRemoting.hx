@@ -24,6 +24,11 @@ import haxe.remoting.Context;
 import haxe.io.Bytes;
 import haxe.remoting.Proxy;
 import neko.Sys;
+import org.zeromq.ZContext;
+import org.zeromq.ZFrame;
+import org.zeromq.ZMsg;
+import org.zeromq.ZSocket;
+
 #if !php
 import neko.vm.Thread;
 #end
@@ -64,6 +69,7 @@ class TestZMQRemoting extends BaseTest
     public function testThreadedRemotingSendResponse() {
         
 #if php
+		// Skip test involving threads for php target
         assertTrue(true);
 #else        
         var responderThread:Thread = Thread.create(helloWorldResponder);
@@ -93,10 +99,13 @@ class TestZMQRemoting extends BaseTest
      * This method repeats the previous test but using a single thread and with tcp transport
      */
     public function testSynchronousRemotingSendResponse() {
-		var context:ZMQContext = ZMQContext.instance();
+		var ZMQcontext:ZContext = new ZContext();
 		
         var pair:SocketPair;
-        pair = createBoundPair(ZMQ_REQ, ZMQ_REP);
+		// Create pair of ZMQSockets managed by the ZContext object.
+		pair = { s1: ZMQcontext.createSocket(ZMQ_REQ), s2: ZMQcontext.createSocket(ZMQ_REP) };
+		var s1Port = ZSocket.bindEndpoint(pair.s1, "tcp", "127.0.0.1", "*");
+		ZSocket.connectEndpoint(pair.s2, "tcp", "127.0.0.1", Std.string(s1Port));
 
 		// Socket to talk to responder
 		var sender:ZMQSocket = pair.s1;
@@ -122,54 +131,49 @@ class TestZMQRemoting extends BaseTest
         
         // Wait for next request from client
         var d = conn.getProtocol().readMessage();
-        //trace ("responder received message:" + d);
         conn.processMessage(d);
 
         // Wait for reply back
-        var rep:Bytes = sender.recvMsg();
-        //trace ("sender received message:" + rep.toString());
-        cnx.processMessage(rep.toString());
-        
-        
+		var rep:ZFrame = ZFrame.recvFrame(sender);
+        cnx.processMessage(rep.toString());       
     }
 #if (neko || cpp)    
     static function helloWorldSender() {
 		var context:ZMQContext = ZMQContext.instance();
-		
+
 		// Socket to talk to responder
 		var sender:ZMQSocket = context.socket(ZMQ_REQ);
 		sender.connect("inproc://remoting");
-        
+
         // Wait for start trigger from main thread
         var main:Thread = Thread.readMessage(true);
         
         // Set callback
         var display = function(s:String) {
-            // send result back to main thread
+            // send result back to main thread using haxe thread messaging
              main.sendMessage(s);
         }
-        
-        ZMQ.catchSignals();
+	
         var cnx:ZMQConnection = ZMQConnection.create(sender);
         // setup error handler
         cnx.setErrorHandler( function(err) trace("Error : "+Std.string(err)) );
 
         try {
-            // test 1. Use direct, untyped "call"
+            // test 1. Use direct, untyped "call" using ZFrame to receive remoting request response
             // Send request to responder via a ZMQConnection call
             cnx.HelloWorldResponder.hello.call(["Bill"], display);
+            // Wait for reply 
             // Wait for reply back
             var rep:Bytes = sender.recvMsg();
             //trace ("sender received message:" + rep.toString());
             cnx.processMessage(rep.toString());
                       
-            // test 2. Use remoting proxy class
+            // test 2. Use remoting proxy class using ZFrame to receive remoting request response
             // Send request to responder via a ZMQConnection call
             var proxy:HelloWorldResponderAPIProxy = new HelloWorldResponderAPIProxy(cnx.HelloWorldResponder);
             proxy.hello("Bill");
             // Wait for reply back
             var rep:Bytes = sender.recvMsg();
-            //trace ("sender received message:" + rep.toString());
             cnx.processMessage(rep.toString());
             
             // Now tell responder to quit, by sending a direct ZMQ message
@@ -196,7 +200,7 @@ class TestZMQRemoting extends BaseTest
     
     static function helloWorldResponder() {
 		var context:ZMQContext = ZMQContext.instance();
-		
+
 		// Socket to talk to sender
 		var responder:ZMQSocket = context.socket(ZMQ_REP);
 		responder.bind("inproc://remoting");
@@ -205,7 +209,6 @@ class TestZMQRemoting extends BaseTest
         var ctx:Context = new Context();
         ctx.addObject("HelloWorldResponder", new HelloWorldResponderAPI());
 		var conn:ZMQConnection = ZMQConnection.create(responder, ctx);
-
 		ZMQ.catchSignals();
 		
         try {
@@ -223,7 +226,6 @@ class TestZMQRemoting extends BaseTest
             trace (e.toString());
         }
         
-        //trace ("closing responder thread");
 		responder.close();
 		return null;
         

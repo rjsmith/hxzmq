@@ -23,21 +23,24 @@ import org.zeromq.ZMQ;
 import org.zeromq.ZMQSocket;
 
 /**
+ * <p>
  * ZContext provides a higher-level zeroMQ context management class.
- * It is inspired by the zctx.c source code in the czmq project:
- * @see http://github.com/zeromq/czmq/blob/master/src/zctx.c
- * 
- * The ZContext class wraps haXe ZMQContext objects, which in turn wrap native ØMQ contexts.
+ * It is inspired by the <a href="http://github.com/zeromq/czmq/blob/master/src/zctx.c">zctx.c</a> source code in the czmq project.
+ * </p>
+ * <p>
+ * The ZContext class wraps haXe ZMQContext objects, which in turn wrap native 0MQ contexts.
  * It manages open sockets in the context and automatically closes these before terminating the context. 
  * It provides a simple way to set the linger timeout on sockets, and configure contexts for number of I/O threads. 
  * Sets-up signal (interrrupt) handling for the process.
+ * </p>
+ * <p>
+ * The ZContext class has these main features:<br />
+ * 1. Tracks all open sockets and automatically closes them before calling zmq_term(). This avoids an infinite wait on open sockets.<br />
+ * 2. Automatically configures sockets with a ZMQ_LINGER timeout you can define, and which defaults to zero. The default behaviour of ZContext is therefore like 0MQ/2.0, immediate termination with loss of any pending messages. You can set any linger timeout you like by calling the zctx_set_linger() method.<br />
+ * 3. Moves the iothreads configuration to a separate method, so that default usage is 1 I/O thread. Lets you configure this value.<br />
+ * 4. Sets up signal (SIGINT and SIGTERM) handling so that blocking calls such as zmq_recv() and zmq_poll() will return when the user presses Ctrl-C.<br />
  * 
- * The ZContext class has these main features:
- * 
- * 1. Tracks all open sockets and automatically closes them before calling zmq_term(). This avoids an infinite wait on open sockets.
- * 2. Automatically configures sockets with a ZMQ_LINGER timeout you can define, and which defaults to zero. The default behaviour of ZContext is therefore like ØMQ/2.0, immediate termination with loss of any pending messages. You can set any linger timeout you like by calling the zctx_set_linger() method.
- * 3. Moves the iothreads configuration to a separate method, so that default usage is 1 I/O thread. Lets you configure this value.
- * 4. Sets up signal (SIGINT and SIGTERM) handling so that blocking calls such as zmq_recv() and zmq_poll() will return when the user presses Ctrl-C.
+ * </p>
  */
 class ZContext 
 {
@@ -93,12 +96,12 @@ class ZContext
     }
     
     /**
-     * Creates socket within this ZContext.  For hxzmq internal usage only.
-     * Use ZSocket class to create new socket instead.
+     * Creates a new managed socket within this ZContext context.
+       * Use this to get automatic management of the socket at shutdown
      * @param	type
      * @return
      */
-    public function newSocket(type:SocketType):ZMQSocket {
+    public function createSocket(type:SocketType):ZMQSocket {
         if (context == null) {
             context = new ZMQContext(ioThreads);
         }
@@ -113,7 +116,7 @@ class ZContext
     }
     
     /**
-     * Destroys socket within this context. For hxzmq internal usage only.
+     * Destroys managed socket within this context.
      * @param	s   Socket to remove
      */
     public function destroySocket(s:ZMQSocket) {

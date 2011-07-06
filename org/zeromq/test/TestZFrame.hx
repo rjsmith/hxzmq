@@ -26,6 +26,7 @@ import org.zeromq.ZFrame;
 import org.zeromq.ZSocket;
 import org.zeromq.ZFrame;
 import org.zeromq.ZMQSocket;
+using org.zeromq.ZSocket;
 
 class TestZFrame extends BaseTest
 {
@@ -38,10 +39,10 @@ class TestZFrame extends BaseTest
     
     public function testSendingReceiving() {
         var ctx:ZContext = new ZContext();
-        var output:ZMQSocket = ZSocket.create(ctx, ZMQ_PAIR);
-        ZSocket.bind(output, "inproc", "zframe.test");
-        var input:ZMQSocket = ZSocket.create(ctx, ZMQ_PAIR);
-        ZSocket.connect(input, "inproc", "zframe.test");
+        var output:ZMQSocket = ctx.createSocket(ZMQ_PAIR);
+        output.bindEndpoint("inproc", "zframe.test");
+        var input:ZMQSocket = ctx.createSocket(ZMQ_PAIR);
+        input.connectEndpoint("inproc", "zframe.test");
         
         // Send five different frames, test ZFRAME_MORE
         for (frameNBR in 0 ... 5) {

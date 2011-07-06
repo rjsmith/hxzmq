@@ -27,7 +27,7 @@
 	</class>
 	<class path="org.zeromq.remoting.ZMQConnection" params="" file="./org/zeromq/remoting/ZMQConnection.hx">
 		<implements path="haxe.remoting.AsyncConnection"/>
-		<create public="1" set="method" line="146" static="1"><f a="s:?ctx">
+		<create public="1" set="method" line="150" static="1"><f a="s:?ctx">
 	<c path="org.zeromq.ZMQSocket"/>
 	<c path="haxe.remoting.Context"/>
 	<c path="org.zeromq.remoting.ZMQConnection"/>
@@ -56,11 +56,11 @@
 	<e path="Void"/>
 </f></error>
 </a></__data>
-		<resolve public="1" set="method" line="70"><f a="name">
+		<resolve public="1" set="method" line="74"><f a="name">
 	<c path="String"/>
 	<c path="haxe.remoting.AsyncConnection"/>
 </f></resolve>
-		<call public="1" set="method" line="76"><f a="params:?onResult">
+		<call public="1" set="method" line="80"><f a="params:?onResult">
 	<c path="Array"><d/></c>
 	<f a="">
 		<d/>
@@ -68,14 +68,14 @@
 	</f>
 	<e path="Void"/>
 </f></call>
-		<setErrorHandler public="1" set="method" line="85"><f a="h">
+		<setErrorHandler public="1" set="method" line="89"><f a="h">
 	<f a="">
 		<d/>
 		<e path="Void"/>
 	</f>
 	<e path="Void"/>
 </f></setErrorHandler>
-		<setErrorLogger public="1" set="method" line="89"><f a="h">
+		<setErrorLogger public="1" set="method" line="93"><f a="h">
 	<f a="::">
 		<c path="Array"><c path="String"/></c>
 		<c path="Array"><d/></c>
@@ -84,17 +84,17 @@
 	</f>
 	<e path="Void"/>
 </f></setErrorLogger>
-		<setProtocol public="1" set="method" line="93"><f a="p">
+		<setProtocol public="1" set="method" line="97"><f a="p">
 	<c path="org.zeromq.remoting.ZMQSocketProtocol"/>
 	<e path="Void"/>
 </f></setProtocol>
-		<getProtocol public="1" set="method" line="97"><f a=""><c path="org.zeromq.remoting.ZMQSocketProtocol"/></f></getProtocol>
-		<close public="1" set="method" line="101"><f a=""><e path="Void"/></f></close>
-		<processMessage public="1" set="method" line="105"><f a="data">
+		<getProtocol public="1" set="method" line="101"><f a=""><c path="org.zeromq.remoting.ZMQSocketProtocol"/></f></getProtocol>
+		<close public="1" set="method" line="105"><f a=""><e path="Void"/></f></close>
+		<processMessage public="1" set="method" line="109"><f a="data">
 	<c path="String"/>
 	<e path="Void"/>
 </f></processMessage>
-		<defaultLog set="method" line="137"><f a="path:args:e">
+		<defaultLog set="method" line="141"><f a="path:args:e">
 	<a><join set="null"><f a="">
 	<c path="String"/>
 	<c path="String"/>
@@ -106,7 +106,7 @@
 	<unknown/>
 	<e path="Void"/>
 </f></defaultLog>
-		<new set="method" line="65"><f a="data:path">
+		<new set="method" line="69"><f a="data:path">
 	<a>
 		<results><c path="List"><a>
 	<onResult><f a="">
@@ -133,10 +133,14 @@
 	<c path="Array"><c path="String"/></c>
 	<e path="Void"/>
 </f></new>
-		<haxe_doc>
+		<haxe_doc><![CDATA[
  * This class provides a haXe remoting adapter using the zeroMQ message 
- * library (via hxzmq) as the transport layer
- </haxe_doc>
+ * library (via hxzmq) as the transport layer.
+ * 
+ * <pre>
+ * 
+ * </pre>
+ ]]></haxe_doc>
 		<haxe_dynamic><c path="haxe.remoting.AsyncConnection"/></haxe_dynamic>
 	</class>
 	<enum path="org.zeromq.SocketType" params="" file="./org/zeromq/ZMQ.hx" module="org.zeromq.ZMQ">
@@ -981,37 +985,37 @@
 	<class path="org.zeromq.remoting.ZMQSocketProtocol" params="" file="./org/zeromq/remoting/ZMQSocketProtocol.hx">
 		<socket public="1"><c path="org.zeromq.ZMQSocket"/></socket>
 		<context public="1"><c path="haxe.remoting.Context"/></context>
-		<decodeChar set="method" line="78"><f a="c">
+		<decodeChar set="method" line="86"><f a="c">
 	<c path="Int"/>
 	<t path="Null"><c path="Int"/></t>
 </f></decodeChar>
-		<encodeChar set="method" line="97"><f a="c">
+		<encodeChar set="method" line="105"><f a="c">
 	<c path="Int"/>
 	<t path="Null"><c path="Int"/></t>
 </f></encodeChar>
-		<sendRequest public="1" set="method" line="118"><f a="path:params">
+		<sendRequest public="1" set="method" line="126"><f a="path:params">
 	<c path="Array"><c path="String"/></c>
 	<c path="Array"><d/></c>
 	<e path="Void"/>
 </f></sendRequest>
-		<sendAnswer public="1" set="method" line="126"><f a="answer:?isException">
+		<sendAnswer public="1" set="method" line="134"><f a="answer:?isException">
 	<d/>
 	<e path="Bool"/>
 	<e path="Void"/>
 </f></sendAnswer>
-		<sendMessage public="1" set="method" line="136"><f a="msg">
+		<sendMessage public="1" set="method" line="144"><f a="msg">
 	<c path="String"/>
 	<e path="Void"/>
 </f></sendMessage>
-		<decodeData public="1" set="dynamic" line="142"><f a="data">
+		<decodeData public="1" set="dynamic" line="150"><f a="data">
 	<c path="String"/>
 	<c path="String"/>
 </f></decodeData>
-		<isRequest public="1" set="method" line="146"><f a="data">
+		<isRequest public="1" set="method" line="154"><f a="data">
 	<c path="String"/>
 	<e path="Bool"/>
 </f></isRequest>
-		<processRequest public="1" set="method" line="154"><f a="data:?onError">
+		<processRequest public="1" set="method" line="162"><f a="data:?onError">
 	<c path="String"/>
 	<f a="::">
 		<c path="Array"><c path="String"/></c>
@@ -1021,38 +1025,46 @@
 	</f>
 	<e path="Void"/>
 </f></processRequest>
-		<processAnswer public="1" set="method" line="176"><f a="data">
+		<processAnswer public="1" set="method" line="184"><f a="data">
 	<c path="String"/>
 	<d/>
 </f></processAnswer>
-		<readMessage public="1" set="method" line="184"><f a=""><c path="String"/></f></readMessage>
-		<new public="1" set="method" line="73"><f a="sock:ctx">
+		<readMessage public="1" set="method" line="192"><f a=""><c path="String"/></f></readMessage>
+		<new public="1" set="method" line="81"><f a="sock:ctx">
 	<c path="org.zeromq.ZMQSocket"/>
 	<c path="haxe.remoting.Context"/>
 	<e path="Void"/>
 </f></new>
-		<haxe_doc>
+		<haxe_doc><![CDATA[
+    <p>
     ZeroMQ - based socket protocol for haXe remoting.
     Heavily based on the haxe.remoting.SocketProtocol class implementation.
-    
-	The ZeroMQ haXe Remoting Socket Protocol is composed of serialized strings converted into byte data exchanges.
-    Eeach message (request or answer) is sent as a single-part zeroMQ message.
-    
-	A request string is composed of the following serialized values :
-		- the boolean true for a request
-		- an array of strings representing the object+method path
-		- an array of parameters
-	A response string is composed of the following serialized values :
-		- the boolean false for a response
-		- a serialized value representing the result
-	Exceptions are serialized with [serializeException] so they will be thrown immediatly
+    </p>
+    <p>
+	The 0MQ haXe Remoting Socket Protocol is composed of serialized strings converted into byte data exchanges.
+    Each message (request or answer) is sent as a single-part zeroMQ message.
+    </p>
+    <p>
+	A request string is composed of the following serialized values :<br />
+		- the boolean true for a request<br />
+		- an array of strings representing the object+method path<br />
+		- an array of parameters<br />
+    </p>
+    <p>
+	A response string is composed of the following serialized values :<br />
+		- the boolean false for a response<br />
+		- a serialized value representing the result<br />
+    </p>
+    <p>
+	Exceptions are serialized with [serializeException] so they will be thrown immediately
 	when they are unserialized.
-</haxe_doc>
+    </p>
+]]></haxe_doc>
 	</class>
 	<class path="org.zeromq.ZFrame" params="" file="./org/zeromq/ZFrame.hx">
-		<ZFRAME_MORE public="1" get="inline" set="null" line="40" static="1"><c path="Int"/></ZFRAME_MORE>
-		<ZFRAME_REUSE public="1" get="inline" set="null" line="41" static="1"><c path="Int"/></ZFRAME_REUSE>
-		<recvFrame public="1" set="method" line="211" static="1">
+		<ZFRAME_MORE public="1" get="inline" set="null" line="42" static="1"><c path="Int"/></ZFRAME_MORE>
+		<ZFRAME_REUSE public="1" get="inline" set="null" line="43" static="1"><c path="Int"/></ZFRAME_REUSE>
+		<recvFrame public="1" set="method" line="222" static="1">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="org.zeromq.ZFrame"/>
@@ -1066,7 +1078,7 @@
      * @return  received frame, else null
      </haxe_doc>
 		</recvFrame>
-		<recvFrameNoWait public="1" set="method" line="223" static="1">
+		<recvFrameNoWait public="1" set="method" line="234" static="1">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="org.zeromq.ZFrame"/>
@@ -1086,21 +1098,21 @@
 			<c path="haxe.io.Bytes"/>
 			<haxe_doc> Message blob for frame </haxe_doc>
 		</data>
-		<destroy public="1" set="method" line="65">
+		<destroy public="1" set="method" line="67">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Destructor
      </haxe_doc>
 		</destroy>
-		<recv set="method" line="71"><f a="socket">
+		<recv set="method" line="73"><f a="socket">
 	<c path="org.zeromq.ZMQSocket"/>
 	<c path="haxe.io.Bytes"/>
 </f></recv>
-		<recvNoWait set="method" line="88"><f a="socket">
+		<recvNoWait set="method" line="90"><f a="socket">
 	<c path="org.zeromq.ZMQSocket"/>
 	<c path="haxe.io.Bytes"/>
 </f></recvNoWait>
-		<send public="1" set="method" line="110">
+		<send public="1" set="method" line="112">
 			<f a="socket:?flags">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="Int"/>
@@ -1112,21 +1124,21 @@
      * @param	flags
      </haxe_doc>
 		</send>
-		<size public="1" get="inline" set="null" line="125">
+		<size public="1" get="inline" set="null" line="127">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
      * Returns byte size of frame, if set, else 0
      * @return
      </haxe_doc>
 		</size>
-		<duplicate public="1" set="method" line="135">
+		<duplicate public="1" set="method" line="137">
 			<f a=""><c path="org.zeromq.ZFrame"/></f>
 			<haxe_doc>
      * Creates a new frame that duplicates an existing frame
      * @return  A duplicates ZFrame object
      </haxe_doc>
 		</duplicate>
-		<equals public="1" set="method" line="144">
+		<equals public="1" set="method" line="146">
 			<f a="other">
 				<c path="org.zeromq.ZFrame"/>
 				<e path="Bool"/>
@@ -1137,7 +1149,7 @@
      * @return
      </haxe_doc>
 		</equals>
-		<reset public="1" set="method" line="160">
+		<reset public="1" set="method" line="162">
 			<f a="data">
 				<c path="haxe.io.Bytes"/>
 				<e path="Void"/>
@@ -1147,14 +1159,14 @@
      * @param	data    New data bytes for this frame
      </haxe_doc>
 		</reset>
-		<strhex public="1" set="method" line="171">
+		<strhex public="1" set="method" line="173">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>
      * Return frame data encoded as printable hex string
      * @return
      </haxe_doc>
 		</strhex>
-		<streq public="1" set="method" line="189">
+		<streq public="1" set="method" line="191">
 			<f a="str">
 				<c path="String"/>
 				<e path="Bool"/>
@@ -1165,14 +1177,21 @@
      * @return  true if matches, else false
      </haxe_doc>
 		</streq>
-		<hasData public="1" set="method" line="198">
+		<hasData public="1" set="method" line="200">
 			<f a=""><e path="Bool"/></f>
 			<haxe_doc>
      * Convenience method to ascertain if this frame contains some message data
      * @return
      </haxe_doc>
 		</hasData>
-		<new public="1" set="method" line="54">
+		<toString public="1" set="method" line="209">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+     * Returns string representation of frame's data bytes
+     * @return
+     </haxe_doc>
+		</toString>
+		<new public="1" set="method" line="56">
 			<f a="?data">
 				<c path="haxe.io.Bytes"/>
 				<e path="Void"/>
@@ -1183,16 +1202,18 @@
      * @param	data
      </haxe_doc>
 		</new>
-		<haxe_doc>
+		<haxe_doc><![CDATA[
+ * <p>
  * The ZFrame class provides methods to send and receive single message
  * frames across 0MQ sockets. A 'frame' corresponds to one underlying zmq_msg_t in the libzmq code.
  * When you read a frame from a socket, the more() method indicates if the frame is part of an 
- * unfinished multipart message.  The send() method normaly destroys the frame, but with the ZFRAME_RESUE flag, you can send
+ * unfinished multipart message.  The send() method normally destroys the frame, but with the ZFRAME_REUSE flag, you can send
  * the same frame many times. Frames are binary, and this class has no special support for text data.
- * 
- * Based on zframe.c in czmq
- * @see http://github.com/zeromq/czmq/blob/master/src/zframe.c
- </haxe_doc>
+ * </p>
+ * <p>
+ * Based on <a href="http://github.com/zeromq/czmq/blob/master/src/zframe.c">zframe.c</a> in czmq
+ * </p>
+ ]]></haxe_doc>
 	</class>
 	<class path="haxe.io.Output" params="" file="/usr/lib/haxe/std/haxe/io/Output.hx">
 		<_float_bytes line="253" static="1"><f a=":">
@@ -1360,43 +1381,14 @@
 </haxe_doc>
 	</class>
 	<class path="org.zeromq.ZSocket" params="" file="./org/zeromq/ZSocket.hx">
-		<DYNFROM public="1" get="inline" set="null" line="40" static="1">
+		<DYNFROM public="1" get="inline" set="null" line="57" static="1">
 			<c path="Int"/>
 			<haxe_doc> This port range is defined by IANA for dynamic or private ports.
      * Used when choosing port for dynamic binding.
      </haxe_doc>
 		</DYNFROM>
-		<DYNTO public="1" get="inline" set="null" line="41" static="1"><c path="Int"/></DYNTO>
-		<create public="1" set="method" line="52" static="1">
-			<f a="ctx:type">
-				<c path="org.zeromq.ZContext"/>
-				<e path="org.zeromq.SocketType"/>
-				<c path="org.zeromq.ZMQSocket"/>
-			</f>
-			<haxe_doc>
-     * Creates a new managed socket within the ZContext context.
-     * If the socket is a SUB socket, autmatically subscribes to everything
-     * Use this to get automatic management of the socket at shutdown
-     * 
-     * @param	ctx     The ZContext context
-     * @param	type    Socket type
-     * @return  Managed ZMQSocket
-     </haxe_doc>
-		</create>
-		<destroy public="1" set="method" line="70" static="1">
-			<f a="ctx:socket">
-				<c path="org.zeromq.ZContext"/>
-				<c path="org.zeromq.ZMQSocket"/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc>
-     * Destroys the socket.
-     * Must be used for any socket created via the ZSocket.create() method
-     * @param	ctx
-     * @param	socket
-     </haxe_doc>
-		</destroy>
-		<isType public="1" set="method" line="83" static="1">
+		<DYNTO public="1" get="inline" set="null" line="58" static="1"><c path="Int"/></DYNTO>
+		<isType public="1" set="method" line="67" static="1">
 			<f a="socket:type">
 				<c path="org.zeromq.ZMQSocket"/>
 				<e path="org.zeromq.SocketType"/>
@@ -1409,7 +1401,7 @@
      * @return  true if socket is of given type, else false, else null if could not determine socket type
      </haxe_doc>
 		</isType>
-		<bind public="1" set="method" line="108" static="1">
+		<bindEndpoint public="1" set="method" line="92" static="1">
 			<f a="socket:protocol:interf:?port">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="String"/>
@@ -1428,8 +1420,8 @@
      * @param	port        (optional) Port number
      * @return  Port number if bind successful, else -1
      </haxe_doc>
-		</bind>
-		<connect public="1" set="method" line="141" static="1">
+		</bindEndpoint>
+		<connectEndpoint public="1" set="method" line="125" static="1">
 			<f a="socket:protocol:interf:?port">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="String"/>
@@ -1445,14 +1437,31 @@
      * @param	interf      Bind address "foo.com", "127.0.0.3"
      * @param	port        Port number
      </haxe_doc>
-		</connect>
-		<haxe_doc>
- * ZSocket provides a higher-level zeroMQ socket management class.
- * It is inspired by the zsocket.c source code in the czmq project:
- * @see http://github.com/zeromq/czmq/blob/master/src/zsocket.c
+		</connectEndpoint>
+		<haxe_doc><![CDATA[
+ * <p>
+ * ZSocket provides higher-level ZMQSocket socket helper static methods.
+ * </p>
+ * <p>
+ * <pre>
+ * import org.zeromq.ZMQ;
+ * using org.zeromq.ZSocket;
+ * ...
+ * var output = ctx.createSocket(ZMQ_PUSH);
+ * var input = ctx.createSocket(ZMQ_PULL);
  * 
- * Automatically subscribes SUB socket to "" (all)
- </haxe_doc>
+ * // Bind to a tcp port on localhost
+ * var port = output.bind("tcp", "*", "5560");
+ * 
+ * // Connect
+ * input.connect("tcp", "localhost", "5560");
+ * </pre>
+ * 
+ * <p>
+ * Based on the <a href="http://github.com/zeromq/czmq/blob/master/src/zsocket.c">zsocket.c</a> source code in the czmq project.
+ * </p>
+ * 
+ ]]></haxe_doc>
 	</class>
 	<typedef path="org.zeromq.PollItemT" params="" file="./org/zeromq/ZLoop.hx" module="org.zeromq.ZLoop">
 		<a>
@@ -1492,7 +1501,7 @@
 	<delay><c path="Float"/></delay>
 </a></typedef>
 	<class path="org.zeromq.ZLoop" params="" file="./org/zeromq/ZLoop.hx">
-		<newPoller set="method" line="261" static="1">
+		<newPoller set="method" line="270" static="1">
 			<f a="item:handler">
 				<t path="org.zeromq.PollItemT"/>
 				<f a="">
@@ -1508,7 +1517,7 @@
      * @return
      </haxe_doc>
 		</newPoller>
-		<newTimer set="method" line="275" static="1">
+		<newTimer set="method" line="284" static="1">
 			<f a="delay:times:handler">
 				<c path="Float"/>
 				<c path="Int"/>
@@ -1523,23 +1532,44 @@
      * @return
      </haxe_doc>
 		</newTimer>
-		<verbose public="1"><e path="Bool"/></verbose>
-		<pollers><c path="List"><t path="org.zeromq.PollerT"/></c></pollers>
-		<timers><c path="List"><t path="org.zeromq.TimerT"/></c></timers>
-		<zombies><c path="List"><t path="org.zeromq.TimerT"/></c></zombies>
-		<poller><c path="org.zeromq.ZMQPoller"/></poller>
-		<dirty><e path="Bool"/></dirty>
-		<log><f a="">
-	<d/>
-	<e path="Void"/>
-</f></log>
-		<destroy public="1" set="method" line="95">
+		<verbose public="1">
+			<e path="Bool"/>
+			<haxe_doc> Turns on verbose trace logging </haxe_doc>
+		</verbose>
+		<pollers>
+			<c path="List"><t path="org.zeromq.PollerT"/></c>
+			<haxe_doc> List of registered pollers </haxe_doc>
+		</pollers>
+		<timers>
+			<c path="List"><t path="org.zeromq.TimerT"/></c>
+			<haxe_doc> List of registered timers </haxe_doc>
+		</timers>
+		<zombies>
+			<c path="List"><t path="org.zeromq.TimerT"/></c>
+			<haxe_doc> List of timers to kill </haxe_doc>
+		</zombies>
+		<poller>
+			<c path="org.zeromq.ZMQPoller"/>
+			<haxe_doc> Internal ZMQPoller object that holds the actual pollset used when querying socket state </haxe_doc>
+		</poller>
+		<dirty>
+			<e path="Bool"/>
+			<haxe_doc> True if list of pollers and timers are different to pollset held within the poller object </haxe_doc>
+		</dirty>
+		<log>
+			<f a="">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc> Logger function used in verbose mode. Set during ZLoop construction </haxe_doc>
+		</log>
+		<destroy public="1" set="method" line="104">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Destructor
      </haxe_doc>
 		</destroy>
-		<registerTimer public="1" set="method" line="114">
+		<registerTimer public="1" set="method" line="123">
 			<f a="delay:times:handler">
 				<c path="Float"/>
 				<c path="Int"/>
@@ -1547,7 +1577,7 @@
 				<e path="Bool"/>
 			</f>
 			<haxe_doc>
-     * Register a timer that expires after some delay and rpeats some number of times. At each expiry, will call the handler.
+     * Register a timer that expires after some delay and repeats some number of times. At each expiry, will call the handler.
      * To run a timer forever, use 0 times. Returns true if OK, false if there was an error
      * @param	delay       Number of milliseconds to delay event for
      * @param	times       Number of times to repeat, else 0 for forever
@@ -1555,7 +1585,7 @@
      * @return  true if OK, else false
      </haxe_doc>
 		</registerTimer>
-		<registerPoller public="1" set="method" line="130">
+		<registerPoller public="1" set="method" line="139">
 			<f a="item:handler">
 				<t path="org.zeromq.PollItemT"/>
 				<f a="">
@@ -1574,29 +1604,29 @@
      * @return  true if OK, else false
      ]]></haxe_doc>
 		</registerPoller>
-		<start public="1" set="method" line="147">
+		<start public="1" set="method" line="156">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
      * Start the reactor. Takes control of the thread and returns when the 0MQ
      * context is terminated or the process is interrupted, or any event handler returns -1.
-     * Event handlers may register new sokets and timers, and cancel sockets.
+     * Event handlers may register new sockets and timers, and cancel sockets.
      * @return Returns 0 if interrupted, -1 if cancelled by a handler
      </haxe_doc>
 		</start>
-		<rebuildPollset set="method" line="226">
+		<rebuildPollset set="method" line="235">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Rebuilds pollset held within the poller object from list of registered pollers
      </haxe_doc>
 		</rebuildPollset>
-		<ticklessTimer set="method" line="238">
+		<ticklessTimer set="method" line="247">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
      * Calculate timeout between now and next timed event
      * @return  Number of milliseconds between now and next timed event
      </haxe_doc>
 		</ticklessTimer>
-		<new public="1" set="method" line="78">
+		<new public="1" set="method" line="87">
 			<f a="?logger">
 				<f a="">
 					<d/>
@@ -1606,13 +1636,22 @@
 			</f>
 			<haxe_doc>
      * Constructor
+     * @param logger    (Optional). Provide a logging function that accepts zloop trace log entries generated when verbose = true.
      </haxe_doc>
 		</new>
-		<haxe_doc>
+		<haxe_doc><![CDATA[
+ * <p>
  * The ZLoop class provides an event-driven reactor pattern. The reactor handles socket readers not writers,
  * and once-off or repeated timers.  its resolution is 1 msec. It uses a tickless timer to reduce CPU interrupts in
  * inactive processes.
- </haxe_doc>
+ * </p>
+ * <p>
+ * Note that at present, it only supports 0MQ sockets; polling of haXe Socket objects is not supported. 
+ * </p>
+ * <p>
+ * Based on <a href="http://github.com/zeromq/czmq/blob/master/src/zloop.c">zloop.c</a> in czmq
+ * </p>
+ ]]></haxe_doc>
 	</class>
 	<class path="StringBuf" params="" file="/usr/lib/haxe/std/StringBuf.hx">
 		<add public="1" get="inline" set="null" line="46">
@@ -2102,7 +2141,7 @@
 	 * 				encoded to utf-8 first.
 	 </haxe_doc>
 		</bind>
-		<connect public="1" set="method" line="144">
+		<connect public="1" set="method" line="143">
 			<f a="addr">
 				<c path="String"/>
 				<e path="Void"/>
@@ -2113,8 +2152,7 @@
 	 * @param	addr	The address string
 	 * 				This has the form 'protocol://interface:port',
 	 * 				for example 'tcp://127.0.0.1:5555'. Protocols supported are
-	 * 				tcp, upd, pgm, inproc and ipc. If the address is unicode, it is
-	 * 				encoded to utf-8 first.
+	 * 				tcp, upd, pgm, inproc and ipc. 
 	 </haxe_doc>
 		</connect>
 		<setsockopt public="1" set="method" line="182">
@@ -2397,7 +2435,7 @@
 </haxe_doc>
 	</class>
 	<class path="org.zeromq.ZContext" params="" file="./org/zeromq/ZContext.hx">
-		<shadow public="1" set="method" line="134" static="1">
+		<shadow public="1" set="method" line="137" static="1">
 			<f a="ctx">
 				<c path="org.zeromq.ZContext"/>
 				<c path="org.zeromq.ZContext"/>
@@ -2429,57 +2467,60 @@
 			<e path="Bool"/>
 			<haxe_doc> Indicates if context object owned by main thread </haxe_doc>
 		</main>
-		<destroy public="1" set="method" line="80">
+		<destroy public="1" set="method" line="83">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Destructor. Call this to gracefully close context and managed sockets
      </haxe_doc>
 		</destroy>
-		<newSocket public="1" set="method" line="101">
+		<createSocket public="1" set="method" line="104">
 			<f a="type">
 				<e path="org.zeromq.SocketType"/>
 				<c path="org.zeromq.ZMQSocket"/>
 			</f>
 			<haxe_doc>
-     * Creates socket within this ZContext.  For hxzmq internal usage only.
-     * Use ZSocket class to create new socket instead.
+     * Creates a new managed socket within this ZContext context.
+       * Use this to get automatic management of the socket at shutdown
      * @param	type
      * @return
      </haxe_doc>
-		</newSocket>
-		<destroySocket public="1" set="method" line="119">
+		</createSocket>
+		<destroySocket public="1" set="method" line="122">
 			<f a="s">
 				<c path="org.zeromq.ZMQSocket"/>
 				<e path="Void"/>
 			</f>
 			<haxe_doc>
-     * Destroys socket within this context. For hxzmq internal usage only.
+     * Destroys managed socket within this context.
      * @param	s   Socket to remove
      </haxe_doc>
 		</destroySocket>
-		<new public="1" set="method" line="63">
+		<new public="1" set="method" line="66">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Constructor
      </haxe_doc>
 		</new>
-		<haxe_doc>
+		<haxe_doc><![CDATA[
+ * <p>
  * ZContext provides a higher-level zeroMQ context management class.
- * It is inspired by the zctx.c source code in the czmq project:
- * @see http://github.com/zeromq/czmq/blob/master/src/zctx.c
- * 
- * The ZContext class wraps haXe ZMQContext objects, which in turn wrap native ØMQ contexts.
+ * It is inspired by the <a href="http://github.com/zeromq/czmq/blob/master/src/zctx.c">zctx.c</a> source code in the czmq project.
+ * </p>
+ * <p>
+ * The ZContext class wraps haXe ZMQContext objects, which in turn wrap native 0MQ contexts.
  * It manages open sockets in the context and automatically closes these before terminating the context. 
  * It provides a simple way to set the linger timeout on sockets, and configure contexts for number of I/O threads. 
  * Sets-up signal (interrrupt) handling for the process.
+ * </p>
+ * <p>
+ * The ZContext class has these main features:<br />
+ * 1. Tracks all open sockets and automatically closes them before calling zmq_term(). This avoids an infinite wait on open sockets.<br />
+ * 2. Automatically configures sockets with a ZMQ_LINGER timeout you can define, and which defaults to zero. The default behaviour of ZContext is therefore like 0MQ/2.0, immediate termination with loss of any pending messages. You can set any linger timeout you like by calling the zctx_set_linger() method.<br />
+ * 3. Moves the iothreads configuration to a separate method, so that default usage is 1 I/O thread. Lets you configure this value.<br />
+ * 4. Sets up signal (SIGINT and SIGTERM) handling so that blocking calls such as zmq_recv() and zmq_poll() will return when the user presses Ctrl-C.<br />
  * 
- * The ZContext class has these main features:
- * 
- * 1. Tracks all open sockets and automatically closes them before calling zmq_term(). This avoids an infinite wait on open sockets.
- * 2. Automatically configures sockets with a ZMQ_LINGER timeout you can define, and which defaults to zero. The default behaviour of ZContext is therefore like ØMQ/2.0, immediate termination with loss of any pending messages. You can set any linger timeout you like by calling the zctx_set_linger() method.
- * 3. Moves the iothreads configuration to a separate method, so that default usage is 1 I/O thread. Lets you configure this value.
- * 4. Sets up signal (SIGINT and SIGTERM) handling so that blocking calls such as zmq_recv() and zmq_poll() will return when the user presses Ctrl-C.
- </haxe_doc>
+ * </p>
+ ]]></haxe_doc>
 	</class>
 	<enum path="haxe.io.Error" params="" file="/usr/lib/haxe/std/haxe/io/Error.hx">
 		<Overflow><haxe_doc> An integer value is outside its allowed range </haxe_doc></Overflow>
@@ -3198,7 +3239,7 @@
 		<new public="1" set="method" line="51"><f a=""><e path="Void"/></f></new>
 	</class>
 	<class path="org.zeromq.ZMsg" params="" file="./org/zeromq/ZMsg.hx">
-		<recvMsg public="1" set="method" line="275" static="1">
+		<recvMsg public="1" set="method" line="298" static="1">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="org.zeromq.ZMsg"/>
@@ -3211,7 +3252,7 @@
      * @return
      </haxe_doc>
 		</recvMsg>
-		<newStringMsg public="1" set="method" line="303" static="1">
+		<newStringMsg public="1" set="method" line="326" static="1">
 			<f a="data">
 				<c path="String"/>
 				<c path="org.zeromq.ZMsg"/>
@@ -3222,7 +3263,7 @@
      * @return
      </haxe_doc>
 		</newStringMsg>
-		<save public="1" set="method" line="322" static="1">
+		<save public="1" set="method" line="345" static="1">
 			<f a="msg:file">
 				<c path="org.zeromq.ZMsg"/>
 				<t path="neko.io.FileOutput"/>
@@ -3242,7 +3283,7 @@
      * @return
      </haxe_doc>
 		</save>
-		<load public="1" set="method" line="353" static="1">
+		<load public="1" set="method" line="376" static="1">
 			<f a="file:?msg">
 				<t path="neko.io.FileInput"/>
 				<c path="org.zeromq.ZMsg"/>
@@ -3258,25 +3299,25 @@
      </haxe_doc>
 		</load>
 		<frames><c path="List"><c path="org.zeromq.ZFrame"/></c></frames>
-		<destroy public="1" set="method" line="51">
+		<destroy public="1" set="method" line="74">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Destructor.
      * Destroys all ZFrames stored in ZMsg
      </haxe_doc>
 		</destroy>
-		<size public="1" set="method" line="60">
+		<size public="1" set="method" line="83">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc> Return number of frames in message </haxe_doc>
 		</size>
-		<contentSize public="1" set="method" line="72">
+		<contentSize public="1" set="method" line="95">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
      * Return number of bytes contained in all the frames in this message
      * @return
      </haxe_doc>
 		</contentSize>
-		<add public="1" set="method" line="86">
+		<add public="1" set="method" line="109">
 			<f a="frame">
 				<c path="org.zeromq.ZFrame"/>
 				<e path="Void"/>
@@ -3287,7 +3328,7 @@
      * @throws ZMQException if frame is null
      </haxe_doc>
 		</add>
-		<remove public="1" set="method" line="99">
+		<remove public="1" set="method" line="122">
 			<f a="frame">
 				<c path="org.zeromq.ZFrame"/>
 				<e path="Bool"/>
@@ -3299,14 +3340,14 @@
      * @return  true if frame is found and removed, else false
      </haxe_doc>
 		</remove>
-		<iterator public="1" set="method" line="110">
+		<iterator public="1" set="method" line="133">
 			<f a=""><t path="Iterator"><c path="org.zeromq.ZFrame"/></t></f>
 			<haxe_doc>
      * Returns an iterator over the ZFrame list within the ZMsg
      * @return
      </haxe_doc>
 		</iterator>
-		<filter public="1" set="method" line="123">
+		<filter public="1" set="method" line="146">
 			<f a="f">
 				<f a="">
 					<c path="org.zeromq.ZFrame"/>
@@ -3321,28 +3362,28 @@
      * @return  Filtered ZMsg object, else null if this message contains no frame list (ie has been destroyed)
      </haxe_doc>
 		</filter>
-		<first public="1" set="method" line="139">
+		<first public="1" set="method" line="162">
 			<f a=""><c path="org.zeromq.ZFrame"/></f>
 			<haxe_doc>
      * Returns last frame in message, else null if frame list is empty or invalid (destroyed)
      * @return
      </haxe_doc>
 		</first>
-		<isEmpty public="1" set="method" line="150">
+		<isEmpty public="1" set="method" line="173">
 			<f a=""><e path="Bool"/></f>
 			<haxe_doc>
      * returns True if the ZMsg has no frames, else false
      * @return
      </haxe_doc>
 		</isEmpty>
-		<last public="1" set="method" line="158">
+		<last public="1" set="method" line="181">
 			<f a=""><c path="org.zeromq.ZFrame"/></f>
 			<haxe_doc>
      * Returns last frame in message, else null if frame list is empty or invalid (destroyed)
      * @return
      </haxe_doc>
 		</last>
-		<pop public="1" set="method" line="170">
+		<pop public="1" set="method" line="193">
 			<f a=""><c path="org.zeromq.ZFrame"/></f>
 			<haxe_doc>
      * Removes first frame from message, if any. Returns frame or null.
@@ -3350,7 +3391,7 @@
      * @return
      </haxe_doc>
 		</pop>
-		<push public="1" set="method" line="182">
+		<push public="1" set="method" line="205">
 			<f a="frame">
 				<c path="org.zeromq.ZFrame"/>
 				<e path="Void"/>
@@ -3361,7 +3402,7 @@
      * @param	frame
      </haxe_doc>
 		</push>
-		<pushString public="1" set="method" line="195">
+		<pushString public="1" set="method" line="218">
 			<f a="str">
 				<c path="String"/>
 				<e path="Void"/>
@@ -3371,7 +3412,7 @@
      * @param	str
      </haxe_doc>
 		</pushString>
-		<addString public="1" set="method" line="206">
+		<addString public="1" set="method" line="229">
 			<f a="str">
 				<c path="String"/>
 				<e path="Void"/>
@@ -3381,7 +3422,7 @@
      * @param	str
      </haxe_doc>
 		</addString>
-		<popString public="1" set="method" line="218">
+		<popString public="1" set="method" line="241">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>
      * Pop frame off top of message, returns as a String, else null if
@@ -3389,14 +3430,14 @@
      * @return
      </haxe_doc>
 		</popString>
-		<duplicate public="1" set="method" line="234">
+		<duplicate public="1" set="method" line="257">
 			<f a=""><c path="org.zeromq.ZMsg"/></f>
 			<haxe_doc><![CDATA[
      * Creates copy of this message, also copying all contained frames & their data
      * @return  Copied ZMsg object, or null if this message contains an invalid (destroyed) frame list.
      ]]></haxe_doc>
 		</duplicate>
-		<send public="1" set="method" line="250">
+		<send public="1" set="method" line="273">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<e path="Void"/>
@@ -3407,18 +3448,41 @@
      * @param	socket
      </haxe_doc>
 		</send>
-		<new public="1" set="method" line="43">
+		<new public="1" set="method" line="66">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Constructor
      </haxe_doc>
 		</new>
-		<haxe_doc>
- * The ZMsg class provides methods to send and receive multipart messages
- * across 0MS sockets. THis class provides a list-lie container interface,
+		<haxe_doc><![CDATA[
+ * <p>The ZMsg class provides methods to send and receive multipart messages
+ * across 0MQ sockets. This class provides a list-like container interface,
  * with methods to work with the overall container.  ZMsg messages are
  * composed of zero or more ZFrame objects.
- </haxe_doc>
+ * </p>
+ * <p>
+ * <pre>
+ * // Send a simple single-frame string message on a ZMQSocket "output" socket object
+ * ZMsg.newStringMsg("Hello").send(output);
+ * 
+ * // Add several frames into one message
+ * var msg:ZMsg = new ZMsg();
+ * for (i in 0 ... 10) {
+ *     msg.addString("Frame" + i);
+ * }
+ * msg.send(output);
+ * 
+ * // Receive message from ZMQSocket "input" socket object and iterate over frames
+ * var receivedMessage = ZMsg.recvMsg(input);
+ * for (f in receivedMessage) {
+ *     // Do something with frame f (of type ZFrame)
+ * }
+ * </pre>
+ * </p>
+ * <p>
+ * Based on <a href="http://github.com/zeromq/czmq/blob/master/src/zmsg.c">zmsg.c</a> in czmq
+ * </p>
+ ]]></haxe_doc>
 	</class>
 	<class path="List" params="T" file="/usr/lib/haxe/std/List.hx">
 		<h><c path="Array"><d/></c></h>

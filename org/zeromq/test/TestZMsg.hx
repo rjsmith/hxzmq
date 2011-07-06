@@ -33,10 +33,10 @@ class TestZMsg extends BaseTest
         
         var ctx:ZContext = new ZContext();
         
-        var output:ZMQSocket = ZSocket.create(ctx, ZMQ_PAIR);
-        ZSocket.bind(output, "inproc", "zmsg.test");
-        var input:ZMQSocket = ZSocket.create(ctx, ZMQ_PAIR);
-        ZSocket.connect(input, "inproc", "zmsg.test");
+        var output:ZMQSocket = ctx.createSocket(ZMQ_PAIR);
+        ZSocket.bindEndpoint(output, "inproc", "zmsg.test");
+        var input:ZMQSocket = ctx.createSocket(ZMQ_PAIR);
+        ZSocket.connectEndpoint(input, "inproc", "zmsg.test");
         
         // Test send and receive of a single ZMsg
         var msg:ZMsg = new ZMsg();
@@ -59,10 +59,10 @@ class TestZMsg extends BaseTest
     public function testMultiPart() {
         var ctx:ZContext = new ZContext();
         
-        var output:ZMQSocket = ZSocket.create(ctx, ZMQ_PAIR);
-        ZSocket.bind(output, "inproc", "zmsg.test2");
-        var input:ZMQSocket = ZSocket.create(ctx, ZMQ_PAIR);
-        ZSocket.connect(input, "inproc", "zmsg.test2");
+        var output:ZMQSocket = ctx.createSocket(ZMQ_PAIR);
+        ZSocket.bindEndpoint(output, "inproc", "zmsg.test2");
+        var input:ZMQSocket = ctx.createSocket(ZMQ_PAIR);
+        ZSocket.connectEndpoint(input, "inproc", "zmsg.test2");
 
         var msg:ZMsg = new ZMsg();
         for (i in 0 ... 10) {

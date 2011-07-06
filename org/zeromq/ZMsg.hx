@@ -26,10 +26,33 @@ import org.zeromq.ZMQ;
 import org.zeromq.ZFrame;
 
 /**
- * The ZMsg class provides methods to send and receive multipart messages
- * across 0MS sockets. THis class provides a list-lie container interface,
+ * <p>The ZMsg class provides methods to send and receive multipart messages
+ * across 0MQ sockets. This class provides a list-like container interface,
  * with methods to work with the overall container.  ZMsg messages are
  * composed of zero or more ZFrame objects.
+ * </p>
+ * <p>
+ * <pre>
+ * // Send a simple single-frame string message on a ZMQSocket "output" socket object
+ * ZMsg.newStringMsg("Hello").send(output);
+ * 
+ * // Add several frames into one message
+ * var msg:ZMsg = new ZMsg();
+ * for (i in 0 ... 10) {
+ *     msg.addString("Frame" + i);
+ * }
+ * msg.send(output);
+ * 
+ * // Receive message from ZMQSocket "input" socket object and iterate over frames
+ * var receivedMessage = ZMsg.recvMsg(input);
+ * for (f in receivedMessage) {
+ *     // Do something with frame f (of type ZFrame)
+ * }
+ * </pre>
+ * </p>
+ * <p>
+ * Based on <a href="http://github.com/zeromq/czmq/blob/master/src/zmsg.c">zmsg.c</a> in czmq
+ * </p>
  */
 class ZMsg 
 {

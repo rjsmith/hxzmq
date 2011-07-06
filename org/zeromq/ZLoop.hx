@@ -44,36 +44,45 @@ typedef TimerT = {
 };
 
 /**
+ * <p>
  * The ZLoop class provides an event-driven reactor pattern. The reactor handles socket readers not writers,
  * and once-off or repeated timers.  its resolution is 1 msec. It uses a tickless timer to reduce CPU interrupts in
  * inactive processes.
+ * </p>
+ * <p>
+ * Note that at present, it only supports 0MQ sockets; polling of haXe Socket objects is not supported. 
+ * </p>
+ * <p>
+ * Based on <a href="http://github.com/zeromq/czmq/blob/master/src/zloop.c">zloop.c</a> in czmq
+ * </p>
  */
 class ZLoop 
 {
 
-    // Turns on verbose trace logging
+    /** Turns on verbose trace logging */
     public var verbose:Bool;
     
-    // List of registered pollers
+    /** List of registered pollers */
     private var pollers:List<PollerT>;
     
-    // List of registered timers
+    /** List of registered timers */
     private var timers:List<TimerT>;
     
-    // List of timers to kill
+    /** List of timers to kill */
     private var zombies:List<TimerT>;
     
-    // Internal ZMQPoller object that holds the actual pollset used when querying socket state
+    /** Internal ZMQPoller object that holds the actual pollset used when querying socket state */
     private var poller:ZMQPoller;
     
-    // True if list of pollers and timers are different to pollset held within the poller object
+    /** True if list of pollers and timers are different to pollset held within the poller object */
     private var dirty:Bool;
     
-    // Logger function used in verbose mode. Set during ZLoop construction
+    /** Logger function used in verbose mode. Set during ZLoop construction */
     private var log:Dynamic->Void;
     
     /**
      * Constructor
+     * @param logger    (Optional). Provide a logging function that accepts zloop trace log entries generated when verbose = true.
      */
     public function new(?logger:Dynamic->Void) 
     {
@@ -104,7 +113,7 @@ class ZLoop
     }
     
     /**
-     * Register a timer that expires after some delay and rpeats some number of times. At each expiry, will call the handler.
+     * Register a timer that expires after some delay and repeats some number of times. At each expiry, will call the handler.
      * To run a timer forever, use 0 times. Returns true if OK, false if there was an error
      * @param	delay       Number of milliseconds to delay event for
      * @param	times       Number of times to repeat, else 0 for forever
@@ -141,7 +150,7 @@ class ZLoop
     /**
      * Start the reactor. Takes control of the thread and returns when the 0MQ
      * context is terminated or the process is interrupted, or any event handler returns -1.
-     * Event handlers may register new sokets and timers, and cancel sockets.
+     * Event handlers may register new sockets and timers, and cancel sockets.
      * @return Returns 0 if interrupted, -1 if cancelled by a handler
      */
     public function start():Int {

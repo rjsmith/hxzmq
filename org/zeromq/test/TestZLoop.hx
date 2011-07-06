@@ -30,17 +30,18 @@ class TestZLoop extends BaseTest
     public function testBasic() {
         var ctx:ZContext = new ZContext();
         
-        var output:ZMQSocket = ZSocket.create(ctx, ZMQ_PAIR);
-        ZSocket.bind(output, "inproc", "zloop.test");
-        var input:ZMQSocket = ZSocket.create(ctx, ZMQ_PAIR);
-        ZSocket.connect(input, "inproc", "zloop.test");
+        var output:ZMQSocket = ctx.createSocket(ZMQ_PAIR);
+        ZSocket.bindEndpoint(output, "inproc", "zloop.test");
+        var input:ZMQSocket = ctx.createSocket(ZMQ_PAIR);
+        ZSocket.connectEndpoint(input, "inproc", "zloop.test");
 
         var here = this;
 
         var loop:ZLoop = new ZLoop();
         assertTrue(loop != null);
         
-        loop.verbose = true;
+		// Chnage to verbose = true to see zloop polling trace info
+        loop.verbose = false;
         
         var timerEventFn = function ():Int {
             ZMsg.newStringMsg("PING").send(output);

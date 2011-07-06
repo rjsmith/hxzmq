@@ -31,16 +31,16 @@ class TestZSocket extends BaseTest
     public function testCreateDestroySocket()
     {
         var ctx:ZContext = new ZContext();
-        var s:ZMQSocket = ZSocket.create(ctx, ZMQ_REQ);
+        var s:ZMQSocket = ctx.createSocket(ZMQ_REQ);
         assertTrue (s != null);
         assertFalse(s.closed);
         assertEquals(1, ctx.sockets.length);
         
-        var s1:ZMQSocket = ZSocket.create(ctx, ZMQ_SUB);
+        var s1:ZMQSocket = ctx.createSocket(ZMQ_SUB);
         assertTrue(s1 != null);
         assertEquals(2, ctx.sockets.length);
         
-        ZSocket.destroy(ctx, s1);
+        ctx.destroySocket(s1);
         assertEquals(1, ctx.sockets.length);
         var _s:ZMQSocket = ctx.sockets.first();
         assertTrue(ZSocket.isType(_s, ZMQ_REQ));
@@ -48,11 +48,11 @@ class TestZSocket extends BaseTest
     
     public function testBindConnect() {
         var ctx:ZContext = new ZContext();
-        var writer:ZMQSocket = ZSocket.create(ctx, ZMQ_PUSH);
-        var reader:ZMQSocket = ZSocket.create(ctx, ZMQ_PULL);
+        var writer:ZMQSocket = ctx.createSocket(ZMQ_PUSH);
+        var reader:ZMQSocket = ctx.createSocket(ZMQ_PULL);
 
-        assertEquals(5560, ZSocket.bind(writer, "tcp", "*", "5560"));
-        ZSocket.connect(reader, "tcp", "localhost", "5560");
+        assertEquals(5560, ZSocket.bindEndpoint(writer, "tcp", "*", "5560"));
+        ZSocket.connectEndpoint(reader, "tcp", "localhost", "5560");
         
         writer.sendMsg(Bytes.ofString("HELLO"));
         
@@ -61,7 +61,7 @@ class TestZSocket extends BaseTest
         assertTrue(b != null);
         assertEquals("HELLO", b.toString());
         
-        var p:Int = ZSocket.bind(writer, "tcp", "*", "*");
+        var p:Int = ZSocket.bindEndpoint(writer, "tcp", "*", "*");
         assertTrue(p >= ZSocket.DYNFROM && p <= ZSocket.DYNTO);
         
         ctx.destroy();

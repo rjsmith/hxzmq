@@ -138,13 +138,13 @@ class ZMQSocket
 	 * @param	addr	The address string
 	 * 				This has the form 'protocol://interface:port',
 	 * 				for example 'tcp://127.0.0.1:5555'. Protocols supported are
-	 * 				tcp, upd, pgm, inproc and ipc. If the address is unicode, it is
-	 * 				encoded to utf-8 first.
+	 * 				tcp, upd, pgm, inproc and ipc. 
 	 */
 	public function connect(addr:String)
 	{
-		if (_socketHandle == null || closed)
+		if (_socketHandle == null || closed) {
 			throw new ZMQException(ENOTSUP);
+		}
 		
 		try {
 #if (neko || cpp)            
