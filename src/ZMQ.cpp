@@ -381,3 +381,20 @@ value hx_zmq_ETERM()
 }
 DEFINE_PRIM( hx_zmq_ETERM,0);
 
+/* ******* ZMQ Devices *************/
+value hx_zmq_ZMQ_QUEUE()
+{
+	return alloc_int(ZMQ_QUEUE);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_QUEUE, 0);
+value hx_zmq_ZMQ_FORWARDER()
+{
+	return alloc_int(ZMQ_FORWARDER);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_FORWARDER, 0);
+value hx_zmq_ZMQ_STREAMER()
+{
+	return alloc_int(ZMQ_STREAMER);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_STREAMER, 0);
+

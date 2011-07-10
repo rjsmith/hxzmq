@@ -97,6 +97,12 @@ enum SocketOptionsType {
 	ZMQ_TYPE;			// Retrieves type of socket
 }
 
+enum DeviceType {
+	ZMQ_QUEUE;
+	ZMQ_FORWARDER;
+	ZMQ_STREAMER;
+}
+
 /**
  * Used to pass 64 bit ints to setlongsockopt
  */
@@ -140,20 +146,6 @@ class ZMQ {
 		];
 	
    
-    /**
-     * Flag to specify a STREAMER device.
-     */
-    public static inline var STREAMER = 1;
-
-    /**
-     * Flag to specify a FORWARDER device.
-     */
-    public static inline var FORWARDER = 2;
-
-    /**
-     * Flag to specify a QUEUE device.
-     */
-    public static inline var QUEUE = 3;
 		
 	// Bitmask flags for ZMQ_EVENTS socket event option query
 
@@ -428,6 +420,27 @@ class ZMQ {
 	}
 	
 	/**
+	 * Converts a ZMQ DeviceType enum value into underlying device number.
+	 * Used for call to zmq_device
+	 * @param	device
+	 * @return
+	 */
+	public static function deviceTypeToDevice(device: DeviceType):Int {
+		return {
+			switch (device) {
+				case ZMQ_QUEUE:
+					_hx_zmq_ZMQ_QUEUE();
+				case ZMQ_FORWARDER:
+					_hx_zmq_ZMQ_FORWARDER();
+				case ZMQ_STREAMER:
+					_hx_zmq_ZMQ_STREAMER();
+				default:
+					0;
+			}
+		}
+	}
+	
+	/**
 	 * Sets up interrupt signal handling.
 	 * Use isInterrupted() to subsequently test for interruption
 	 */
@@ -514,6 +527,10 @@ class ZMQ {
 	private static var _hx_zmq_EFSM = Lib.load("hxzmq", "hx_zmq_EFSM", 0);
 	private static var _hx_zmq_ENOCOMPATPROTO = Lib.load("hxzmq", "hx_zmq_ENOCOMPATPROTO", 0);
 	private static var _hx_zmq_ETERM = Lib.load("hxzmq", "hx_zmq_ETERM", 0);
+	
+	private static var _hx_zmq_ZMQ_QUEUE = Lib.load("hxzmq", "hx_zmq_ZMQ_QUEUE", 0);
+	private static var _hx_zmq_ZMQ_FORWARDER = Lib.load("hxzmq", "hx_zmq_ZMQ_FORWARDER", 0);
+	private static var _hx_zmq_ZMQ_STREAMER = Lib.load("hxzmq", "hx_zmq_ZMQ_STREAMER", 0);
 	
     #elseif php
     //      Load functions and constants from php-zmq
@@ -634,6 +651,10 @@ class ZMQ {
     private static inline function _hx_zmq_ENOCOMPATPROTO():Int {return untyped __php__('ZMQ::ERR_ENOTSUP');}
     private static inline function _hx_zmq_ETERM():Int {return untyped __php__('ZMQ::ERR_ETERM');}
         
+	private static inline function _hx_zmq_ZMQ_QUEUE():Int { return untyped __php__('ZMQ::DEVICE_QUEUE'); }
+	private static inline function _hx_zmq_ZMQ_FORWARDER():Int { return untyped __php__('ZMQ::DEVICE_FORWARDER'); }
+	private static inline function _hx_zmq_ZMQ_STREAMER():Int { return untyped __php__('ZMQ::DEVICE_STREAMER'); }
+	
   	#end
 }
 

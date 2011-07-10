@@ -24,6 +24,7 @@ import org.zeromq.ZMQContext;
 import org.zeromq.ZMQException;
 import org.zeromq.ZMQPoller;
 import org.zeromq.ZMQSocket;
+import org.zeromq.ZMQDevice;
 import org.zeromq.remoting.ZMQConnection;
 import org.zeromq.remoting.ZMQSocketProtocol;
 import org.zeromq.ZContext;

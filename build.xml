@@ -35,6 +35,7 @@
 		<file name="src/Socket.cpp"/>
 		<file name="src/Poller.cpp"/>
 		<file name="src/Interrupt.cpp"/>
+		<file name="src/Device.cpp"/>
 		
 </files>
 
