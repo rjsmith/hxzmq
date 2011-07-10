@@ -7,15 +7,10 @@ echo "** Build Haxe Unit Tests:"
 cd test
 /usr/bin/haxe buildMac64.hxml
 
-echo "** Build Haxe ZeroMQ Guide programs:"
-cd ../guide
-/usr/bin/haxe buildMac64.hxml
-
 echo "** Copying hxzmq.ndll:"
 cd ..
 cp ndll/Mac64/hxzmq.ndll test/out-cpp/Mac64
 cp ndll/Mac64/hxzmq.ndll test/out-neko/Mac64
-cp ndll/Mac64/hxzmq.ndll guide/out-cpp/Mac64
 
 echo "** Running CPP executables:"
 cd test/out-cpp/Mac64

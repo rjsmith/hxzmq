@@ -131,44 +131,6 @@ You should see output similar to:
     OK 44 tests, 0 failed, 44 success
 
 
-## To build and run the Guide applications
-
-hxzmq includes a set of example programs based on examples in the ZeroMQ Guide.
-The source code for these is in the org/zeromq/guide folder in this repository.
-You can build each class separately, or build the org/zeromq/guide/Run.hx class which provides a simple menu selection.
-To build targets for the Run.hx, `cd guide` and then invoke the `haxe` command with the hxml build file appropriate to your platform, eg::
-    haxe buildMac64.hxml
-or
-    haxe buildWindows.hxml
-or
-    haxe buildLinux.hxml
-    
-These create debug - enabled target cpp, neko and php executables in the guide/out-cpp/... or guide/out-neko/... or guide/out-php folders.
-Then to run the test executables:
-
-For neko or cpp:
-1.  Navigate to the folder holding the guide executable (cpp or neko, platform), 
-2.  Ensure that the hxzmq.ndll and libzmq.dll files are on your executable path (or copied into this folder)
-3.  Run the program
-
-e.g, to build and run the neko guide target executable on Windows:
-    cd guide
-    haxe buildWindows.hxml
-    cd out-neko/Windows
-    neko run-debug.n
-
-For php:
-1.  Navigate to the folder holding the guide index.php
-2.  Ensure that the php-zmq extension is available (run `php -m` and look for `zmq`)
-3.  Run the program
-
-e.g, to build and run the php guide target executable on Windows:
-    cd guide
-    haxe buildWindows.hxml
-    cd out-php/Windows
-    php -f index.php
-
-
 [1]: http://www.zeromq.org/intro:get-the-software "ZeroMQ installation"
 [2]: http://haxe.org/doc/cpp/ffi "HXCPP Build Tool"
 [3]: http://github.com/mkoppanen/php-zmq

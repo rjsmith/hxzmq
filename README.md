@@ -115,10 +115,6 @@ Key files and folders contained in this repository:
 
     Unit tests for the org.zeromq package.  Main program invoked from the TestAll.hx class.
 	
-*   */org/zeromq/guide*
-
-    haXe implementations of some code examples included in the [0MQ Guide] [11]. Can be compiled separately, or via the menu class, Run.hx.
-
 *   */test*
 
     Contains build hxml files for compiling the unit tests on different platforms.
