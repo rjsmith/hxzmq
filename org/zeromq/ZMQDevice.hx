@@ -49,7 +49,7 @@ class ZMQDevice
 		if (type == null) {
 			throw new ZMQException(EINVAL);
 		}
-		
+#if (neko || cpp)		
 		try {
 			// This will continue to execute until current thread or process is terminated
 			var rc = _hx_zmq_device(ZMQ.deviceTypeToDevice(type), frontend._socketHandle, backend._socketHandle);
@@ -58,9 +58,17 @@ class ZMQDevice
 		} catch (e:Dynamic) {
 			Lib.rethrow(e);
 		}
+#elseif php
+		var _typenum = ZMQ.deviceTypeToDevice(type);
+		var _frontend_handle = frontend._socketHandle;
+		var _backend_handle = backend._socketHandle;
+		var r = untyped __php__('new ZMQDevice($_typenum, $_frontend_handle, $_backend_handle)'); 
+#end
+
 	}
 
 #if (neko || cpp) 
 	private static var _hx_zmq_device = Lib.load("hxzmq", "hx_zmq_device", 3);
+
 #end
 }
