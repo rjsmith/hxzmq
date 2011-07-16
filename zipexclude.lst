@@ -1,13 +1,4 @@
 hxzmq/.git/*
-hxzmq/guide/out-cpp/Mac64/*
-hxzmq/guide/out-cpp/Windows/*
-hxzmq/guide/out-cpp/Linux/*
-hxzmq/guide/out-neko/Mac64/*
-hxzmq/guide/out-neko/Windows/*
-hxzmq/guide/out-neko/Linux/*
-hxzmq/guide/out-php/Mac64/*
-hxzmq/guide/out-php/Windows/*
-hxzmq/guide/out-php/Linux/*
 hxzmq/test/out-cpp/Mac64/*
 hxzmq/test/out-cpp/Windows/*
 hxzmq/test/out-cpp/Linux/*
@@ -25,4 +16,5 @@ hxzmq/vc90.pdb
 hxzmq/.gitignore
 hxzmq/.tm-autocomplete.hxml
 hxzmq/.tmbuild
+*/.DS_Store
 

@@ -211,6 +211,11 @@
  * See: http://api.zeromq.org/master:zmq-setsockopt
  </haxe_doc>
 	</enum>
+	<enum path="org.zeromq.DeviceType" params="" file="./org/zeromq/ZMQ.hx" module="org.zeromq.ZMQ">
+		<ZMQ_STREAMER/>
+		<ZMQ_QUEUE/>
+		<ZMQ_FORWARDER/>
+	</enum>
 	<typedef path="org.zeromq.ZMQInt64Type" params="" file="./org/zeromq/ZMQ.hx" module="org.zeromq.ZMQ">
 		<a>
 			<lo><c path="Int"/></lo>
@@ -292,59 +297,41 @@
 		</println>
 	</class>
 	<class path="org.zeromq.ZMQ" params="" file="./org/zeromq/ZMQ.hx">
-		<bytesSocketOptionTypes public="1" line="112" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></bytesSocketOptionTypes>
-		<int64SocketOptionTypes public="1" line="118" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></int64SocketOptionTypes>
-		<intSocketOptionTypes public="1" line="132" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></intSocketOptionTypes>
-		<STREAMER public="1" get="inline" set="null" line="146" static="1">
-			<c path="Int"/>
-			<haxe_doc>
-     * Flag to specify a STREAMER device.
-     </haxe_doc>
-		</STREAMER>
-		<FORWARDER public="1" get="inline" set="null" line="151" static="1">
-			<c path="Int"/>
-			<haxe_doc>
-     * Flag to specify a FORWARDER device.
-     </haxe_doc>
-		</FORWARDER>
-		<QUEUE public="1" get="inline" set="null" line="156" static="1">
-			<c path="Int"/>
-			<haxe_doc>
-     * Flag to specify a QUEUE device.
-     </haxe_doc>
-		</QUEUE>
-		<ZMQ_POLLIN public="1" get="inline" set="null" line="160" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLIN>
-		<ZMQ_POLLOUT public="1" get="inline" set="null" line="163" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLOUT>
-		<ZMQ_POLLERR public="1" get="inline" set="null" line="166" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLERR>
-		<version_full public="1" set="method" line="174" static="1">
+		<bytesSocketOptionTypes public="1" line="118" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></bytesSocketOptionTypes>
+		<int64SocketOptionTypes public="1" line="124" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></int64SocketOptionTypes>
+		<intSocketOptionTypes public="1" line="138" static="1"><c path="Array"><e path="org.zeromq.SocketOptionsType"/></c></intSocketOptionTypes>
+		<ZMQ_POLLIN public="1" get="inline" set="null" line="152" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLIN>
+		<ZMQ_POLLOUT public="1" get="inline" set="null" line="155" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLOUT>
+		<ZMQ_POLLERR public="1" get="inline" set="null" line="158" static="1"><f a=""><c path="Int"/></f></ZMQ_POLLERR>
+		<version_full public="1" set="method" line="166" static="1">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
 	 * Gets complete 0MQ library version 
 	 * @return		0MQ library version in form MMmmpp (MM=major, mm=minor, pp=patch)
 	 </haxe_doc>
 		</version_full>
-		<versionMajor public="1" set="method" line="183" static="1">
+		<versionMajor public="1" set="method" line="175" static="1">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
 	 * Gets 0MQ library major version
 	 * @return		0MQ major library version (2, 3 etc)
 	 </haxe_doc>
 		</versionMajor>
-		<versionMinor public="1" set="method" line="192" static="1">
+		<versionMinor public="1" set="method" line="184" static="1">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
 	 * Gets 0MQ library minor version
 	 * @return		0MQ minor library version
 	 </haxe_doc>
 		</versionMinor>
-		<versionPatch public="1" set="method" line="201" static="1">
+		<versionPatch public="1" set="method" line="193" static="1">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
 	 * Gets 0MQ library patch version
 	 * @return		0MQ library patch version
 	 </haxe_doc>
 		</versionPatch>
-		<makeVersion public="1" set="method" line="213" static="1">
+		<makeVersion public="1" set="method" line="205" static="1">
 			<f a="major:minor:patch">
 				<c path="Int"/>
 				<c path="Int"/>
@@ -359,7 +346,7 @@
 	 * @return
 	 </haxe_doc>
 		</makeVersion>
-		<strError public="1" set="method" line="224" static="1">
+		<strError public="1" set="method" line="216" static="1">
 			<f a="e">
 				<c path="Int"/>
 				<c path="String"/>
@@ -371,7 +358,7 @@
 	 * @return				A short description of the error
 	 </haxe_doc>
 		</strError>
-		<socketTypeNo public="1" set="method" line="238" static="1">
+		<socketTypeNo public="1" set="method" line="230" static="1">
 			<f a="type">
 				<e path="org.zeromq.SocketType"/>
 				<c path="Int"/>
@@ -382,7 +369,7 @@
 	 * @return
 	 </haxe_doc>
 		</socketTypeNo>
-		<socketOptionTypeNo public="1" set="method" line="270" static="1">
+		<socketOptionTypeNo public="1" set="method" line="262" static="1">
 			<f a="option">
 				<e path="org.zeromq.SocketOptionsType"/>
 				<c path="Int"/>
@@ -393,7 +380,7 @@
 	 * @return
 	 </haxe_doc>
 		</socketOptionTypeNo>
-		<sendReceiveFlagNo public="1" set="method" line="324" static="1">
+		<sendReceiveFlagNo public="1" set="method" line="316" static="1">
 			<f a="type">
 				<e path="org.zeromq.SendReceiveFlagType"/>
 				<c path="Int"/>
@@ -404,7 +391,7 @@
 	 * @return
 	 </haxe_doc>
 		</sendReceiveFlagNo>
-		<errorTypeToErrNo public="1" set="method" line="343" static="1">
+		<errorTypeToErrNo public="1" set="method" line="335" static="1">
 			<f a="e">
 				<e path="org.zeromq.ErrorType"/>
 				<c path="Int"/>
@@ -415,7 +402,7 @@
 	 * @return
 	 </haxe_doc>
 		</errorTypeToErrNo>
-		<errNoToErrorType public="1" set="method" line="389" static="1">
+		<errNoToErrorType public="1" set="method" line="381" static="1">
 			<f a="e">
 				<c path="Int"/>
 				<e path="org.zeromq.ErrorType"/>
@@ -426,14 +413,26 @@
 	 * @return
 	 </haxe_doc>
 		</errNoToErrorType>
-		<catchSignals public="1" set="method" line="434" static="1">
+		<deviceTypeToDevice public="1" set="method" line="428" static="1">
+			<f a="device">
+				<e path="org.zeromq.DeviceType"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+	 * Converts a ZMQ DeviceType enum value into underlying device number.
+	 * Used for call to zmq_device
+	 * @param	device
+	 * @return
+	 </haxe_doc>
+		</deviceTypeToDevice>
+		<catchSignals public="1" set="method" line="447" static="1">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
 	 * Sets up interrupt signal handling.
 	 * Use isInterrupted() to subsequently test for interruption
 	 </haxe_doc>
 		</catchSignals>
-		<isInterrupted public="1" set="method" line="446" static="1">
+		<isInterrupted public="1" set="method" line="459" static="1">
 			<f a=""><e path="Bool"/></f>
 			<haxe_doc>
 	 * Indicates if 0MQ has been interrupted by a system signal (SIGINT or SIGTERM)
@@ -444,72 +443,75 @@
 	 * @return		True if 0MQ has been interrupted
 	 </haxe_doc>
 		</isInterrupted>
-		<_hx_zmq_version_full line="453" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_full>
-		<_hx_zmq_version_major line="454" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_major>
-		<_hx_zmq_version_minor line="455" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_minor>
-		<_hx_zmq_version_patch line="456" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_patch>
-		<_hx_zmq_make_version line="457" static="1"><f a="::">
+		<_hx_zmq_version_full line="466" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_full>
+		<_hx_zmq_version_major line="467" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_major>
+		<_hx_zmq_version_minor line="468" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_minor>
+		<_hx_zmq_version_patch line="469" static="1"><f a=""><c path="Int"/></f></_hx_zmq_version_patch>
+		<_hx_zmq_make_version line="470" static="1"><f a="::">
 	<c path="Int"/>
 	<c path="Int"/>
 	<c path="Int"/>
 	<c path="Int"/>
 </f></_hx_zmq_make_version>
-		<_hx_zmq_str_error line="458" static="1"><f a="">
+		<_hx_zmq_str_error line="471" static="1"><f a="">
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_str_error>
-		<_hx_zmq_catch_signals line="459" static="1"><f a=""><unknown/></f></_hx_zmq_catch_signals>
-		<_hx_zmq_interrupted line="460" static="1"><f a=""><c path="Int"/></f></_hx_zmq_interrupted>
-		<_hx_zmq_ZMQ_PUB line="462" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PUB>
-		<_hx_zmq_ZMQ_SUB line="463" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SUB>
-		<_hx_zmq_ZMQ_PAIR line="464" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PAIR>
-		<_hx_zmq_ZMQ_REQ line="465" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_REQ>
-		<_hx_zmq_ZMQ_REP line="466" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_REP>
-		<_hx_zmq_ZMQ_DEALER line="467" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_DEALER>
-		<_hx_zmq_ZMQ_ROUTER line="468" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_ROUTER>
-		<_hx_zmq_ZMQ_PULL line="469" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PULL>
-		<_hx_zmq_ZMQ_PUSH line="470" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PUSH>
-		<_hx_zmq_ZMQ_LINGER line="472" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_LINGER>
-		<_hx_zmq_ZMQ_HWM line="473" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_HWM>
-		<_hx_zmq_ZMQ_RCVMORE line="474" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RCVMORE>
-		<_hx_zmq_ZMQ_SUBSCRIBE line="475" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SUBSCRIBE>
-		<_hx_zmq_ZMQ_UNSUBSCRIBE line="476" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_UNSUBSCRIBE>
-		<_hx_zmq_ZMQ_SWAP line="477" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SWAP>
-		<_hx_zmq_ZMQ_AFFINITY line="478" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_AFFINITY>
-		<_hx_zmq_ZMQ_IDENTITY line="479" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_IDENTITY>
-		<_hx_zmq_ZMQ_RATE line="481" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RATE>
-		<_hx_zmq_ZMQ_RECOVERY_IVL line="482" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECOVERY_IVL>
-		<_hx_zmq_ZMQ_RECOVERY_IVL_MSEC line="483" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECOVERY_IVL_MSEC>
-		<_hx_zmq_ZMQ_MCAST_LOOP line="484" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_MCAST_LOOP>
-		<_hx_zmq_ZMQ_SNDBUF line="485" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SNDBUF>
-		<_hx_zmq_ZMQ_RCVBUF line="486" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RCVBUF>
-		<_hx_zmq_ZMQ_RECONNECT_IVL line="487" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECONNECT_IVL>
-		<_hx_zmq_ZMQ_RECONNECT_IVL_MAX line="488" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECONNECT_IVL_MAX>
-		<_hx_zmq_ZMQ_BACKLOG line="489" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_BACKLOG>
-		<_hx_zmq_ZMQ_FD line="490" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_FD>
-		<_hx_zmq_ZMQ_EVENTS line="491" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_EVENTS>
-		<_hx_zmq_ZMQ_TYPE line="492" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_TYPE>
-		<_hx_zmq_ZMQ_POLLIN line="494" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLIN>
-		<_hx_zmq_ZMQ_POLLOUT line="495" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLOUT>
-		<_hx_zmq_ZMQ_POLLERR line="496" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLERR>
-		<_hx_zmq_DONTWAIT line="498" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_DONTWAIT>
-		<_hx_zmq_SNDMORE line="499" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_SNDMORE>
-		<_hx_zmq_EINVAL line="501" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EINVAL>
-		<_hx_zmq_ENOTSUP line="502" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOTSUP>
-		<_hx_zmq_EPROTONOSUPPORT line="503" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EPROTONOSUPPORT>
-		<_hx_zmq_EAGAIN line="504" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EAGAIN>
-		<_hx_zmq_ENOMEM line="505" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOMEM>
-		<_hx_zmq_ENODEV line="506" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENODEV>
-		<_hx_zmq_ENOBUFS line="507" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOBUFS>
-		<_hx_zmq_ENETDOWN line="508" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENETDOWN>
-		<_hx_zmq_EADDRINUSE line="509" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EADDRINUSE>
-		<_hx_zmq_EADDRNOTAVAIL line="510" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EADDRNOTAVAIL>
-		<_hx_zmq_ECONNREFUSED line="511" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ECONNREFUSED>
-		<_hx_zmq_EINPROGRESS line="512" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EINPROGRESS>
-		<_hx_zmq_EMTHREAD line="513" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EMTHREAD>
-		<_hx_zmq_EFSM line="514" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EFSM>
-		<_hx_zmq_ENOCOMPATPROTO line="515" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOCOMPATPROTO>
-		<_hx_zmq_ETERM line="516" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ETERM>
+		<_hx_zmq_catch_signals line="472" static="1"><f a=""><unknown/></f></_hx_zmq_catch_signals>
+		<_hx_zmq_interrupted line="473" static="1"><f a=""><c path="Int"/></f></_hx_zmq_interrupted>
+		<_hx_zmq_ZMQ_PUB line="475" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PUB>
+		<_hx_zmq_ZMQ_SUB line="476" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SUB>
+		<_hx_zmq_ZMQ_PAIR line="477" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PAIR>
+		<_hx_zmq_ZMQ_REQ line="478" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_REQ>
+		<_hx_zmq_ZMQ_REP line="479" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_REP>
+		<_hx_zmq_ZMQ_DEALER line="480" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_DEALER>
+		<_hx_zmq_ZMQ_ROUTER line="481" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_ROUTER>
+		<_hx_zmq_ZMQ_PULL line="482" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PULL>
+		<_hx_zmq_ZMQ_PUSH line="483" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_PUSH>
+		<_hx_zmq_ZMQ_LINGER line="485" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_LINGER>
+		<_hx_zmq_ZMQ_HWM line="486" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_HWM>
+		<_hx_zmq_ZMQ_RCVMORE line="487" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RCVMORE>
+		<_hx_zmq_ZMQ_SUBSCRIBE line="488" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SUBSCRIBE>
+		<_hx_zmq_ZMQ_UNSUBSCRIBE line="489" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_UNSUBSCRIBE>
+		<_hx_zmq_ZMQ_SWAP line="490" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SWAP>
+		<_hx_zmq_ZMQ_AFFINITY line="491" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_AFFINITY>
+		<_hx_zmq_ZMQ_IDENTITY line="492" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_IDENTITY>
+		<_hx_zmq_ZMQ_RATE line="494" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RATE>
+		<_hx_zmq_ZMQ_RECOVERY_IVL line="495" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECOVERY_IVL>
+		<_hx_zmq_ZMQ_RECOVERY_IVL_MSEC line="496" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECOVERY_IVL_MSEC>
+		<_hx_zmq_ZMQ_MCAST_LOOP line="497" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_MCAST_LOOP>
+		<_hx_zmq_ZMQ_SNDBUF line="498" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_SNDBUF>
+		<_hx_zmq_ZMQ_RCVBUF line="499" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RCVBUF>
+		<_hx_zmq_ZMQ_RECONNECT_IVL line="500" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECONNECT_IVL>
+		<_hx_zmq_ZMQ_RECONNECT_IVL_MAX line="501" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_RECONNECT_IVL_MAX>
+		<_hx_zmq_ZMQ_BACKLOG line="502" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_BACKLOG>
+		<_hx_zmq_ZMQ_FD line="503" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_FD>
+		<_hx_zmq_ZMQ_EVENTS line="504" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_EVENTS>
+		<_hx_zmq_ZMQ_TYPE line="505" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_ZMQ_TYPE>
+		<_hx_zmq_ZMQ_POLLIN line="507" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLIN>
+		<_hx_zmq_ZMQ_POLLOUT line="508" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLOUT>
+		<_hx_zmq_ZMQ_POLLERR line="509" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_POLLERR>
+		<_hx_zmq_DONTWAIT line="511" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_DONTWAIT>
+		<_hx_zmq_SNDMORE line="512" static="1"><f a=""><t path="Null"><c path="Int"/></t></f></_hx_zmq_SNDMORE>
+		<_hx_zmq_EINVAL line="514" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EINVAL>
+		<_hx_zmq_ENOTSUP line="515" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOTSUP>
+		<_hx_zmq_EPROTONOSUPPORT line="516" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EPROTONOSUPPORT>
+		<_hx_zmq_EAGAIN line="517" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EAGAIN>
+		<_hx_zmq_ENOMEM line="518" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOMEM>
+		<_hx_zmq_ENODEV line="519" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENODEV>
+		<_hx_zmq_ENOBUFS line="520" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOBUFS>
+		<_hx_zmq_ENETDOWN line="521" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENETDOWN>
+		<_hx_zmq_EADDRINUSE line="522" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EADDRINUSE>
+		<_hx_zmq_EADDRNOTAVAIL line="523" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EADDRNOTAVAIL>
+		<_hx_zmq_ECONNREFUSED line="524" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ECONNREFUSED>
+		<_hx_zmq_EINPROGRESS line="525" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EINPROGRESS>
+		<_hx_zmq_EMTHREAD line="526" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EMTHREAD>
+		<_hx_zmq_EFSM line="527" static="1"><f a=""><c path="Int"/></f></_hx_zmq_EFSM>
+		<_hx_zmq_ENOCOMPATPROTO line="528" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ENOCOMPATPROTO>
+		<_hx_zmq_ETERM line="529" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ETERM>
+		<_hx_zmq_ZMQ_QUEUE line="531" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_QUEUE>
+		<_hx_zmq_ZMQ_FORWARDER line="532" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_FORWARDER>
+		<_hx_zmq_ZMQ_STREAMER line="533" static="1"><f a=""><c path="Int"/></f></_hx_zmq_ZMQ_STREAMER>
 		<haxe_doc>
  * Core class for 0MQ Haxe bindings
  </haxe_doc>
@@ -1090,6 +1092,25 @@
      * @return  received frame, else null
      </haxe_doc>
 		</recvFrameNoWait>
+		<newStringFrame public="1" set="method" line="253" static="1">
+			<f a="str">
+				<c path="String"/>
+				<c path="org.zeromq.ZFrame"/>
+			</f>
+			<haxe_doc><![CDATA[
+	 * Creates a new ZFrame object from a given string.
+	 * 
+	 * Can be used in combination with send method for a one-line command:
+     * <pre>
+	 * import org.zeromq.ZFrame;
+	 * using  org.zeromq.ZFrame;
+	 * ...
+	 * ZFrame.newStringFrame("Hello".send(mySocket));
+	 * var str = "World";
+	 * str.newStringFrame().send(mySocket);
+	 * </pre>
+	 ]]></haxe_doc>
+		</newStringFrame>
 		<more public="1" set="null">
 			<e path="Bool"/>
 			<haxe_doc> More flag, from last frame read </haxe_doc>
@@ -2534,6 +2555,34 @@
 	The possible IO errors that can occur
 </haxe_doc>
 	</enum>
+	<class path="org.zeromq.ZMQDevice" params="" file="./org/zeromq/ZMQDevice.hx">
+		<_hx_zmq_device line="71" static="1"><f a="::">
+	<c path="Int"/>
+	<d/>
+	<d/>
+	<unknown/>
+</f></_hx_zmq_device>
+		<new public="1" set="method" line="41">
+			<f a="type:frontend:backend">
+				<e path="org.zeromq.DeviceType"/>
+				<c path="org.zeromq.ZMQSocket"/>
+				<c path="org.zeromq.ZMQSocket"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Constructor.
+	 * Creates a new ZMQ device and immediately starts its in-built loop.
+	 * Will continue unless process is interrupted, when it returns a ETERM ZMQ_Exception.
+	 * @param	type		A valid DeviceType
+	 * @param   frontend	Front end socket, bound or connected to by clients
+	 * @param   backend     Back end socket, bound or connected to workers
+	 </haxe_doc>
+		</new>
+		<haxe_doc>
+ * Wraps ZMQ zmq_device method call.
+ * Creates in-built ZMQ devices that run in the current thread of execution
+ </haxe_doc>
+	</class>
 	<typedef path="haxe.TypeResolver" params="" file="/usr/lib/haxe/std/haxe/Unserializer.hx" module="haxe.Unserializer"><a>
 	<resolveEnum set="method"><f a="name">
 	<c path="String"/>

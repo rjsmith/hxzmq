@@ -236,4 +236,21 @@ class ZFrame
         f.recvNoWait(socket);
         return f;
     }
+	
+	/**
+	 * Creates a new ZFrame object from a given string.
+	 * 
+	 * Can be used in combination with send method for a one-line command:
+     * <pre>
+	 * import org.zeromq.ZFrame;
+	 * using  org.zeromq.ZFrame;
+	 * ...
+	 * ZFrame.newStringFrame("Hello".send(mySocket));
+	 * var str = "World";
+	 * str.newStringFrame().send(mySocket);
+	 * </pre>
+	 */
+	public static function newStringFrame(str:String):ZFrame {
+		return new ZFrame(Bytes.ofString(str));
+	}
 }
