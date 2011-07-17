@@ -113,6 +113,37 @@ class ZMsg
         frames.add(frame);
     }
     
+	/**
+	 * Push frame plus empty frame to front of message, before first frame.
+	 * Message takes ownership of frame, will destroy it when message is sent.
+	 */
+	public function wrap(frame:ZFrame) {
+		if (frame != null) {
+			push(new ZFrame(Bytes.ofString("")));
+			push(frame);
+		}
+	}
+	
+	/**
+	 * Pop frame off front of message, caller now owns frame.
+	 * If next frame is empty, pops and destroys that empty frame
+	 * (e.g. useful when unwrapping ROUTER socket envelopes)
+	 * @return	Unwrapped frame
+	 */
+	public function unwrap():ZFrame {
+		if (size() == 0) {
+			return null;
+		} else {
+			var f = pop();
+			var empty:ZFrame = first();
+			if (empty.hasData() && empty.size() == 0) {
+				empty = pop();
+				empty.destroy();
+			}
+			return f;
+		}
+	}
+	
     /**
      * Removes an existing frame from the message.
      * Does not destroy the removed frame.
@@ -288,6 +319,26 @@ class ZMsg
         return;
     }
     
+	/**
+	 * Returns msg contents as a readable string
+	 * @return
+	 */
+	public function toString():String {
+		var buf:StringBuf = new StringBuf();
+		if (isEmpty()) {
+			buf.add("empty");
+		} else {
+			buf.add("#frames:" + size());
+			var frame_nbr = 0;
+			for (f in frames) {
+				buf.add(",#" + ++frame_nbr + ":[");
+				buf.add(f.toString());
+				buf.add("]");
+			}
+		}
+		return buf.toString();
+	}
+	
     /**
      * Receives message from socket, returns ZMsg object or null if the
      * recv was interrupted. Does a blocking recv, if you want not to block then use

@@ -107,7 +107,7 @@ class TestZMsg extends BaseTest
         assertEquals("Frame0", msg.first().data.toString());
         assertEquals("Frame9", msg.last().data.toString());
         
-        var f = new ZFrame(Bytes.ofString("Address"));
+        var f = ZFrame.newStringFrame("Address");
         msg.push(f);
         assertEquals(3, msg.size());
         assertEquals("Address", msg.first().data.toString());
@@ -122,6 +122,17 @@ class TestZMsg extends BaseTest
         filteredMsg.destroy();
         
         msg.destroy();
+		
+		msg = new ZMsg();
+		f = ZFrame.newStringFrame("Address");
+		msg.wrap(f);
+		assertEquals(2, msg.size());
+		msg.addString("Body");
+		assertEquals(3, msg.size());
+		f = msg.unwrap();
+		f.destroy();
+		assertEquals(1, msg.size());
+		msg.destroy();
         
     }
     
