@@ -351,15 +351,16 @@ class ZMsg
             throw new ZMQException(EINVAL);
             return null;
         }
+        var msg:ZMsg = null;
         
-        var msg:ZMsg = new ZMsg();
         while (true) {
             var f:ZFrame = ZFrame.recvFrame(socket);
             if (f == null) {
                 // If receive failed or was interrupted
-                msg.destroy();
+                if (msg != null) msg.destroy();
                 break;
             }
+			if (msg == null) msg = new ZMsg();
             msg.add(f);
             if (!f.more) {
                 break;
