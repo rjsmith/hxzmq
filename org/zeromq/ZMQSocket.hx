@@ -450,6 +450,20 @@ class ZMQSocket
 #end
 	}
 	
+	/**
+	 * Performs a target-specific equality test to another ZMQSocket instance
+	 * @param	other
+	 * @return
+	 */
+	public function equals(other:ZMQSocket):Bool {
+		return 
+#if php
+			untyped __physeq__(this, other);
+#else				
+			this == other;
+#end
+	}
+	
 #if (neko || cpp)    
 	private static var _hx_zmq_construct_socket = neko.Lib.load("hxzmq", "hx_zmq_construct_socket", 2);
 	private static var _hx_zmq_close = neko.Lib.load("hxzmq", "hx_zmq_close", 1);
