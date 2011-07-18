@@ -221,8 +221,12 @@ class ZFrame
      */
     public static function recvFrame(socket:ZMQSocket):ZFrame {
         var f:ZFrame = new ZFrame();
-        f.recv(socket);
-        return f;
+        return {
+			if (f.recv(socket) != null) 
+				f;
+			else
+				null;
+		}
     }
     
     /**
