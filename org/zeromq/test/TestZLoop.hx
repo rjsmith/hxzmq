@@ -40,20 +40,20 @@ class TestZLoop extends BaseTest
         var loop:ZLoop = new ZLoop();
         assertTrue(loop != null);
         
-		// Chnage to verbose = true to see zloop polling trace info
+		// Change to verbose = true to see zloop polling trace info
         loop.verbose = false;
         
-        var timerEventFn = function ():Int {
-            ZMsg.newStringMsg("PING").send(output);
+        var timerEventFn = function (loop:ZLoop,args:Dynamic):Int {
+            ZMsg.newStringMsg("PING with args:"+args).send(output);
             return 0;
         };
        
-        var socketEventFn = function(output:ZMQSocket):Int {
+        var socketEventFn = function(loop:ZLoop, output:ZMQSocket):Int {
             return -1;  // End the reactor
         }
         
         // After 10 msec, send a ping message to output
-        assertTrue(loop.registerTimer(10, 1, timerEventFn));
+        assertTrue(loop.registerTimer(10, 1, timerEventFn, "HELLO"));
         
         var pollInput:PollItemT = { socket:input, event:ZMQ.ZMQ_POLLIN() };
         assertTrue(loop.registerPoller(pollInput, socketEventFn));

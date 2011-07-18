@@ -31,15 +31,16 @@ typedef PollItemT = {
     event:Int
 };
 
-typedef PollerT = {
+private typedef PollerT = {
     pollItem:PollItemT,
-    handler: ZMQSocket -> Int,
+    handler: ZLoop -> ZMQSocket -> Int
 };
 
-typedef TimerT = {
+private typedef TimerT = {
     delay:Float,    // Number of milliseconds to delay before triggering timed event
     times:Int,      // Number of times to repeat timed event, separated by delay
-    handler:Void->Int,
+    handler:ZLoop ->Dynamic->Int,
+	args:Dynamic,
     when:Float     // Number of milliseconds since 1 Jan 1970 to trigger timer event
 };
 
@@ -56,7 +57,7 @@ typedef TimerT = {
  * Based on <a href="http://github.com/zeromq/czmq/blob/master/src/zloop.c">zloop.c</a> in czmq
  * </p>
  */
-class ZLoop 
+class ZLoop
 {
 
     /** Turns on verbose trace logging */
@@ -68,8 +69,8 @@ class ZLoop
     /** List of registered timers */
     private var timers:List<TimerT>;
     
-    /** List of timers to kill */
-    private var zombies:List<TimerT>;
+    /** List of timer argument objects to kill */
+    private var zombies:List<Dynamic>;
     
     /** Internal ZMQPoller object that holds the actual pollset used when querying socket state */
     private var poller:ZMQPoller;
@@ -81,14 +82,15 @@ class ZLoop
     private var log:Dynamic->Void;
     
     /**
-     * Constructor
+     * Constructor.
+	 * Generic Type parameter defines argument types passed to registered timer function handler methods
      * @param logger    (Optional). Provide a logging function that accepts zloop trace log entries generated when verbose = true.
      */
     public function new(?logger:Dynamic->Void) 
     {
         pollers = new List<PollerT>();
         timers = new List<TimerT>();
-        zombies = new List<TimerT>();
+        zombies = new List<Dynamic>();
         poller = new ZMQPoller();
         verbose = false;
         if (logger != null) {
@@ -118,15 +120,30 @@ class ZLoop
      * @param	delay       Number of milliseconds to delay event for
      * @param	times       Number of times to repeat, else 0 for forever
      * @param	handler     Handler function
+	 * @param   args		Arguments passed to timer handler function
      * @return  true if OK, else false
      */
-    public function registerTimer(delay:Float, times:Int, handler:Void->Int):Bool {
-        timers.push(ZLoop.newTimer(delay, times, handler));
+    public function registerTimer(delay:Float, times:Int, handler:ZLoop->Dynamic->Int, ?args:Dynamic):Bool {
+        timers.push(ZLoop.newTimer(delay, times, handler, args));
         if (verbose)
             log("I: zloop: register timer delay=" + delay + " times=" + times);
         return true;    
     }
     
+	/**
+	 * Cancel all timers for a specific handler function argument object
+	 * @param	args
+	 */
+	public function unregisterTimer(args:Dynamic) {
+		// We cannot touch timers because we may be executing that
+		// from inside the poll loop. So, we hold the arg on the zombie
+		// list, and process that list when we're done executing timers.
+		zombies.add(args);
+		if (verbose) {
+			log("I: zloop: cancel timer");
+		}
+	}
+	
     /**
      * Register pollitem with the reactor. When the pollitem is ready, will call
      * the handler.  Returns true if OK, else false.
@@ -136,7 +153,7 @@ class ZLoop
      * @param	handler     Handler function, receives polled ZMQSocket object
      * @return  true if OK, else false
      */
-    public function registerPoller(item:PollItemT, handler:ZMQSocket->Int):Bool {
+    public function registerPoller(item:PollItemT, handler:ZLoop->ZMQSocket->Int):Bool {
         if (item == null || handler == null) {
             throw new ZMQException(EINVAL);
         }
@@ -147,6 +164,30 @@ class ZLoop
         return true;    
     }
     
+	/**
+	 * Removes a previously registered poller from the reactor, specified by a socket.
+	 * If multiple poll items exist for the same socket, this method removes ALL of them from the reactor.
+	 * @param	item
+	 */
+	public function unregisterPoller(item:PollItemT) {
+		if (item == null || (item != null && item.socket == null)) {
+			throw new ZMQException(EINVAL);
+		}
+		var i = 0;
+		for (p in pollers) {
+			i++;
+			if (p.pollItem.socket != null && p.pollItem.socket.equals(item.socket))
+			{
+				trace ("Trying to remove pollitem:"+i);
+				if (pollers.remove(p))
+					dirty = true;
+			}
+		}
+		if (verbose) {
+			log("I: zloop: unregister socket poller " + item.socket.type);
+		}
+	}
+	
     /**
      * Start the reactor. Takes control of the thread and returns when the 0MQ
      * context is terminated or the process is interrupted, or any event handler returns -1.
@@ -199,7 +240,7 @@ class ZLoop
                 if (now >= t.when && t.when != -1) {
                     if (verbose)
                         log("I: zloop: call timer handler");
-                    rc = t.handler();
+                    rc = t.handler(this, t.args);
                     if (rc == -1)
                         break;  // Timer handler signalled break
                     if (--t.times == 0) {
@@ -214,12 +255,21 @@ class ZLoop
                 if (poller.pollin(++item_nbr)) {
                     if (verbose)
                         log("I: zloop: call socket handler");
-                    rc = p.handler(p.pollItem.socket);
+                    rc = p.handler(this, p.pollItem.socket);
                     if (rc == -1) 
                         break;  // Poller handler signalled break
                 }
             }
             
+			// Now handle any timer zombies
+			for (z in zombies) {
+				for (t in timers) {
+					if (t.args == z) {
+						timers.remove(t);
+					}
+				}
+			}
+			
             if (rc == -1)
                 break;
                     
@@ -267,7 +317,7 @@ class ZLoop
      * @param	handler
      * @return
      */
-    private static function newPoller(item:PollItemT, handler:ZMQSocket->Int):PollerT {
+    private static function newPoller(item:PollItemT, handler:ZLoop->ZMQSocket->Int):PollerT {
         return {
             pollItem:item,
             handler:handler,
@@ -281,11 +331,12 @@ class ZLoop
      * @param	handler
      * @return
      */
-    private static function newTimer(delay:Float, times:Int, handler:Void->Int):TimerT {
+    private static function newTimer(delay:Float, times:Int, handler:ZLoop->Dynamic->Int, args:Dynamic):TimerT {
         return {
             delay:delay,
             times:times,
             handler:handler,
+			args:args,
             when:null     // Indicates a new timer
         }
     }
