@@ -1080,7 +1080,7 @@
      * @return  received frame, else null
      </haxe_doc>
 		</recvFrame>
-		<recvFrameNoWait public="1" set="method" line="234" static="1">
+		<recvFrameNoWait public="1" set="method" line="238" static="1">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="org.zeromq.ZFrame"/>
@@ -1092,7 +1092,7 @@
      * @return  received frame, else null
      </haxe_doc>
 		</recvFrameNoWait>
-		<newStringFrame public="1" set="method" line="253" static="1">
+		<newStringFrame public="1" set="method" line="257" static="1">
 			<f a="str">
 				<c path="String"/>
 				<c path="org.zeromq.ZFrame"/>
@@ -1508,28 +1508,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ]]></haxe_doc>
 	</typedef>
-	<typedef path="org.zeromq.PollerT" params="" file="./org/zeromq/ZLoop.hx" module="org.zeromq.ZLoop"><a>
+	<typedef path="org.zeromq._ZLoop.PollerT" params="" file="./org/zeromq/ZLoop.hx" private="1" module="org.zeromq.ZLoop"><a>
 	<pollItem><t path="org.zeromq.PollItemT"/></pollItem>
-	<handler><f a="">
+	<handler><f a=":">
+	<c path="org.zeromq.ZLoop"/>
 	<c path="org.zeromq.ZMQSocket"/>
 	<c path="Int"/>
 </f></handler>
 </a></typedef>
-	<typedef path="org.zeromq.TimerT" params="" file="./org/zeromq/ZLoop.hx" module="org.zeromq.ZLoop"><a>
+	<typedef path="org.zeromq._ZLoop.TimerT" params="" file="./org/zeromq/ZLoop.hx" private="1" module="org.zeromq.ZLoop"><a>
 	<when><c path="Float"/></when>
 	<times><c path="Int"/></times>
-	<handler><f a=""><c path="Int"/></f></handler>
+	<handler><f a=":">
+	<c path="org.zeromq.ZLoop"/>
+	<d/>
+	<c path="Int"/>
+</f></handler>
 	<delay><c path="Float"/></delay>
+	<args><d/></args>
 </a></typedef>
 	<class path="org.zeromq.ZLoop" params="" file="./org/zeromq/ZLoop.hx">
-		<newPoller set="method" line="270" static="1">
+		<newPoller set="method" line="319" static="1">
 			<f a="item:handler">
 				<t path="org.zeromq.PollItemT"/>
-				<f a="">
+				<f a=":">
+					<c path="org.zeromq.ZLoop"/>
 					<c path="org.zeromq.ZMQSocket"/>
 					<c path="Int"/>
 				</f>
-				<t path="org.zeromq.PollerT"/>
+				<t path="org.zeromq._ZLoop.PollerT"/>
 			</f>
 			<haxe_doc>
      * Creates a new Poller T anonymous object
@@ -1538,12 +1545,17 @@
      * @return
      </haxe_doc>
 		</newPoller>
-		<newTimer set="method" line="284" static="1">
-			<f a="delay:times:handler">
+		<newTimer set="method" line="333" static="1">
+			<f a="delay:times:handler:args">
 				<c path="Float"/>
 				<c path="Int"/>
-				<f a=""><c path="Int"/></f>
-				<t path="org.zeromq.TimerT"/>
+				<f a=":">
+					<c path="org.zeromq.ZLoop"/>
+					<d/>
+					<c path="Int"/>
+				</f>
+				<d/>
+				<t path="org.zeromq._ZLoop.TimerT"/>
 			</f>
 			<haxe_doc>
      * Creates a new TimerT anonymous object
@@ -1558,16 +1570,16 @@
 			<haxe_doc> Turns on verbose trace logging </haxe_doc>
 		</verbose>
 		<pollers>
-			<c path="List"><t path="org.zeromq.PollerT"/></c>
+			<c path="List"><t path="org.zeromq._ZLoop.PollerT"/></c>
 			<haxe_doc> List of registered pollers </haxe_doc>
 		</pollers>
 		<timers>
-			<c path="List"><t path="org.zeromq.TimerT"/></c>
+			<c path="List"><t path="org.zeromq._ZLoop.TimerT"/></c>
 			<haxe_doc> List of registered timers </haxe_doc>
 		</timers>
 		<zombies>
-			<c path="List"><t path="org.zeromq.TimerT"/></c>
-			<haxe_doc> List of timers to kill </haxe_doc>
+			<c path="List"><d/></c>
+			<haxe_doc> List of timer argument objects to kill </haxe_doc>
 		</zombies>
 		<poller>
 			<c path="org.zeromq.ZMQPoller"/>
@@ -1584,17 +1596,22 @@
 			</f>
 			<haxe_doc> Logger function used in verbose mode. Set during ZLoop construction </haxe_doc>
 		</log>
-		<destroy public="1" set="method" line="104">
+		<destroy public="1" set="method" line="106">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Destructor
      </haxe_doc>
 		</destroy>
-		<registerTimer public="1" set="method" line="123">
-			<f a="delay:times:handler">
+		<registerTimer public="1" set="method" line="126">
+			<f a="delay:times:handler:?args">
 				<c path="Float"/>
 				<c path="Int"/>
-				<f a=""><c path="Int"/></f>
+				<f a=":">
+					<c path="org.zeromq.ZLoop"/>
+					<d/>
+					<c path="Int"/>
+				</f>
+				<d/>
 				<e path="Bool"/>
 			</f>
 			<haxe_doc>
@@ -1603,13 +1620,25 @@
      * @param	delay       Number of milliseconds to delay event for
      * @param	times       Number of times to repeat, else 0 for forever
      * @param	handler     Handler function
+	 * @param   args		Arguments passed to timer handler function
      * @return  true if OK, else false
      </haxe_doc>
 		</registerTimer>
-		<registerPoller public="1" set="method" line="139">
+		<unregisterTimer public="1" set="method" line="137">
+			<f a="args">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Cancel all timers for a specific handler function argument object
+	 * @param	args
+	 </haxe_doc>
+		</unregisterTimer>
+		<registerPoller public="1" set="method" line="156">
 			<f a="item:handler">
 				<t path="org.zeromq.PollItemT"/>
-				<f a="">
+				<f a=":">
+					<c path="org.zeromq.ZLoop"/>
 					<c path="org.zeromq.ZMQSocket"/>
 					<c path="Int"/>
 				</f>
@@ -1625,7 +1654,18 @@
      * @return  true if OK, else false
      ]]></haxe_doc>
 		</registerPoller>
-		<start public="1" set="method" line="156">
+		<unregisterPoller public="1" set="method" line="172">
+			<f a="item">
+				<t path="org.zeromq.PollItemT"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Removes a previously registered poller from the reactor, specified by a socket.
+	 * If multiple poll items exist for the same socket, this method removes ALL of them from the reactor.
+	 * @param	item
+	 </haxe_doc>
+		</unregisterPoller>
+		<start public="1" set="method" line="196">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
      * Start the reactor. Takes control of the thread and returns when the 0MQ
@@ -1634,20 +1674,20 @@
      * @return Returns 0 if interrupted, -1 if cancelled by a handler
      </haxe_doc>
 		</start>
-		<rebuildPollset set="method" line="235">
+		<rebuildPollset set="method" line="284">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
      * Rebuilds pollset held within the poller object from list of registered pollers
      </haxe_doc>
 		</rebuildPollset>
-		<ticklessTimer set="method" line="247">
+		<ticklessTimer set="method" line="296">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
      * Calculate timeout between now and next timed event
      * @return  Number of milliseconds between now and next timed event
      </haxe_doc>
 		</ticklessTimer>
-		<new public="1" set="method" line="87">
+		<new public="1" set="method" line="89">
 			<f a="?logger">
 				<f a="">
 					<d/>
@@ -1656,7 +1696,8 @@
 				<e path="Void"/>
 			</f>
 			<haxe_doc>
-     * Constructor
+     * Constructor.
+	 * Generic Type parameter defines argument types passed to registered timer function handler methods
      * @param logger    (Optional). Provide a logging function that accepts zloop trace log entries generated when verbose = true.
      </haxe_doc>
 		</new>
@@ -1852,7 +1893,7 @@
 		</new>
 	</class>
 	<class path="org.zeromq.ZMQPoller" params="" file="./org/zeromq/ZMQPoller.hx">
-		<_hx_zmq_poll line="221" static="1"><f a="::">
+		<_hx_zmq_poll line="220" static="1"><f a="::">
 	<c path="Array"><d/></c>
 	<c path="Array"><c path="Int"/></c>
 	<c path="Int"/>
@@ -1906,7 +1947,7 @@
 	 * @return	how many objects signalled, or 0 if none, or -1 if failure
 	 </haxe_doc>
 		</poll>
-		<pollin public="1" set="method" line="190">
+		<pollin public="1" set="method" line="189">
 			<f a="s">
 				<c path="Int"/>
 				<e path="Bool"/>
@@ -1919,7 +1960,7 @@
 	 * @return		True if specified registered socket has a current POLLIN event, else False
 	 </haxe_doc>
 		</pollin>
-		<pollout public="1" set="method" line="204">
+		<pollout public="1" set="method" line="203">
 			<f a="s">
 				<c path="Int"/>
 				<e path="Bool"/>
@@ -1932,7 +1973,7 @@
 	 * @return		True if specified registered socket has a current POLLOUT event, else False
 	 </haxe_doc>
 		</pollout>
-		<noevents public="1" set="method" line="216">
+		<noevents public="1" set="method" line="215">
 			<f a="s">
 				<c path="Int"/>
 				<e path="Bool"/>
@@ -2049,66 +2090,66 @@
 	</class>
 	<typedef path="haxe.Int32" params="" file="/usr/lib/haxe/std/haxe/Int32.hx"><c path="cpp.CppInt32__"/></typedef>
 	<class path="org.zeromq.ZMQSocket" params="" file="./org/zeromq/ZMQSocket.hx">
-		<_hx_zmq_construct_socket line="454" static="1"><f a=":">
+		<_hx_zmq_construct_socket line="468" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_construct_socket>
-		<_hx_zmq_close line="455" static="1"><f a="">
+		<_hx_zmq_close line="469" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></_hx_zmq_close>
-		<_hx_zmq_bind line="456" static="1"><f a=":">
+		<_hx_zmq_bind line="470" static="1"><f a=":">
 	<d/>
 	<d/>
 	<unknown/>
 </f></_hx_zmq_bind>
-		<_hx_zmq_connect line="457" static="1"><f a=":">
+		<_hx_zmq_connect line="471" static="1"><f a=":">
 	<d/>
 	<d/>
 	<unknown/>
 </f></_hx_zmq_connect>
-		<_hx_zmq_send line="458" static="1"><f a="::">
+		<_hx_zmq_send line="472" static="1"><f a="::">
 	<d/>
 	<t path="haxe.io.BytesData"/>
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_send>
-		<_hx_zmq_rcv line="459" static="1"><f a=":">
+		<_hx_zmq_rcv line="473" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<t path="haxe.io.BytesData"/>
 </f></_hx_zmq_rcv>
-		<_hx_zmq_setintsockopt line="460" static="1"><f a="::">
+		<_hx_zmq_setintsockopt line="474" static="1"><f a="::">
 	<d/>
 	<c path="Int"/>
 	<d/>
 	<unknown/>
 </f></_hx_zmq_setintsockopt>
-		<_hx_zmq_setint64sockopt line="461" static="1"><f a=":::">
+		<_hx_zmq_setint64sockopt line="475" static="1"><f a=":::">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
 	<unknown/>
 	<unknown/>
 </f></_hx_zmq_setint64sockopt>
-		<_hx_zmq_setbytessockopt line="462" static="1"><f a="::">
+		<_hx_zmq_setbytessockopt line="476" static="1"><f a="::">
 	<d/>
 	<c path="Int"/>
 	<d/>
 	<unknown/>
 </f></_hx_zmq_setbytessockopt>
-		<_hx_zmq_getintsockopt line="463" static="1"><f a=":">
+		<_hx_zmq_getintsockopt line="477" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_getintsockopt>
-		<_hx_zmq_getint64sockopt line="464" static="1"><f a=":">
+		<_hx_zmq_getint64sockopt line="478" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
 </f></_hx_zmq_getint64sockopt>
-		<_hx_zmq_getbytessockopt line="465" static="1"><f a=":">
+		<_hx_zmq_getbytessockopt line="479" static="1"><f a=":">
 	<d/>
 	<c path="Int"/>
 	<unknown/>
@@ -2247,6 +2288,17 @@
 	 * @return
 	 </haxe_doc>
 		</hasReceiveMore>
+		<equals public="1" set="method" line="458">
+			<f a="other">
+				<c path="org.zeromq.ZMQSocket"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	 * Performs a target-specific equality test to another ZMQSocket instance
+	 * @param	other
+	 * @return
+	 </haxe_doc>
+		</equals>
 		<new public="1" set="method" line="66">
 			<f a="context:type">
 				<c path="org.zeromq.ZMQContext"/>
@@ -3301,7 +3353,7 @@
      * @return
      </haxe_doc>
 		</recvMsg>
-		<newStringMsg public="1" set="method" line="377" static="1">
+		<newStringMsg public="1" set="method" line="378" static="1">
 			<f a="data">
 				<c path="String"/>
 				<c path="org.zeromq.ZMsg"/>
@@ -3312,7 +3364,7 @@
      * @return
      </haxe_doc>
 		</newStringMsg>
-		<save public="1" set="method" line="396" static="1">
+		<save public="1" set="method" line="397" static="1">
 			<f a="msg:file">
 				<c path="org.zeromq.ZMsg"/>
 				<t path="neko.io.FileOutput"/>
@@ -3332,7 +3384,7 @@
      * @return
      </haxe_doc>
 		</save>
-		<load public="1" set="method" line="427" static="1">
+		<load public="1" set="method" line="428" static="1">
 			<f a="file:?msg">
 				<t path="neko.io.FileInput"/>
 				<c path="org.zeromq.ZMsg"/>
