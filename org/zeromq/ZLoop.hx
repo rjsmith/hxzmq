@@ -178,7 +178,6 @@ class ZLoop
 			i++;
 			if (p.pollItem.socket != null && p.pollItem.socket.equals(item.socket))
 			{
-				trace ("Trying to remove pollitem:"+i);
 				if (pollers.remove(p))
 					dirty = true;
 			}
