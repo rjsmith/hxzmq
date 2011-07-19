@@ -85,7 +85,7 @@ class ZMQPoller
 		
 		// Find first matching socket object, then remove it
 		for (pi in pollItems) {
-			if (pi._socket == socket) {
+			if (pi._socket.equals(socket)) {
 				pollItems.remove(pi);
 				return true;
 			}
@@ -143,7 +143,6 @@ class ZMQPoller
         }
         var _readableNativeArr:NativeArray = untyped __php__('array()');
         var _writableNativeArr:NativeArray = untyped __php__('array()');
-        
         var r = untyped __php__('$ZMQPollHandle->poll($_readableNativeArr, $_writableNativeArr, $timeout)');
         var errs:NativeArray = untyped __php__('$ZMQPollHandle-> getLastErrors()');
         var errsArr = Lib.toHaxeArray(errs);
