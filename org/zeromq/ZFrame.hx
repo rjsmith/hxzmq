@@ -208,7 +208,21 @@ class ZFrame
      */
     public function toString():String {
         if (!hasData()) return null;
-        return this.data.toString();
+		
+		var buf:StringBuf = new StringBuf();
+		buf.add("[" + StringTools.lpad(Std.string(size()), "0", 3) + "] ");
+		// Dump message as text or binary
+		var isText = true;
+		for (i in 0...data.length) {
+			if (data.get(i) < 32 || data.get(i) > 127) isText = false; 
+		}
+		if (isText)
+			buf.add(data.toString()) ;
+		else
+			buf.add(strhex());
+			
+		
+        return buf.toString();
     }
     
     /**
