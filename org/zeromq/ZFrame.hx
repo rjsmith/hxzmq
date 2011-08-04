@@ -208,7 +208,15 @@ class ZFrame
      */
     public function toString():String {
         if (!hasData()) return null;
-        return this.data.toString();
+		// Dump message as text or binary
+		var isText = true;
+		for (i in 0...data.length) {
+			if (data.get(i) < 32 || data.get(i) > 127) isText = false; 
+		}
+		if (isText)
+			return data.toString() ;
+		else
+			return strhex();
     }
     
     /**
