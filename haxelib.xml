@@ -5,5 +5,5 @@
 	<tag v="neko"/>
     <tag v="php"/>
 	<description>Haxe language binding for the ZeroMQ socket library</description>
-	<version name="1.3.0">Added ZMQDevice class binding for in-built ZMQ Devices (QUEUE, FORWARDER, STREAMER). Added new methods to ZFrame, ZMsg and ZMQSocket classes</version>
+	<version name="1.4.0">Re-built ndll against v2.1.8 of the libzmq library</version>
 </project>

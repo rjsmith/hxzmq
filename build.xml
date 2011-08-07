@@ -17,10 +17,10 @@
 		<compilerflag value = "-Iinclude"/>
         
 		<!-- ** Only for Windows, replace with path to your libzmq installation include directory -->
-		<compilerflag value = "-IC:\zeromq\zeromq-2.1.7\include" if="windows"/>
+		<compilerflag value = "-IC:\zeromq\zeromq-2.1.8\include" if="windows"/>
 		<!-- ** Only for Windows, replace with path to your libzmq installation source directory -->
         <!-- This include in needed to pick up libzmq's stdint.hpp include file -->
-		<compilerflag value = "-IC:\zeromq\zeromq-2.1.7\src" if="windows"/>
+		<compilerflag value = "-IC:\zeromq\zeromq-2.1.8\src" if="windows"/>
 		
         <!-- Special flags for compiling on MacOSX 64 bit. May need for linux 64bit too?  -->
 	    <compilerflag value = "-D_FILE_OFFSET_BITS=64" if="macos"/>
