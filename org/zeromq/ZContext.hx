@@ -123,8 +123,12 @@ class ZContext
         if (s == null) {
             throw new ZMQException(ENOTSUP);
         }
-        s.setsockopt(ZMQ_LINGER, linger);
-        s.close();
+		// Check that socket is not already closed
+		// (Prevents exception when calling setsockopt on a closed socket)
+		if (!s.closed) {
+			s.setsockopt(ZMQ_LINGER, linger);
+			s.close();
+		}	
         sockets.remove(s);
     }
     
