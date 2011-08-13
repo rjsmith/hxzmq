@@ -72,6 +72,8 @@ class ZMsg
      * Destroys all ZFrames stored in ZMsg
      */
     public function destroy() {
+		if (frames == null)		// Handle usecase if destroy() is called repeatedly on same ZMsg object
+			return;
         while (frames.length > 0) {
             var f:ZFrame = frames.pop();
             f.destroy();
@@ -254,7 +256,7 @@ class ZMsg
     }
     
     /**
-     * Adds string as new ZFrame at front of ZMsg frame list
+     * Adds string as new ZFrame at end of ZMsg frame list
      * @param	str
      */
     public function addString(str:String) {
