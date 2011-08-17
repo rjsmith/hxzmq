@@ -50,6 +50,7 @@ class TestAll
         runner.add(new TestZFrame());
         runner.add(new TestZMsg());
         runner.add(new TestZLoop());
+		runner.add(new TestZThread());
         
 		// Run
 		runner.run();

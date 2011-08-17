@@ -603,6 +603,73 @@
 		</getBytes>
 		<new public="1" set="method" line="41"><f a=""><e path="Void"/></f></new>
 	</class>
+	<class path="org.zeromq.ZThread" params="" file="./org/zeromq/ZThread.hx">
+		<attachedShim_fn set="method" line="37" static="1"><f a="thread_fn:ctx:pipe:args">
+	<f a="::">
+		<c path="org.zeromq.ZContext"/>
+		<c path="org.zeromq.ZMQSocket"/>
+		<d/>
+		<e path="Void"/>
+	</f>
+	<c path="org.zeromq.ZContext"/>
+	<c path="org.zeromq.ZMQSocket"/>
+	<d/>
+	<e path="Void"/>
+</f></attachedShim_fn>
+		<detach public="1" set="method" line="48" static="1">
+			<f a="thread_fn:args">
+				<f a="">
+					<d/>
+					<e path="Void"/>
+				</f>
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Create a detached thread (or forked process for php). A detached thread operates autonomously
+	 * and is used to simulate a separate process. It gets no ctx or pipe socket
+	 * @param	thread_fn
+	 </haxe_doc>
+		</detach>
+		<attach public="1" set="method" line="72" static="1">
+			<f a="ctx:thread_fn:args">
+				<c path="org.zeromq.ZContext"/>
+				<f a="::">
+					<c path="org.zeromq.ZContext"/>
+					<c path="org.zeromq.ZMQSocket"/>
+					<d/>
+					<e path="Void"/>
+				</f>
+				<d/>
+				<c path="org.zeromq.ZMQSocket"/>
+			</f>
+			<haxe_doc>
+	 * Creates an attached thread (or forked process, for php).
+	 * An attached thread/process gets a ctx and a PAIR pipe
+	 * back to its parent.  It must monitor its pipe, and exit
+	 * if the pipe becomes unreadable.
+	 * @param	ctx
+	 * @param	thread_fn
+	 * @param	args
+	 * @return
+	 </haxe_doc>
+		</attach>
+		<bytesToHex set="method" line="109" static="1"><f a="bytes">
+	<c path="haxe.io.Bytes"/>
+	<c path="String"/>
+</f></bytesToHex>
+		<generateuuid set="method" line="118" static="1"><f a="len">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></generateuuid>
+		<haxe_doc>
+ * ZeroMQ Threading class
+ * 
+ * Creates neko / cpp Threads, or forks processes (PHP).
+ * Using ZThread.fork provides the thread / process with a pre-configured ZMQ PAIR socket
+ * for 2-way communication back to the parent.
+ </haxe_doc>
+	</class>
 	<class path="haxe.io.Input" params="" file="/usr/lib/haxe/std/haxe/io/Input.hx">
 		<_float_of_bytes line="259" static="1"><f a=":">
 	<t path="haxe.io.BytesData"/>
@@ -1066,7 +1133,7 @@
 	<class path="org.zeromq.ZFrame" params="" file="./org/zeromq/ZFrame.hx">
 		<ZFRAME_MORE public="1" get="inline" set="null" line="42" static="1"><c path="Int"/></ZFRAME_MORE>
 		<ZFRAME_REUSE public="1" get="inline" set="null" line="43" static="1"><c path="Int"/></ZFRAME_REUSE>
-		<recvFrame public="1" set="method" line="222" static="1">
+		<recvFrame public="1" set="method" line="230" static="1">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="org.zeromq.ZFrame"/>
@@ -1080,7 +1147,7 @@
      * @return  received frame, else null
      </haxe_doc>
 		</recvFrame>
-		<recvFrameNoWait public="1" set="method" line="238" static="1">
+		<recvFrameNoWait public="1" set="method" line="246" static="1">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="org.zeromq.ZFrame"/>
@@ -1092,7 +1159,7 @@
      * @return  received frame, else null
      </haxe_doc>
 		</recvFrameNoWait>
-		<newStringFrame public="1" set="method" line="257" static="1">
+		<newStringFrame public="1" set="method" line="265" static="1">
 			<f a="str">
 				<c path="String"/>
 				<c path="org.zeromq.ZFrame"/>
@@ -2323,6 +2390,8 @@
  </haxe_doc>
 	</class>
 	<typedef path="neko.io.FileOutput" params="" file="/usr/lib/haxe/std/cpp/io/FileOutput.hx"><c path="cpp.io.FileOutput"/></typedef>
+	<typedef path="neko.vm.ThreadHandle" params="" file="/usr/lib/haxe/std/cpp/vm/Thread.hx" module="neko.vm.Thread"><t path="cpp.vm.ThreadHandle"/></typedef>
+	<typedef path="neko.vm.Thread" params="" file="/usr/lib/haxe/std/cpp/vm/Thread.hx"><c path="cpp.vm.Thread"/></typedef>
 	<class path="Date" params="" file="/usr/lib/haxe/std/cpp/_std/Date.hx">
 		<now public="1" set="method" line="55" static="1">
 			<f a=""><c path="Date"/></f>
@@ -2508,7 +2577,7 @@
 </haxe_doc>
 	</class>
 	<class path="org.zeromq.ZContext" params="" file="./org/zeromq/ZContext.hx">
-		<shadow public="1" set="method" line="137" static="1">
+		<shadow public="1" set="method" line="141" static="1">
 			<f a="ctx">
 				<c path="org.zeromq.ZContext"/>
 				<c path="org.zeromq.ZContext"/>
@@ -3284,6 +3353,53 @@
 	use functional-style programming with haXe.
 </haxe_doc>
 	</class>
+	<typedef path="cpp.vm.ThreadHandle" params="" file="/usr/lib/haxe/std/cpp/vm/Thread.hx" module="cpp.vm.Thread"><d/></typedef>
+	<class path="cpp.vm.Thread" params="" file="/usr/lib/haxe/std/cpp/vm/Thread.hx">
+		<current public="1" set="method" line="49" static="1">
+			<f a=""><c path="cpp.vm.Thread"/></f>
+			<haxe_doc>
+		Returns the current thread.
+	</haxe_doc>
+		</current>
+		<create public="1" set="method" line="56" static="1">
+			<f a="callb">
+				<f a=""><e path="Void"/></f>
+				<c path="cpp.vm.Thread"/>
+			</f>
+			<haxe_doc>
+		Creates a new thread that will execute the [callb] function, then exit.
+	</haxe_doc>
+		</create>
+		<readMessage public="1" set="method" line="65" static="1">
+			<f a="block">
+				<e path="Bool"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Reads a message from the thread queue. If [block] is true, the function
+		blocks until a message is available. If [block] is false, the function
+		returns [null] if no message is available.
+	</haxe_doc>
+		</readMessage>
+		<handle><t path="cpp.vm.ThreadHandle"/></handle>
+		<sendMessage public="1" set="method" line="41">
+			<f a="msg">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Send a message to the thread queue. This message can be readed by using [readMessage].
+	</haxe_doc>
+		</sendMessage>
+		<__compare set="method" line="69"><f a="t">
+	<a><handle set="null"><t path="cpp.vm.ThreadHandle"/></handle></a>
+	<unknown/>
+</f></__compare>
+		<new set="method" line="34"><f a="h">
+	<t path="cpp.vm.ThreadHandle"/>
+	<e path="Void"/>
+</f></new>
+	</class>
 	<class path="haxe.Serializer" params="" file="/usr/lib/haxe/std/haxe/Serializer.hx">
 		<USE_CACHE public="1" line="34" static="1">
 			<e path="Bool"/>
@@ -3340,7 +3456,7 @@
 		<new public="1" set="method" line="51"><f a=""><e path="Void"/></f></new>
 	</class>
 	<class path="org.zeromq.ZMsg" params="" file="./org/zeromq/ZMsg.hx">
-		<recvMsg public="1" set="method" line="349" static="1">
+		<recvMsg public="1" set="method" line="351" static="1">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<c path="org.zeromq.ZMsg"/>
@@ -3353,7 +3469,7 @@
      * @return
      </haxe_doc>
 		</recvMsg>
-		<newStringMsg public="1" set="method" line="378" static="1">
+		<newStringMsg public="1" set="method" line="380" static="1">
 			<f a="data">
 				<c path="String"/>
 				<c path="org.zeromq.ZMsg"/>
@@ -3364,7 +3480,7 @@
      * @return
      </haxe_doc>
 		</newStringMsg>
-		<save public="1" set="method" line="397" static="1">
+		<save public="1" set="method" line="399" static="1">
 			<f a="msg:file">
 				<c path="org.zeromq.ZMsg"/>
 				<t path="neko.io.FileOutput"/>
@@ -3384,7 +3500,7 @@
      * @return
      </haxe_doc>
 		</save>
-		<load public="1" set="method" line="428" static="1">
+		<load public="1" set="method" line="430" static="1">
 			<f a="file:?msg">
 				<t path="neko.io.FileInput"/>
 				<c path="org.zeromq.ZMsg"/>
@@ -3407,18 +3523,18 @@
      * Destroys all ZFrames stored in ZMsg
      </haxe_doc>
 		</destroy>
-		<size public="1" set="method" line="83">
+		<size public="1" set="method" line="85">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc> Return number of frames in message </haxe_doc>
 		</size>
-		<contentSize public="1" set="method" line="95">
+		<contentSize public="1" set="method" line="97">
 			<f a=""><c path="Int"/></f>
 			<haxe_doc>
      * Return number of bytes contained in all the frames in this message
      * @return
      </haxe_doc>
 		</contentSize>
-		<add public="1" set="method" line="109">
+		<add public="1" set="method" line="111">
 			<f a="frame">
 				<c path="org.zeromq.ZFrame"/>
 				<e path="Void"/>
@@ -3429,7 +3545,7 @@
      * @throws ZMQException if frame is null
      </haxe_doc>
 		</add>
-		<wrap public="1" set="method" line="120">
+		<wrap public="1" set="method" line="122">
 			<f a="frame">
 				<c path="org.zeromq.ZFrame"/>
 				<e path="Void"/>
@@ -3439,7 +3555,7 @@
 	 * Message takes ownership of frame, will destroy it when message is sent.
 	 </haxe_doc>
 		</wrap>
-		<unwrap public="1" set="method" line="133">
+		<unwrap public="1" set="method" line="135">
 			<f a=""><c path="org.zeromq.ZFrame"/></f>
 			<haxe_doc>
 	 * Pop frame off front of message, caller now owns frame.
@@ -3448,7 +3564,7 @@
 	 * @return	Unwrapped frame
 	 </haxe_doc>
 		</unwrap>
-		<remove public="1" set="method" line="153">
+		<remove public="1" set="method" line="155">
 			<f a="frame">
 				<c path="org.zeromq.ZFrame"/>
 				<e path="Bool"/>
@@ -3460,14 +3576,14 @@
      * @return  true if frame is found and removed, else false
      </haxe_doc>
 		</remove>
-		<iterator public="1" set="method" line="164">
+		<iterator public="1" set="method" line="166">
 			<f a=""><t path="Iterator"><c path="org.zeromq.ZFrame"/></t></f>
 			<haxe_doc>
      * Returns an iterator over the ZFrame list within the ZMsg
      * @return
      </haxe_doc>
 		</iterator>
-		<filter public="1" set="method" line="177">
+		<filter public="1" set="method" line="179">
 			<f a="f">
 				<f a="">
 					<c path="org.zeromq.ZFrame"/>
@@ -3482,28 +3598,28 @@
      * @return  Filtered ZMsg object, else null if this message contains no frame list (ie has been destroyed)
      </haxe_doc>
 		</filter>
-		<first public="1" set="method" line="193">
+		<first public="1" set="method" line="195">
 			<f a=""><c path="org.zeromq.ZFrame"/></f>
 			<haxe_doc>
      * Returns last frame in message, else null if frame list is empty or invalid (destroyed)
      * @return
      </haxe_doc>
 		</first>
-		<isEmpty public="1" set="method" line="204">
+		<isEmpty public="1" set="method" line="206">
 			<f a=""><e path="Bool"/></f>
 			<haxe_doc>
      * returns True if the ZMsg has no frames, else false
      * @return
      </haxe_doc>
 		</isEmpty>
-		<last public="1" set="method" line="212">
+		<last public="1" set="method" line="214">
 			<f a=""><c path="org.zeromq.ZFrame"/></f>
 			<haxe_doc>
      * Returns last frame in message, else null if frame list is empty or invalid (destroyed)
      * @return
      </haxe_doc>
 		</last>
-		<pop public="1" set="method" line="224">
+		<pop public="1" set="method" line="226">
 			<f a=""><c path="org.zeromq.ZFrame"/></f>
 			<haxe_doc>
      * Removes first frame from message, if any. Returns frame or null.
@@ -3511,7 +3627,7 @@
      * @return
      </haxe_doc>
 		</pop>
-		<push public="1" set="method" line="236">
+		<push public="1" set="method" line="238">
 			<f a="frame">
 				<c path="org.zeromq.ZFrame"/>
 				<e path="Void"/>
@@ -3522,7 +3638,7 @@
      * @param	frame
      </haxe_doc>
 		</push>
-		<pushString public="1" set="method" line="249">
+		<pushString public="1" set="method" line="251">
 			<f a="str">
 				<c path="String"/>
 				<e path="Void"/>
@@ -3532,17 +3648,17 @@
      * @param	str
      </haxe_doc>
 		</pushString>
-		<addString public="1" set="method" line="260">
+		<addString public="1" set="method" line="262">
 			<f a="str">
 				<c path="String"/>
 				<e path="Void"/>
 			</f>
 			<haxe_doc>
-     * Adds string as new ZFrame at front of ZMsg frame list
+     * Adds string as new ZFrame at end of ZMsg frame list
      * @param	str
      </haxe_doc>
 		</addString>
-		<popString public="1" set="method" line="272">
+		<popString public="1" set="method" line="274">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>
      * Pop frame off top of message, returns as a String, else null if
@@ -3550,14 +3666,14 @@
      * @return
      </haxe_doc>
 		</popString>
-		<duplicate public="1" set="method" line="288">
+		<duplicate public="1" set="method" line="290">
 			<f a=""><c path="org.zeromq.ZMsg"/></f>
 			<haxe_doc><![CDATA[
      * Creates copy of this message, also copying all contained frames & their data
      * @return  Copied ZMsg object, or null if this message contains an invalid (destroyed) frame list.
      ]]></haxe_doc>
 		</duplicate>
-		<send public="1" set="method" line="304">
+		<send public="1" set="method" line="306">
 			<f a="socket">
 				<c path="org.zeromq.ZMQSocket"/>
 				<e path="Void"/>
@@ -3568,7 +3684,7 @@
      * @param	socket
      </haxe_doc>
 		</send>
-		<toString public="1" set="method" line="326">
+		<toString public="1" set="method" line="328">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>
 	 * Returns msg contents as a readable string

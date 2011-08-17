@@ -32,6 +32,7 @@ import org.zeromq.ZSocket;
 import org.zeromq.ZFrame;
 import org.zeromq.ZMsg;
 import org.zeromq.ZLoop;
+import org.zeromq.ZThread;
 
 #if php
 import org.zeromq.externals.phpzmq.ZMQException;
