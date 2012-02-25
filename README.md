@@ -5,6 +5,7 @@ Welcome to hxzmq, [haXe language bindings] [2] for the iMatix [ZeroMQ messaging 
 
 By Richard Smith [RSBA Technology Ltd] [1]
 
+This branch maintains a compatable binding to the libzmq 2.1.x branch
 
 ## Introduction
 This repository provides C++ binding code that wraps the libzmq library API to create a Neko DLL file, hxzmq.ndll.  The ndll is then accessed via the hxzmq org.zeromq package to expose the 0MQ API to haXe application code targetted at C++ or nekovm platforms.
