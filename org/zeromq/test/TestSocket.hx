@@ -31,7 +31,7 @@ import org.zeromq.test.BaseTest;
 /**
  * Haxe test class focused on the ZMQSocket haxe binding class
  * 
- * Assumes a baseline ZMQ version of 2.1.4 (ie. some tests may not work if run against any earlier versions of the libzmq library)
+ * Assumes a baseline ZMQ version of 3.x.x (ie. some tests may not execute or compile if run against any earlier versions of the libzmq library)
  */
 class TestSocket extends BaseTest
 {
@@ -95,6 +95,14 @@ class TestSocket extends BaseTest
 			var r:Int = pair.s1.getsockopt(ZMQ_EVENTS);
 			assertEquals(ZMQ.ZMQ_POLLOUT(), r);
 			assertRaisesZMQException(function() { pair.s1.setsockopt(ZMQ_EVENTS, 2 ^ 7 - 1); }, EINVAL);
+			
+			pair.s1.setsockopt(ZMQ_LINGER, 0);
+			r = pair.s1.getsockopt(ZMQ_SNDHWM);
+			assertTrue(r == 0);	// Test default HWM is 0 for a new socket
+			pair.s2.setsockopt(ZMQ_SNDHWM, 10 );
+			var r:Int = pair.s2.getsockopt(ZMQ_SNDHWM);
+			assertEquals(10, r);
+			
 #end            
 			assertEquals(ZMQ.socketTypeNo(ZMQ_PUB), pair.s1.getsockopt(ZMQ_TYPE));
 			assertEquals(ZMQ.socketTypeNo(ZMQ_SUB), pair.s2.getsockopt(ZMQ_TYPE));	
@@ -118,24 +126,14 @@ class TestSocket extends BaseTest
 		
 		try {
 			pair = createBoundPair(ZMQ_PUB, ZMQ_SUB);
-#if (neko || cpp)            
-			pair.s1.setsockopt(ZMQ_LINGER, 0);
-			r = pair.s1.getsockopt(ZMQ_HWM);
-			assertTrue(r.lo == 0);	// Test default HWM is 0 for a new socket
-			assertTrue(r.hi == 0);
-			pair.s2.setsockopt(ZMQ_HWM, { hi:128, lo:128 } );	// (128 * 2^32)+128
-			var r:ZMQInt64Type = pair.s2.getsockopt(ZMQ_HWM);
-			assertTrue(r.lo == 128);
-			assertTrue(r.hi == 128);
+#if (neko || cpp)   
+			pair.s1.setsockopt(ZMQ_MAXMSGSIZE, { hi:10, lo:100 } );
+			r = pair.s1.getsockopt(ZMQ_MAXMSGSIZE);
+			assertEquals(10, r.hi);
+			assertEquals(100, r.lo);
+			
 			r = pair.s1.getsockopt(ZMQ_AFFINITY);
 			assertEquals(0, r.lo);			
-			r = pair.s1.getsockopt(ZMQ_SWAP);
-			assertTrue(r.lo == 0);
-			assertTrue(r.hi == 0);
-			pair.s1.setsockopt(ZMQ_SWAP, { hi:1, lo:255 } );    // (1 * 2^32) + 255 bytes
-			r = pair.s1.getsockopt(ZMQ_SWAP);
-			assertTrue(r.lo == 255);
-			assertTrue(r.hi == 1);
 #elseif php            
 			pair.s1.setsockopt(ZMQ_LINGER, 0);
 			r = pair.s1.getsockopt(ZMQ_HWM);

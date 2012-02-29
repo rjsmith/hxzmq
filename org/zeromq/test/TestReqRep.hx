@@ -37,7 +37,7 @@ import org.zeromq.test.BaseTest;
 class TestReqRep extends BaseTest
 {
 
-	public function TODOtestBasicReqRep() {
+	public function testBasicReqRep() {
 		var pair:SocketPair;
 		try {
 			pair = createBoundPair(ZMQ_REQ, ZMQ_REP);

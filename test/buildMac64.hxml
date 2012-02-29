@@ -16,11 +16,11 @@
 -debug
 -lib hxzmq
 -main org.zeromq.test.TestAll
---next
+#--next
 # Build PHP unit test target for Mac64
--cp ..
--php out-php/Mac64
--debug
---remap neko:php
--lib hxzmq
--main org.zeromq.test.TestAll
+#-cp ..
+#-php out-php/Mac64
+#-debug
+#--remap neko:php
+#-lib hxzmq
+#-main org.zeromq.test.TestAll

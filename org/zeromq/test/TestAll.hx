@@ -35,12 +35,13 @@ class TestAll
 		runner.add(new TestVersion());
 		runner.add(new TestContext());
 		runner.add(new TestError());
+		runner.add(new TestXPubXSub());
 		runner.add(new TestSocket());
 		runner.add(new TestPubSub());
 		runner.add(new TestMultiPartMessage());
 		runner.add(new TestReqRep());
 		runner.add(new TestPoller());
-        //
+       
 		// org.zeromq.remoting package tests
         runner.add(new TestZMQRemoting());
         

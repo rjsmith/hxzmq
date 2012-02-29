@@ -22,6 +22,9 @@ package org.zeromq.test;
 import haxe.io.Bytes;
 import neko.Sys;
 import haxe.Stack;
+import org.zeromq.ZContext;
+import org.zeromq.ZMQContext;
+import org.zeromq.ZMsg;
 
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQPoller;
@@ -93,6 +96,84 @@ class TestPoller extends BaseTest
 		}
 	}
 	
+	public function testPollingReqRepZMQ3() {
+		var pollinout:Int = ZMQ.ZMQ_POLLIN() | ZMQ.ZMQ_POLLOUT();
+		var ctx:ZContext;
+		var req:ZMQSocket, rep:ZMQSocket;
+		var poller:ZMQPoller;
+		var numSocks;
+		
+		try {
+			// ** Test tcp req/rep poller revents
+			var randomPort:Int = Math.round(Math.random() * 18000) + 2000;
+			ctx = new ZContext();
+			req = ctx.createSocket(ZMQ_REQ);
+			rep = ctx.createSocket(ZMQ_REP);
+			req.bind("tcp://*:"+randomPort);
+			rep.connect("tcp://localhost:"+randomPort);
+			Sys.sleep(0.1);	// Allow sockets time to connect
+			poller = new ZMQPoller();
+			poller.registerSocket(req, pollinout);
+			poller.registerSocket(rep, pollinout);
+			numSocks = poller.poll(10 * ZMQ.ZMQ_POLL_MSEC());
+			assertEquals(1, numSocks);
+			ctx.destroy();
+
+					} catch (e:ZMQException) {
+			trace("ZMQException #:" + e.errNo + ", str:" + e.str());
+			trace (Stack.toString(Stack.exceptionStack()));
+			assertTrue(false);
+		}
+
+		try {
+			// ** Test ipc req/rep poller revents
+			ctx = new ZContext();
+			req = ctx.createSocket(ZMQ_REQ);
+			rep = ctx.createSocket(ZMQ_REP);
+			req.bind("ipc:///tmp/poller");
+			rep.connect("ipc:///tmp/poller");
+			Sys.sleep(0.1);	// Allow sockets time to connect
+			poller = new ZMQPoller();
+			poller.registerSocket(req, pollinout);
+			poller.registerSocket(rep, pollinout);
+			numSocks = poller.poll(10 * ZMQ.ZMQ_POLL_MSEC());
+			assertEquals(1, numSocks);
+			ctx.destroy();
+		} catch (e:ZMQException) {
+			if (e.err != ErrorType.EPROTONOSUPPORT) {
+				// Only assert test has failed if the exception is not "Protocol Not Supported".
+				// On Windows, ipc is not supported by ZeroMQ.
+				trace("ZMQException #:" + e.errNo + ", str:" + e.str());
+				trace (Stack.toString(Stack.exceptionStack()));
+				assertTrue(false);
+			}
+		}
+
+		try {
+			// ** Test inproc req/rep poller revents
+			ctx = new ZContext();
+			req = ctx.createSocket(ZMQ_REQ);
+			rep = ctx.createSocket(ZMQ_REP);
+			req.bind("inproc://test.poller");
+			rep.connect("inproc://test.poller");
+			Sys.sleep(0.1);	// Allow sockets time to connect
+			poller = new ZMQPoller();
+			poller.registerSocket(req, pollinout);
+			poller.registerSocket(rep, pollinout);
+			numSocks = poller.poll(10 * ZMQ.ZMQ_POLL_MSEC());
+			assertEquals(1, numSocks);
+			ctx.destroy();
+			
+			assertTrue(true);
+		
+		} catch (e:ZMQException) {
+			trace("ZMQException #:" + e.errNo + ", str:" + e.str());
+			trace (Stack.toString(Stack.exceptionStack()));
+			assertTrue(false);
+		}
+
+	}
+	
 	public function testPollingReqRep() {
 		
 		var pair:SocketPair = createBoundPair(ZMQ_REP, ZMQ_REQ);
@@ -104,15 +185,21 @@ class TestPoller extends BaseTest
 			poller.registerSocket(pair.s1, pollinout);
 			poller.registerSocket(pair.s2, pollinout);
 			
-			var numSocks = poller.poll();
-			assertEquals(1, numSocks);								// Only one revent bitmask with an event
-			assertEquals(2, poller.getSize());
+			var numSocks = poller.poll(10 * ZMQ.ZMQ_POLL_MSEC());
+			//trace ("rep:poller.pollin(1):" + poller.pollin(1) + ", poller.pollout(1):" + poller.pollout(1));
+			//trace ("req:poller.pollin(2):" + poller.pollin(2) + ", poller.pollout(2):" + poller.pollout(2));
+
+			assertEquals(1, numSocks);			// Only one revent bitmask with an event
+												// Had to change this from 1 when upgrading to ZMQ 3.1
+			assertEquals(2, poller.getSize()); 
 			assertTrue(poller.noevents(1));						// REP socket s1 no events
 			assertTrue(poller.pollout(2));		// REQ socket s2 should be ready for writing
 			
 			// Make sure s2 REQ socket immediately goes into state 0 after send
 			pair.s2.sendMsg(Bytes.ofString("msg1"));
 			numSocks = poller.poll();
+			//trace ("rep:poller.pollin(1):" + poller.pollin(1) + ", poller.pollout(1):" + poller.pollout(1));
+			//trace ("req:poller.pollin(2):" + poller.pollin(2) + ", poller.pollout(2):" + poller.pollout(2));
 			assertTrue(poller.noevents(2));
 
 			// Make sure that s1 goes into POLLIN state after a sleep()

@@ -99,3 +99,15 @@ value hx_zmq_poll (value sockets_, value events_, value timeout_) {
 }
 
 DEFINE_PRIM (hx_zmq_poll, 3);
+
+value hx_zmq_ZMQ_POLL_MSEC()
+{
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(3,0,0)
+	
+	return alloc_int(1);
+#else
+	return alloc_int(1000);
+#endif	
+}
+
+DEFINE_PRIM( hx_zmq_ZMQ_POLL_MSEC,0);

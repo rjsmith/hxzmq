@@ -129,9 +129,9 @@ Key files and folders contained in this repository:
 	
 ## Versions
 
-The current release of hxzmq is 1.4.0, compatable with libzmq-2.1.4 or any later 2.1.x version (latest tested in 2.1.8).  The latest released hxzmq package shall also be available in the [haxelib repository] [4], accessable via the [haxelib tool] [5] which is included in the standard haXe distribution.
+The current release of hxzmq on the master branch is compatable with libzmq-3.1.0 or any later 3.1.x version (latest tested in 3.1.0).  The latest released hxzmq package shall also be available in the [haxelib repository] [4], accessable via the [haxelib tool] [5] which is included in the standard haXe distribution.
 
-This version of hxzmq has also been tested against [php-zmq v0.7.0] [13] 
+A version of hxzmq compatable with the libzmq 2.1.x version is archived on the 2.1.x branch of the hxzmq git repository.
 
 ## Building and Installation
 

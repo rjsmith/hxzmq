@@ -46,13 +46,14 @@ class TestMultiPartMessage extends BaseTest
 			pair.s1.sendMsg(msg3);				// last part of multipart message
 			
 			// Receive multipart message
-			var i:Int = 1;
+			var i:Int = 0;
 			do {
+				i++;
 				var b:Bytes = pair.s2.recvMsg();	// Blocking call
 				assertEquals(Std.string(i), b.toString().charAt(7));
-				i++;
+			
 			} while (pair.s2.hasReceiveMore());
-			assertTrue(i == 4); 	// 3 parts received
+			assertEquals(3, i); 	// 3 parts received
 			
 		} catch (e:ZMQException) {
 			trace("ZMQException #:" + e.toString());

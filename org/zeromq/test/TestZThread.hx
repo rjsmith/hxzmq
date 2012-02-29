@@ -45,12 +45,12 @@ class TestZThread extends BaseTest
 	private function attachedThreadTest(ctx:ZContext, pipe:ZMQSocket, args:Dynamic) {
 		// Create a new socket to check it'll be automatically deleted
 		var newSocket = ctx.createSocket(ZMQ_PUSH);
-		trace ("newSocket created");
+		//trace ("newSocket created");
 		// Wait for our parent to ping us and pong back
 		var ping = pipe.recvMsg();
-		trace ("ping received:" + ping.toString());
+		//trace ("ping received:" + ping.toString());
 		pipe.sendMsg(Bytes.ofString("pong"));
-		trace ("pipe sent pong");
+		//trace ("pipe sent pong");
 	}
 	
 	public function testZThreadDetach() {
@@ -68,14 +68,14 @@ class TestZThread extends BaseTest
 
 		// Create a new attached thread and let it run
 		var pipe:ZMQSocket = ZThread.attach(ctx, attachedThreadTest, "foo");
-		trace ("Now send ping");
+		//trace ("Now send ping");
 		pipe.sendMsg(Bytes.ofString("ping"));
 		var pong = pipe.recvMsg();
-		trace ("pong received:" + pong.toString());
+		//trace ("pong received:" + pong.toString());
 		assertEquals(pong.toString(), "pong");
 		
 		// Everything should be cleanly closed now
-		trace ("exiting");
+		//trace ("exiting");
 		try {
 			ctx.destroy();
 		} catch (e:ZMQException) {

@@ -34,9 +34,14 @@ value hx_zmq_device (value type_, value frontend_, value backend_) {
 	val_check_kind(frontend_, k_zmq_socket_handle);
 	val_check_kind(backend_, k_zmq_socket_handle);
 	
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(3,0,0)	
+    int rc = -1;
+	int err = ENOTSUP;
+#else
 	int rc = zmq_device(val_int(type_), val_data(frontend_), val_data(backend_));
 	int err = zmq_errno();
-	
+#endif
+
 	if (rc != 0) {
 		val_throw(alloc_int(err));
 		return alloc_null();

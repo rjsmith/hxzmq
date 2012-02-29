@@ -5,5 +5,5 @@
 	<tag v="neko"/>
     <tag v="php"/>
 	<description>Haxe language binding for the ZeroMQ socket library</description>
-	<version name="1.4.0">Re-built ndll against v2.1.8 of the libzmq library</version>
+	<version name="1.5.0">Added experimental support for ZMQ v3.x.x</version>
 </project>

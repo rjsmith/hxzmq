@@ -74,7 +74,8 @@ untyped __php__('
 		var pipe = ctx.createSocket(ZMQ_PAIR);
 		if (pipe == null)
 			return null;
-		pipe.setsockopt(ZMQ_HWM, { hi:0, lo:1 } );
+		pipe.setsockopt(ZMQ_SNDHWM, 1);
+		pipe.setsockopt(ZMQ_RCVHWM, 1);
 		var uuid = generateuuid(8);
 		var pipeUUID = bytesToHex(uuid);	// Creates a 16char uuidstring, based on a 8-byte uuid
 		
@@ -83,7 +84,8 @@ untyped __php__('
 		var forkCtx = ZContext.shadow(ctx);
 		forkCtx.main = false;	
 		var forkPipe = forkCtx.createSocket(ZMQ_PAIR);
-		forkPipe.setsockopt(ZMQ_HWM, { hi:0, lo:1 } );
+		forkPipe.setsockopt(ZMQ_SNDHWM, 1);
+		forkPipe.setsockopt(ZMQ_RCVHWM, 1);
 				
 #if (neko || cpp)
 		pipe.bind("inproc://zctx-pipe-" + pipeUUID);

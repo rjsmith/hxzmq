@@ -208,7 +208,7 @@ class ZLoop
                rebuildPollset();
             }
             try {
-                rc = poller.poll(ticklessTimer() * 1000);
+                rc = poller.poll(ticklessTimer() * ZMQ.ZMQ_POLL_MSEC());
             } catch (e:ZMQException) {
 #if !php                
                 if (ZMQ.isInterrupted()) {

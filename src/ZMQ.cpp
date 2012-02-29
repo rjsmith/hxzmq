@@ -121,19 +121,125 @@ value hx_zmq_ZMQ_PUSH()
 }
 DEFINE_PRIM( hx_zmq_ZMQ_PUSH,0);
 
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(3,0,0)
+
+/* New Socket Types introduced in 0MQ 3 */
+
+value hx_zmq_ZMQ_XREQ()
+{
+	return alloc_int(ZMQ_XREQ);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_XREQ,0);
+
+value hx_zmq_ZMQ_XREP()
+{
+	return alloc_int(ZMQ_XREP);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_XREP,0);
+
+value hx_zmq_ZMQ_XPUB()
+{
+	return alloc_int(ZMQ_XPUB);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_XPUB,0);
+
+value hx_zmq_ZMQ_XSUB()
+{
+	return alloc_int(ZMQ_XSUB);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_XSUB,0);
+
+#endif
 /* ******* Socket Option Types **********/
+
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(3,0,0)
+
+value hx_zmq_ZMQ_MAXMSGSIZE()
+{
+					return alloc_int(ZMQ_MAXMSGSIZE);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_MAXMSGSIZE,0);
+		
+value hx_zmq_ZMQ_SNDHWM()
+{
+			return alloc_int(ZMQ_SNDHWM);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_SNDHWM,0);
+
+value hx_zmq_ZMQ_RCVHWM()
+{
+			return alloc_int(ZMQ_RCVHWM);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_RCVHWM,0);
+
+value hx_zmq_ZMQ_MULTICAST_HOPS()
+{
+			return alloc_int(ZMQ_MULTICAST_HOPS);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_MULTICAST_HOPS,0);
+
+value hx_zmq_ZMQ_RCVTIMEO()
+{
+			return alloc_int(ZMQ_RCVTIMEO);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_RCVTIMEO,0);
+
+value hx_zmq_ZMQ_SNDTIMEO()
+{
+			return alloc_int(ZMQ_SNDTIMEO);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_SNDTIMEO,0);
+
+#else
+ 		
+value hx_zmq_ZMQ_HWM()
+{
+			return alloc_int(ZMQ_HWM);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_HWM,0);
+
+value hx_zmq_ZMQ_SWAP()
+{
+	return alloc_int(ZMQ_SWAP);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_SWAP,0);
+
+value hx_zmq_ZMQ_RECOVERY_IVL_MSEC()
+{
+	return alloc_int(ZMQ_RECOVERY_IVL_MSEC);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_RECOVERY_IVL_MSEC,0);
+
+value hx_zmq_ZMQ_MCAST_LOOP()
+{
+	return alloc_int(ZMQ_MCAST_LOOP);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_MCAST_LOOP,0);
+
+#endif
+
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(2,1,0)
+		
+value hx_zmq_ZMQ_IDENTITY()
+{
+	return alloc_int(ZMQ_IDENTITY);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_IDENTITY,0);
+
+value hx_zmq_ZMQ_RECOVERY_IVL()
+{
+			return alloc_int(ZMQ_RECOVERY_IVL);
+}
+DEFINE_PRIM( hx_zmq_ZMQ_RECOVERY_IVL,0);
+	
 value hx_zmq_ZMQ_LINGER()
 {
 	return alloc_int(ZMQ_LINGER);
 }
 DEFINE_PRIM( hx_zmq_ZMQ_LINGER,0);
 
-value hx_zmq_ZMQ_HWM()
-{
-	return alloc_int(ZMQ_HWM);
-}
 
-DEFINE_PRIM( hx_zmq_ZMQ_HWM,0);
+#endif
 
 value hx_zmq_ZMQ_RCVMORE()
 {
@@ -153,18 +259,6 @@ value hx_zmq_ZMQ_UNSUBSCRIBE()
 }
 DEFINE_PRIM( hx_zmq_ZMQ_UNSUBSCRIBE,0);
 
-value hx_zmq_ZMQ_IDENTITY()
-{
-	return alloc_int(ZMQ_IDENTITY);
-}
-DEFINE_PRIM( hx_zmq_ZMQ_IDENTITY,0);
-
-value hx_zmq_ZMQ_SWAP()
-{
-	return alloc_int(ZMQ_SWAP);
-}
-DEFINE_PRIM( hx_zmq_ZMQ_SWAP,0);
-
 value hx_zmq_ZMQ_AFFINITY()
 {
 	return alloc_int(ZMQ_AFFINITY);
@@ -176,24 +270,6 @@ value hx_zmq_ZMQ_RATE()
 	return alloc_int(ZMQ_RATE);
 }
 DEFINE_PRIM( hx_zmq_ZMQ_RATE,0);
-
-value hx_zmq_ZMQ_RECOVERY_IVL()
-{
-	return alloc_int(ZMQ_RECOVERY_IVL);
-}
-DEFINE_PRIM( hx_zmq_ZMQ_RECOVERY_IVL,0);
-
-value hx_zmq_ZMQ_RECOVERY_IVL_MSEC()
-{
-	return alloc_int(ZMQ_RECOVERY_IVL_MSEC);
-}
-DEFINE_PRIM( hx_zmq_ZMQ_RECOVERY_IVL_MSEC,0);
-
-value hx_zmq_ZMQ_MCAST_LOOP()
-{
-	return alloc_int(ZMQ_MCAST_LOOP);
-}
-DEFINE_PRIM( hx_zmq_ZMQ_MCAST_LOOP,0);
 
 value hx_zmq_ZMQ_SNDBUF()
 {
@@ -243,6 +319,7 @@ value hx_zmq_ZMQ_TYPE()
 }
 DEFINE_PRIM( hx_zmq_ZMQ_TYPE,0);
 
+/* ******* POLLER OPTIONS **********/
 value hx_zmq_ZMQ_POLLIN()
 {
 	return alloc_int(ZMQ_POLLIN);
@@ -277,6 +354,8 @@ value hx_zmq_SNDMORE()
 	return alloc_int(ZMQ_SNDMORE);
 }
 DEFINE_PRIM( hx_zmq_SNDMORE,0);
+
+
 
 /* ******* Exception Codes *************/
 value hx_zmq_EINVAL()
@@ -382,6 +461,7 @@ value hx_zmq_ETERM()
 DEFINE_PRIM( hx_zmq_ETERM,0);
 
 /* ******* ZMQ Devices *************/
+#if ZMQ_VERSION < ZMQ_MAKE_VERSION(3,0,0)
 value hx_zmq_ZMQ_QUEUE()
 {
 	return alloc_int(ZMQ_QUEUE);
@@ -398,3 +478,4 @@ value hx_zmq_ZMQ_STREAMER()
 }
 DEFINE_PRIM( hx_zmq_ZMQ_STREAMER, 0);
 
+#endif

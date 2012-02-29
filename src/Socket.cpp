@@ -368,13 +368,17 @@ value hx_zmq_send(value socket_handle_, value msg_data, value flags) {
 
 	gc_enter_blocking();
 	// Send
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(3,0,0)	
+    rc = zmq_sendmsg (val_data(socket_handle_), &message, val_int(flags));
+#else
     rc = zmq_send (val_data(socket_handle_), &message, val_int(flags));
+#endif
     err = zmq_errno();
 	
 	gc_exit_blocking();
 	
 	// If NOBLOCK, but cant send message now, close message first before quitting
-    if (rc != 0 && err == EAGAIN) {
+    if (rc == -1 && err == EAGAIN) {
         rc = zmq_msg_close (&message);
         err = zmq_errno();
         if (rc != 0) {
@@ -384,7 +388,7 @@ value hx_zmq_send(value socket_handle_, value msg_data, value flags) {
         return alloc_null();
     }
     
-    if (rc != 0) {
+    if (rc == -1) {
         val_throw(alloc_int(err));
         rc = zmq_msg_close (&message);
         err = zmq_errno();
@@ -427,13 +431,16 @@ value hx_zmq_rcv(value socket_handle_, value flags) {
     }
 	
 	gc_enter_blocking();
-
+	
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(3,0,0)	
+    rc = zmq_recvmsg (val_data(socket_handle_), &message, val_int(flags));
+#else
     rc = zmq_recv (val_data(socket_handle_), &message, val_int(flags));
-
+#endif
 	gc_exit_blocking();
 
     err = zmq_errno();
-    if (rc != 0 && err == EAGAIN) {
+    if (rc == -1 && err == EAGAIN) {
         rc = zmq_msg_close (&message);
         err = zmq_errno();
         if (rc != 0) {
@@ -443,7 +450,7 @@ value hx_zmq_rcv(value socket_handle_, value flags) {
         return alloc_null();
     }
 
-    if (rc != 0) {
+    if (rc == -1) {
         rc = zmq_msg_close (&message);
         int err1 = zmq_errno();
         if (rc != 0) {

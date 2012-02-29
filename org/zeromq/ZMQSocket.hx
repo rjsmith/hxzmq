@@ -443,11 +443,9 @@ class ZMQSocket
 	public function hasReceiveMore():Bool {
 		if (_socketHandle == null || closed) return false;
 		var r = getsockopt(ZMQ_RCVMORE);
-#if (neko || cpp)        
-		return (r != null && r.lo == 1);
-#elseif php
+		// In ZMQ 3+, RCVMORE is now an int value, not int64
 		return (r != null && r == 1);
-#end
+
 	}
 	
 	/**
